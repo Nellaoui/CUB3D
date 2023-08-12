@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
+/*   Updated: 2023/08/12 13:12:50 by ndahib           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 char	**ft_split_map(char *string)
@@ -36,13 +48,24 @@ void	ft_checks(t_cub3d *s, char **av)
 
 void	ft_cub3d(char **av)
 {
-	t_cub3d s;
+	t_cub3d mlx_lib;
+	(void)av;
 
-	ft_checks(&s, av);
+	// ft_checks(&mlx_lib, av);
+	mlx_lib.mlx = mlx_init(WIDGHT, HEIGHT, "cub3d", true);
+	if (!mlx_lib.mlx)
+		printf("error\n");
+	if (!(mlx_lib.image = mlx_new_image(mlx_lib.mlx, 25, 25)))
+		printf("error in creaitin new_image\n");
+	mlx_image_to_window(mlx_lib.mlx, mlx_lib.image, 350, 350);
+	mlx_loop_hook(mlx_lib.mlx, draw_player, (void *)(mlx_lib.image));
+	mlx_loop_hook(mlx_lib.mlx, move_on, &(mlx_lib));
+	mlx_loop(mlx_lib.mlx);
+	mlx_terminate(mlx_lib.mlx);
 }
+
 int main(int ac, char **av)
 {
-	ac = 0;
 	if (ac == 2)
 		ft_cub3d(av);
 	else
@@ -50,9 +73,5 @@ int main(int ac, char **av)
 		ft_putstr_fd("Error : Number of arguments isn't Correct\n", 2);
 		return (1);
 	}
-	// mlx_t* mlx = mlx_init(500, 500, "znn", true);
-
-	// mlx_loop(mlx);
-	// mlx_terminate(mlx);
 	return (0);
 }
