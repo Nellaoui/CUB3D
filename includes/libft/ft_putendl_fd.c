@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/11 13:10:36 by nelallao         ###   ########.fr       */
+/*   Created: 2022/10/20 18:58:00 by nelallao          #+#    #+#             */
+/*   Updated: 2022/10/21 19:45:32 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-# include "MLX42/MLX42.h"
-
-# endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	if (s)
+	{
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
+	}
+}
+// #include <fcntl.h>
+// #include <stdio.h>
+// int main()
+// {
+// int fd;
+// char *s = "Heloo noaman";
+// fd = creat("c.txt", O_RDWR);
+// ft_putendl_fd(s, fd);
+// }

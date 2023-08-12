@@ -6,41 +6,52 @@
 #    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/11 13:18:09 by nelallao         ###   ########.fr        #
+#    Updated: 2023/08/12 10:40:00 by nelallao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #***************************************VARIABLES******************************#
 CC = cc
-CFLAGS =
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = cub3D
-
-SRCS = main.c
+SRCS = main.c checks.c
 OBJS = $(SRCS:.c=.o)
+OBJS := $(addprefix obj/, $(OBJS))
+OBJ_DIR = obj/
 
-MLX_DIR = MLX42
+MLX_DIR = includes/MLX42
 GLFW_DIR = $(shell brew --prefix glfw)
 MLX_LIB = -L$(MLX_DIR) -lmlx42
 FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit
 GLFW_LIB = -L$(GLFW_DIR)/lib -lglfw
+LIBFT = includes/libft/libft.a
 
-LIBS = $(MLX_LIB) $(FRAMEWORKS) $(GLFW_LIB)
+LIBS = $(MLX_LIB) $(FRAMEWORKS) $(GLFW_LIB) $(LIBFT)
 
-INCLUDE = -I$(MLX_DIR) -Iinclude
+INCLUDE = -I$(MLX_DIR) -Iinclude -Iincludes/libft
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME) $(LIBFT)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBS) $(INCLUDE) -o $(NAME)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) $(CFLAGS) $(INCLUDE) $(LIBS) $(LIBFT) -o $(NAME)
+
+$(LIBFT):
+	make -C includes/libft
+
+obj/%.o: src/%.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	make clean -C includes/libft
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	make fclean -C includes/libft
 	rm -f $(NAME)
 
 re: fclean all
+	make re -C includes/libft
