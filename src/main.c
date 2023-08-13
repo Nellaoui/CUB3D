@@ -32,9 +32,18 @@ int	ft_check_floor(char **str, int i, int j)
 	int	st;
 	int	nd;
 	int rd;
+	while(!ft_isdigit(str[j][i]))
+		i++;
+	if (str[j][i + 3] != ',' || str[j][i + 7] != ',')
+	{
+		ft_putstr_fd("somthing wrong about the color", 2);
+		exit(EXIT_FAILURE);
+	}
+	// printf("(((%s))) i->[%d]" , ft_substr(str[j], i , 3), i);
 	st = ft_atoi(ft_substr(str[j], i , 3));
 	nd = ft_atoi(ft_substr(str[j], i + 4 , 3));
 	rd = ft_atoi(ft_substr(str[j], i + 8, 3));
+	// printf("st[%d]  nd[%d]  rd[%d]\n", st, nd, rd);
 	if (st >= 0 && st <= 255 && nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255)
 		return (1);
 	return (0);
@@ -52,20 +61,81 @@ int	ft_rgb(char **str)
 
 	while(str[j])
 	{
+		i = 0;
 		while(str[j][i])
 		{
-			if ((ft_check_floor(str, i, j)) && (str[j][i] == 'F' || str[j][i] == 'C'))
+			if ((str[j][i] == 'F' || str[j][i] == 'C'))
+			{
+				ft_check_floor(str, i, j);
 				count++;
+			}
 			i++;
 		}
 		j++;
 	}
+	// printf("count --> %d\n", count);
 	if (count == 2)
 		return 1;
 	else
 		return (0);
 }
 
+int ft_north(char *str)
+{
+	int i = 0;
+
+	while (str[i] == ' ')
+		i++;
+	while(str[i])
+	{
+		if (str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+int	ft_west(char *str)
+{
+	int i = 0;
+
+	while (str[i] == ' ')
+		i++;
+	while(str[i])
+	{
+		if (str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+int 	ft_east(char *str)
+{
+	int i = 0;
+
+	while (str[i] == ' ')
+		i++;
+	while(str[i])
+	{
+		if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+int ft_south(char *str)
+{
+	int i = 0;
+
+	while (str[i] == ' ')
+		i++;
+	while(str[i])
+	{
+		if (str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 int	ft_check_data(char **str)
 {
 	int i;
@@ -75,23 +145,39 @@ int	ft_check_data(char **str)
 	i = 0;
 	j = 0;
 	count = 0;
+	printf("count --> %d\n", count);
 	while(str[j])
 	{
 		while(str[j][i])
 		{
-			if (str[j][i] == 'N' && str[j][i + 1] == 'O' && str[j][i + 2] == ' ')
-				count++;
-			else if (str[j][i] == 'W' && str[j][i + 1] == 'E' && str[j][i + 2] == ' ')
-				count++;
-			else if (str[j][i] == 'E' && str[j][i + 1] == 'A' && str[j][i + 2] == ' ')
-				count++;
-			if (str[j][i] == 'S' && str[j][i + 1] == 'O' && str[j][i + 2] == ' ')
-				count++;
+			if (str[j][i] == ' ')
+				i++;
+			if (str[j][i] == 'N')
+			{
+				count += ft_north(str[j]);
+				break;
+			}
+			if (str[j][i] == 'W')
+			{
+
+				count += ft_west(str[j]);
+				break;
+			}
+			if (str[j][i] == 'E')
+			{
+
+				count += ft_east(str[j]);
+				break;
+			}
+			if (str[j][i] == 'S')
+			{
+				count += ft_south(str[j]);
+				break;
+			}
 			i++;
 		}
 		j++;
 	}
-	printf("count --> %d\n", count);
 	if (count == 4 && ft_rgb(str))
 		return 1;
 	return (0);
