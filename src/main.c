@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/12 13:12:50 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/13 19:59:21 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,78 @@ char	*ft_map(char *string)
 	return (map_data);
 }
 
+
+int	ft_st(char *str)
+{
+	int i = 0;
+	int j = 0;
+	int end = 0;
+	while (!ft_isdigit(str[j]))
+		j++;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			break;
+		end++;
+		i++;
+	}
+	return (ft_atoi(ft_substr(str, j, end - 2)));
+}
+
+
+int ft_nd(char *str)
+{
+	int i = 0;
+	int start = 0;
+	int end = 0;
+	while (str[i])
+	{
+		if (str[i] == ',' && !end)
+			start = i;
+		if (str[i] == ',' && start)
+			end = i;
+		i++;
+	}
+	return (ft_atoi(ft_substr(str, start + 1, end - start - 1)));
+}
+
+int	ft_rd(char *str)
+{
+	int i = 0;
+	int comma = 0;
+	int start = 0;
+	while (str[i])
+	{
+		if (str[i] == ',' && comma != 2)
+			comma++;
+		if (comma == 2)
+		{
+			start = i;
+			break;
+		}
+		i++;
+	}
+	printf("((%s))\n", ft_substr(str, start + 1, i));
+	return ft_atoi(ft_substr(str, start + 1, i));
+}
+
 int	ft_check_floor(char **str, int i, int j)
 {
 	int	st;
 	int	nd;
 	int rd;
-	while(!ft_isdigit(str[j][i]))
-		i++;
-	if (str[j][i + 3] != ',' || str[j][i + 7] != ',')
+	int count = 0;
+	while (str[j][i])
 	{
-		ft_putstr_fd("somthing wrong about the color", 2);
-		exit(EXIT_FAILURE);
+		if (str[j][i] == ',')
+			count++;
+		i++;
 	}
-	// printf("(((%s))) i->[%d]" , ft_substr(str[j], i , 3), i);
-	st = ft_atoi(ft_substr(str[j], i , 3));
-	nd = ft_atoi(ft_substr(str[j], i + 4 , 3));
-	rd = ft_atoi(ft_substr(str[j], i + 8, 3));
-	// printf("st[%d]  nd[%d]  rd[%d]\n", st, nd, rd);
-	if (st >= 0 && st <= 255 && nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255)
+	st = ft_st(str[j]);
+	nd = ft_nd(str[j]);
+	rd = ft_rd(str[j]);
+	printf("st[%d]  nd[%d]  rd[%d]\n", st, nd, rd);
+	if (st >= 0 && st <= 255 && nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
 		return (1);
 	return (0);
 }
@@ -65,11 +119,9 @@ int	ft_rgb(char **str)
 {
 	int i;
 	int j;
-	int count;
 
 	i = 0;
 	j = 0;
-	count = 0;
 
 	while(str[j])
 	{
@@ -78,17 +130,13 @@ int	ft_rgb(char **str)
 		{
 			if ((str[j][i] == 'F' || str[j][i] == 'C'))
 			{
-				ft_check_floor(str, i, j);
-				count++;
+				if (ft_check_floor(str, i, j))
+					return (1);
 			}
 			i++;
 		}
 		j++;
 	}
-	// printf("count --> %d\n", count);
-	if (count == 2)
-		return 1;
-	else
 		return (0);
 }
 
@@ -100,7 +148,7 @@ int ft_north(char *str)
 		i++;
 	while(str[i])
 	{
-		if (str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ')
+		if (str[i] == 'N' && str[i + 1] == ' ')
 			return (1);
 		i++;
 	}
@@ -114,7 +162,7 @@ int	ft_west(char *str)
 		i++;
 	while(str[i])
 	{
-		if (str[i] == 'W' && str[i + 1] == 'E' && str[i + 2] == ' ')
+		if (str[i] == 'W' && str[i + 1] == ' ')
 			return (1);
 		i++;
 	}
@@ -128,7 +176,7 @@ int 	ft_east(char *str)
 		i++;
 	while(str[i])
 	{
-		if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ')
+		if (str[i] == 'E' && str[i + 1] == ' ')
 			return (1);
 		i++;
 	}
@@ -142,7 +190,7 @@ int ft_south(char *str)
 		i++;
 	while(str[i])
 	{
-		if (str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ')
+		if (str[i] == 'S' && str[i + 1] == ' ')
 			return (1);
 		i++;
 	}
@@ -157,42 +205,29 @@ int	ft_check_data(char **str)
 	i = 0;
 	j = 0;
 	count = 0;
-	printf("count --> %d\n", count);
 	while(str[j])
 	{
+		i = 0;
 		while(str[j][i])
 		{
 			if (str[j][i] == ' ')
 				i++;
 			if (str[j][i] == 'N')
-			{
 				count += ft_north(str[j]);
-				break;
-			}
 			if (str[j][i] == 'W')
-			{
-
 				count += ft_west(str[j]);
-				break;
-			}
 			if (str[j][i] == 'E')
-			{
-
 				count += ft_east(str[j]);
-				break;
-			}
 			if (str[j][i] == 'S')
-			{
 				count += ft_south(str[j]);
-				break;
-			}
 			i++;
 		}
 		j++;
 	}
-	if (count == 4 && ft_rgb(str))
-		return 1;
-	return (0);
+	 if (count == 4 && ft_rgb(str))// || ft_check_dl(&str[j]))
+		return 0;
+	ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
+		exit(EXIT_FAILURE);
 }
 
 void	ft_checks(t_cub3d *s, char **av)
@@ -200,18 +235,13 @@ void	ft_checks(t_cub3d *s, char **av)
 	char **map_double;
 	ft_check_file_cub(av[1]);
 	s->map = ft_map(av[1]);
+	// if (ft_check_dl(s->map));
 	map_double = ft_split_map(s->map);
 	if (ft_check_data(map_double))
 		puts("GOOOOOOOD");
 	else
-		puts("NOOOOOOT   GOOOOOOOD");
-	printf("%s\n", map_double[1]);
-	printf("%s\n", map_double[2]);
-	printf("%s\n", map_double[3]);
-	printf("%s\n", map_double[4]);
-	printf("%s\n", map_double[5]);
-	printf("%s\n", map_double[6]);
-	printf("%s\n", map_double[7]);
+		puts("NOOOOOOT GOOOOOOOD");
+
 }
 
 void	ft_cub3d(char **av)
@@ -219,12 +249,12 @@ void	ft_cub3d(char **av)
 	t_cub3d mlx_lib;
 	(void)av;
 
-	// ft_checks(&mlx_lib, av);
+	ft_checks(&mlx_lib, av);
 	mlx_lib.mlx = mlx_init(WIDGHT, HEIGHT, "cub3d", true);
 	if (!mlx_lib.mlx)
-		printf("error\n");
+		ft_putstr_fd("error\n", 2);
 	if (!(mlx_lib.image = mlx_new_image(mlx_lib.mlx, 25, 25)))
-		printf("error in creaitin new_image\n");
+		ft_putstr_fd("error in creaitin new_image\n", 2);
 	mlx_image_to_window(mlx_lib.mlx, mlx_lib.image, 350, 350);
 	mlx_loop_hook(mlx_lib.mlx, draw_player, (void *)(mlx_lib.image));
 	mlx_loop_hook(mlx_lib.mlx, move_on, &(mlx_lib));
