@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
+#    By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/12 10:40:00 by nelallao         ###   ########.fr        #
+#    Updated: 2023/08/12 12:50:27 by ndahib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = cub3D
-SRCS = main.c checks.c
+SRCS = main.c checks.c mlx_hook.c
 OBJS = $(SRCS:.c=.o)
 OBJS := $(addprefix obj/, $(OBJS))
 OBJ_DIR = obj/
