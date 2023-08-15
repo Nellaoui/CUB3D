@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 11:49:47 by nelallao          #+#    #+#             */
-/*   Updated: 2022/10/20 22:53:16 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:23:03 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	dest[len] = '\0';
 	return (dest);
 }
+
 /*
 #include <stdio.h>
 int	main(void)
