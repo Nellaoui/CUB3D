@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/12 12:51:41 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/16 08:15:21 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,53 @@
 
 void	draw_player(void *param)
 {
-	mlx_image_t	*image;
-	int			i;
-	const float pi = 3.14;
+	t_cub3d	*mlx;
+	uint32_t	x;
 
-	image = param;
-	i = 0;
-	while (i < 360)
+	mlx = param;
+	if (mlx->player->direction == 'S')
 	{
-		uint32_t x = image->height/2 * cos((i * pi / 180));
-		uint32_t y = image->height/2 * sin((i * pi / 180));
-		mlx_put_pixel(image, image->height/2 + x, image->width/2 + y, 0xFFFFFF);
-		i += 1;
+		for (uint32_t i = 0; i < mlx->image->width/2; i++)
+		{
+			for (uint32_t j = 0; j < mlx->image->height/2; j++)
+			mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+		}
+		x = mlx->image->width/4;
+		for (uint32_t y = mlx->image->height/2 ; y < mlx->image->height; y++)
+			mlx_put_pixel(mlx->image, x, y, 0x0FFFFFFF);
+	}
+	else if (mlx->player->direction == 'E')
+	{
+		for (uint32_t i = 0; i < mlx->image->width/2; i++)
+		{
+			for (uint32_t j = 0; j < mlx->image->height/2; j++)
+			mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+		}
+		x = mlx->image->width/4;
+		for (uint32_t y = mlx->image->height/2 ; y < mlx->image->height; y++)
+			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);	
+	}
+	else if (mlx->player->direction == 'N')
+	{
+		for (uint32_t i = mlx->image->width/2; i < mlx->image->width; i++)
+		{
+			for (uint32_t j = mlx->image->height/2; j < mlx->image->height; j++)
+				mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+		}
+		x = 3 * mlx->image->width/4;
+		for (uint32_t y = mlx->image->height/2 ; y != 0; y--)
+			mlx_put_pixel(mlx->image, x, y, 0x0FFFFFFF);
+	}
+	else if (mlx->player->direction == 'W')
+	{
+		for (uint32_t i = mlx->image->width/2; i < mlx->image->width; i++)
+		{
+			for (uint32_t j = mlx->image->height/2; j < mlx->image->height; j++)
+				mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+		}
+		x = 3 * mlx->image->width/4;
+		for (uint32_t y = mlx->image->height/2 ; y != 0; y--)
+			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);		
 	}
 }
 

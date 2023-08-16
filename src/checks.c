@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/15 13:44:36 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/16 07:00:56 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_check_file_cub(char *string)
 		ft_putstr_fd("misiing `.cub` file, Please check it\n", 2);
 		exit(EXIT_FAILURE);
 	}
-
 }
 
 int	ft_check_floor(char **str, int j)
@@ -68,6 +67,7 @@ int	ft_check_floor(char **str, int j)
 int	ft_check_dl(char *str)
 {
 	int j;
+
 	j = 0;
 	while(str[j])
 	{
@@ -86,8 +86,8 @@ int	ft_check_dl(char *str)
 
 int	ft_check_data(char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	count;
 
 	i = 0;
@@ -137,8 +137,6 @@ int	ft_good(char **map, int j, int i)
 	}
 	return (0);
 }
-
-
 
 // void	ft_check_map(char **str)
 // {

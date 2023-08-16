@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/15 14:53:47 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:17:35 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	**ft_split_map(char *string)
 {
 	char **splited;
+
 	splited = ft_split(string, '\n');
 	if (!splited)
 		return (0);
@@ -137,8 +138,9 @@ int	ft_rgb(char **str)
 
 int ft_north(char *str)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str[i] == ' ')
 		i++;
 	while(str[i])
@@ -149,10 +151,12 @@ int ft_north(char *str)
 	}
 	return (0);
 }
+
 int	ft_west(char *str)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str[i] == ' ')
 		i++;
 	while(str[i])
@@ -163,6 +167,7 @@ int	ft_west(char *str)
 	}
 	return (0);
 }
+
 int 	ft_east(char *str)
 {
 	int i = 0;
@@ -177,6 +182,7 @@ int 	ft_east(char *str)
 	}
 	return (0);
 }
+
 int ft_south(char *str)
 {
 	int i = 0;
@@ -233,10 +239,10 @@ int	give_index(char *str)
 	return (0);
 }
 
-char **ft_hold_map(char *str)
+char	**ft_hold_map(char *str)
 {
-	char **data;
-	int j;
+	int		j;
+	char	**data;
 
 	j = give_index(str);
 	data = ft_split(&str[j], '\n');
@@ -245,19 +251,19 @@ char **ft_hold_map(char *str)
 	return (data);
 }
 
-int st_line(char *map)
+int	st_line(char *map)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (map[i])
 	{
-		if (map[i] != '1' && map[i] != '\0' && map[i] != ' '&& map[i] != '\n')
+		if (map[i] != '1' && map[i] != '\0' && map[i] != ' ' && map[i] != '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
-
 
 int	last_line(char **map)
 {
@@ -284,7 +290,7 @@ void	ft_double_player(char **map)
 	count = 0;
 	while (map[j])
 	{
-		i= 0;
+		i = 0;
 		while(map[j][i])
 		{
 			if (map[j][i] == 'N' || map[j][i] == 'W' || map[j][i] == 'E' || map[j][i] == 'S')
@@ -298,14 +304,12 @@ void	ft_double_player(char **map)
 		ft_putstr_fd("somthing went wrong : to many player in the map", 2);
 		exit(EXIT_FAILURE);
 	}
-	else
-		return ;
 }
 
 int	ft_player(char	**map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	ft_double_player(map);
@@ -325,8 +329,8 @@ int	ft_player(char	**map)
 
 int	ft_check_valid(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 1;
 	if (ft_player(map) || st_line(map[0]) || st_line(map[last_line(map)]))
@@ -350,41 +354,32 @@ int	ft_check_valid(char **map)
 
 void	ft_checks(t_cub3d *s, char **av)
 {
-	char **file;
-	char **holdmap;
+	char	**file;
+	char	*map;
 
+	s->holdmap = NULL;
+	map = NULL;
 	ft_check_file_cub(av[1]);
-	s->map = ft_map(av[1]);
-	if (ft_check_dl(s->map))
+	map = ft_map(av[1]);
+	if (ft_check_dl(map))
 	{
 		ft_putstr_fd("somthing went wrong : Double line in the map", 2);
-			exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	file = ft_split_map(s->map);
-	holdmap = ft_hold_map(s->map);
-	if (ft_check_valid(holdmap))
+	file = ft_split_map(map);
+	s->holdmap = ft_hold_map(map);
+	if (ft_check_valid(s->holdmap) || ft_check_data(file))
 		exit(1);
-	if (ft_check_data(file))
-		puts("GOOOOOOOD");
-	else
-		puts("NOOOOOOT GOOOOOOOD");
-
 }
 
 void	ft_cub3d(char **av)
 {
-	t_cub3d mlx_lib;
-	(void)av;
+	t_cub3d	mlx_lib;
 
 	ft_checks(&mlx_lib, av);
-	mlx_lib.mlx = mlx_init(WIDGHT, HEIGHT, "cub3d", true);
-	if (!mlx_lib.mlx)
-		ft_putstr_fd("error\n", 2);
-	if (!(mlx_lib.image = mlx_new_image(mlx_lib.mlx, 25, 25)))
-		ft_putstr_fd("error in creaitin new_image\n", 2);
-	mlx_image_to_window(mlx_lib.mlx, mlx_lib.image, 350, 350);
-	mlx_loop_hook(mlx_lib.mlx, draw_player, (void *)(mlx_lib.image));
-	mlx_loop_hook(mlx_lib.mlx, move_on, &(mlx_lib));
+	initilize_cub3d(&mlx_lib);
+	render_map(&mlx_lib);
+	render_player(&mlx_lib);
 	mlx_loop(mlx_lib.mlx);
 	mlx_terminate(mlx_lib.mlx);
 }

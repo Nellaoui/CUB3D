@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/15 14:54:43 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:24:25 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,35 @@
 # include "libft/libft.h"
 # include "MLX42/MLX42.h"
 
+typedef struct	s_coordinates
+{
+	int	x;
+	int	y;
+}	t_coordinate;
+
+typedef	struct	s_player
+{
+	int		x;
+	int		y;
+	float	radius;
+	char	direction;
+	char	turn_direction;
+	int		rotate_speed;
+	int		move_speed;
+	int		move_direction;
+}	t_player;
+
 typedef struct s_cub3d
 {
-	mlx_t	*mlx;
+	char		**holdmap;
+	uint32_t	tile_y;
+	uint32_t	tile_x;
+	t_player	*player;
 	mlx_image_t	*image;
-	char	*map;
+	int			color;
+	mlx_t		*mlx;
+	int			rows;
+	int			colons;
 }	t_cub3d;
 
 // typedef struct s_data
@@ -73,7 +97,17 @@ void	ft_checks(t_cub3d *s, char **av);
 void	ft_cub3d(char **av);
 /*-------------------------------------------------------*/
 
+/*---------------------Initilisation---------------------*/
+void	initilize_cub3d(t_cub3d *my_struct);
 /*----------------------MLX_HOOK-------------------------*/
 void	move_on(void *prm);
+void	render_map(t_cub3d *s);
 void	draw_player(void *param);
+void	render_player(t_cub3d *mlx_lib);
+
+/*-------------------------TOOOLS-------------------------*/
+int		number_of_rows(char **map);
+int		number_of_colons(char *map);
+void	printf_double_pointer(char **map);
+uint32_t createcolor(int red, int green, int blue, int alpha);
 # endif
