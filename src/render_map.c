@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 10:28:42 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/16 10:45:14 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	render_map(t_cub3d *mlx_lib)
 				color = createcolor(255, 255, 255, 255);
 			else if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
-			if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, 50, 50)))
+			if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x, mlx_lib->tile_y)))
 				ft_putstr_fd("error in creaitin new_image\n", 2);
 			mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, j * mlx_lib->tile_x, i * mlx_lib->tile_y);
 			for (uint16_t i = 0; i < 49; i++)
@@ -59,7 +59,6 @@ void	render_map(t_cub3d *mlx_lib)
 			}		
 		}
 	}
-	
 }
 
 void	render_player(t_cub3d *mlx_lib)
