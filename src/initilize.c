@@ -3,15 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 11:11:24 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/16 11:42:54 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+
+// char ft_player_direction(t_cub3d *my_struct)
+// {
+// 	int i;
+// 	int j;
+
+// 	j = 0;
+// 	while(my_struct->holdmap[j])
+// 	{
+// 		i = 0;
+// 		while(my_struct->holdmap[j][i])
+// 		{
+// 			if (my_struct->holdmap[j][i] == 'N')
+// 				return 'N';
+// 			if (my_struct->holdmap[j][i] == 'W')
+// 				return 'W';
+// 			if (my_struct->holdmap[j][i] == 'E')
+// 				return 'E';
+// 			if (my_struct->holdmap[j][i] == 'E')
+// 				return 'S';
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	return (NULL);
+// }
 
 t_player	*initilize_player(void)
 {
