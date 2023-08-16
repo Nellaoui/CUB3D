@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 12:06:42 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:46:18 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,25 @@ char ft_player_direction(t_cub3d *my_struct)
 		}
 		j++;
 	}
-	return (NULL);
+	return (0);
 }
 
-int	ft_give_posy(t_cub3d *my_struct)
+int	ft_give_posy(char **map)
 {
 	int i;
 	int j;
 
 	j = 0;
-	while(my_struct->holdmap[j])
+	while(map[j])
 	{
 		i = 0;
-		while(my_struct->holdmap[j][i])
+		while(map[j][i])
 		{
-			if (my_struct->holdmap[j][i] == 'N' || my_struct->holdmap[j][i] == 'W' || my_struct->holdmap[j][i] == 'E' || my_struct->holdmap[j][i] == 'S')
+			if (map[j][i] == 'N' || map[j][i] == 'W' || map[j][i] == 'E' || map[j][i] == 'S')
 				return (j);
 			i++;
 		}
+		j++;
 	}
 	return (0);
 }
@@ -73,13 +74,14 @@ int	ft_give_posx(char **str)
 				return (i);
 			i++;
 		}
+		j++;
 	}
+	return (0);
 }
 
-t_player	*initilize_player(void)
+t_player	*initilize_player(t_cub3d	*my_struct)
 {
 	t_player	*player;
-	t_cub3d		*my_struct;
 
 	player = malloc(sizeof(t_player));
 	player->x = ft_give_posx(my_struct->holdmap);
@@ -91,11 +93,29 @@ t_player	*initilize_player(void)
 	player->turn_direction = M_PI / 2;
 	return (player);
 }
+/*by noaman ilook for the biig len and i return thier lane*/
+int	colons(char **map)
+{
+	int j;
+	unsigned long holder;
+
+	j = 1;
+	holder = 0;
+	while (map[j])
+	{
+		if (ft_strlen(map[j]) >= holder)
+			holder = ft_strlen(map[j]);
+		// printf("[%lu]\n", holder);
+		j++;
+	}
+	// exit(1);
+	return (holder);
+}
 
 void	initilize_cub3d(t_cub3d *my_struct)
 {
 	my_struct->rows = number_of_rows(my_struct->holdmap);
-	my_struct->colons = 40;
+	my_struct->colons = colons(my_struct->holdmap);
 	my_struct->image = NULL;
 	my_struct->tile_x = 50;
 	my_struct->tile_y = 50;

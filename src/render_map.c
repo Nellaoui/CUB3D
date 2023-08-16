@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 10:45:14 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/16 13:48:50 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	render_map(t_cub3d *mlx_lib)
 			{
 				for (uint16_t j = 0; j < 49; j++)
 					mlx_put_pixel(mlx_lib->image, i, j, color);
-			}		
+			}
 		}
 	}
 }
@@ -65,7 +65,7 @@ void	render_player(t_cub3d *mlx_lib)
 {
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, 50, 50)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
-	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 50, 400);
+	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x * 50, mlx_lib->player->y * 50);
 	mlx_loop_hook(mlx_lib->mlx, draw_player, mlx_lib);
 	mlx_loop_hook(mlx_lib->mlx, move_on, mlx_lib);
 }
