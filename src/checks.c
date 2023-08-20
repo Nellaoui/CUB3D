@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/16 07:00:56 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/16 11:53:32 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,10 @@ int	ft_good(char **map, int j, int i)
 {
 	if (map[j][i] == '0' || map[j][i]  == 'W' || map[j][i]  == 'E' || map[j][i]  == 'N' || map[j][i]  == 'S')
 	{
+		if (ft_strlen(map[j - 1]) < (unsigned long)i)
+			return (1);
+		if (ft_strlen(map[j + 1]) < (unsigned long)i)
+			return (1);
 		if (map[j - 1][i] == ' ' || map[j - 1][i] == '\0')
 			return (1);
 		if (map[j + 1][i] == ' ' || map[j + 1][i] == '\0')
@@ -129,10 +133,6 @@ int	ft_good(char **map, int j, int i)
 		if (map[j][i + 1] == ' ' || map[j][i + 1] == '\0')
 			return (1);
 		if (map[j][i - 1] == ' ' || map[j][i - 1] == '\0')
-			return (1);
-		if (ft_strlen(map[j - 1]) < (unsigned long)i)
-			return (1);
-		if (ft_strlen(map[j + 1]) < (unsigned long)i)
 			return (1);
 	}
 	return (0);
