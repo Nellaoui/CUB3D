@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 10:24:25 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/20 10:17:04 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef	struct	s_player
 	int		x;
 	int		y;
 	float	radius;
-	char	direction;
-	char	turn_direction;
+	int		direction;
+	double	turn_direction;
 	int		rotate_speed;
 	int		move_speed;
 	int		move_direction;
@@ -103,6 +103,7 @@ void	initilize_cub3d(t_cub3d *my_struct);
 void	move_on(void *prm);
 void	render_map(t_cub3d *s);
 void	draw_player(void *param);
+void	update_after_move(void *param);
 void	render_player(t_cub3d *mlx_lib);
 
 /*-------------------------TOOOLS-------------------------*/

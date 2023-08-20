@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 11:11:24 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/20 10:28:42 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ t_player	*initilize_player(void)
 	t_player	*player;
 
 	player = malloc(sizeof(t_player));
-	player->x = 0;
-	player->y = 0;
-	player->direction = 'E';
-	player->rotate_speed = 3 + (M_PI / 180);// should that be modified
-	player->move_speed = 3; //increment it to add speed to player
-	player->move_direction = 0; // -1 if left +1 is right
-	player->turn_direction = M_PI / 2;
+	if (!player)
+		return (NULL);
+	player->x = 25;
+	player->y = 25;
+	player->direction = 0;
+	player->rotate_speed = (2 + (M_PI / 180));
+	player->move_speed = 3;
+	player->move_direction = 0;
+	player->turn_direction = (90 * (M_PI / 180));
 	return (player);
 }
 
@@ -43,4 +45,60 @@ void	initilize_cub3d(t_cub3d *my_struct)
 	if (my_struct->mlx == NULL)
 		ft_putstr_fd("error\n", 2);
 }
+// }
+// void	draw_player(void *param)
+// {
+// 	t_cub3d	*mlx;
+// 	uint32_t	x;
 
+// 	mlx = param;
+// 	if (mlx->player->direction == 'S')
+// 	{
+// 		for (uint32_t i = 0; i < mlx->image->width/2; i++)
+// 		{
+// 			for (uint32_t j = 0; j < mlx->image->height/2; j++)
+// 			mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+// 		}
+// 		x = mlx->image->width/4;
+// 		for (uint32_t y = mlx->image->height/2 ; y < mlx->image->height; y++)
+// 			mlx_put_pixel(mlx->image, x, y, 0x0FFFFFFF);
+// 	}
+// 	else if (mlx->player->direction == 'E')
+// 	{
+// 		for (uint32_t i = 0; i < mlx->image->width/2; i++)
+// 		{
+// 			for (uint32_t j = 0; j < mlx->image->height/2; j++)
+// 			mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+// 		}
+// 		x = mlx->image->width/4;
+// 		for (uint32_t y = mlx->image->height/2 ; y < mlx->image->height; y++)
+// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);	
+// 	}
+// 	else if (mlx->player->direction == 'N')
+// 	{
+// 		for (uint32_t i = mlx->image->width/2; i < mlx->image->width; i++)
+// 		{
+// 			for (uint32_t j = mlx->image->height/2; j < mlx->image->height; j++)
+// 				mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+// 		}
+// 		x = 3 * mlx->image->width/4;
+// 		for (uint32_t y = mlx->image->height/2 ; y != 0; y--)
+// 			mlx_put_pixel(mlx->image, x, y, 0x0FFFFFFF);
+// 	}
+// 	else if (mlx->player->direction == 'W')
+// 	{
+// 		for (uint32_t i = mlx->image->width/2; i < mlx->image->width; i++)
+// 		{
+// 			for (uint32_t j = mlx->image->height/2; j < mlx->image->height; j++)
+// 				mlx_put_pixel(mlx->image, i, j, 0x0FFFFFFF);
+// 		}
+// 		x = 3 * mlx->image->width/4;
+// 		for (uint32_t y = mlx->image->height/2 ; y != 0; y--)
+// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);		
+// 	}
+// }
+
+// printf("x1 ==>%d\n", (mlx->image->width * 3 / 4));
+// printf("x2 ==>%f\n", (mlx->image->width * 3 / 4 ) + (cos(mlx->player->turn_direction) * 25));
+// printf("y1 ==>%d\n", mlx->player->y);
+// printf("y2 ==>%f\n", mlx->player->y + (sin(mlx->player->turn_direction) * 25));
