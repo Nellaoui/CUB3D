@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 10:17:04 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/20 13:55:40 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	ft_cub3d(char **av);
 /*---------------------Initilisation---------------------*/
 void	initilize_cub3d(t_cub3d *my_struct);
 /*----------------------MLX_HOOK-------------------------*/
-void	move_on(void *prm);
+// void	move_on(void *prm);
+void	move_on(mlx_key_data_t key, void *prm);
 void	render_map(t_cub3d *s);
 void	draw_player(void *param);
 void	update_after_move(void *param);

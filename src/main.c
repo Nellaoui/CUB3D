@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 12:32:40 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:52:14 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,7 +377,6 @@ void	ft_cub3d(char **av)
 	t_cub3d	mlx_lib;
 
 	ft_checks(&mlx_lib, av);
-	// write()
 	initilize_cub3d(&mlx_lib);
 	render_map(&mlx_lib);
 	render_player(&mlx_lib);
