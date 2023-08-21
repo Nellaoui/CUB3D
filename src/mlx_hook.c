@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 14:35:34 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/20 23:15:36 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	draw_player(void *param)
 
 	mlx = param;
 
-	update_after_move(mlx);
 	draw_carre(mlx->image, mlx->image->width * 3 / 4);
 	draw_line(mlx->image, mlx->player->x , mlx->player->y
 	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->image->width/2)
@@ -64,6 +63,12 @@ void	update_after_move(void *param)
 	move_step = 0;
 	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180))) 
 		mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
+	// var newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
+	// var newPlayerY = this.y + Math.sin(this.rotationAngle) * moveStep;
+	
+	mlx_delete_image(mlx->mlx, mlx->image);
+	render_map(mlx);
+	render_player(mlx);
 }
 
 void	move_on(mlx_key_data_t key, void *prm)
@@ -73,21 +78,35 @@ void	move_on(mlx_key_data_t key, void *prm)
 	mlx	= prm;
 	if (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS)
 	{
-		mlx_delete_image(mlx->mlx, mlx->image);
-		render_map(mlx);
-		render_player(mlx);
-		mlx->player->direction = -1;
+		mlx->player->direction = +1;
+		update_after_move(mlx);
 	}
 	if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
 		mlx->player->direction = 0;
-	// if (mlx_is_key_down(mlx_lib->mlx, MLX_KEY_ESCAPE))
-	// 	mlx_close_window(mlx_lib->mlx);
-	// if (mlx_is_key_down(mlx_lib->mlx, MLX_KEY_UP))
-	// 	mlx_lib->image->instances[0].y -= 3;
-	// if (mlx_is_key_down(mlx_lib->mlx, MLX_KEY_DOWN))
-	// 	mlx_lib->image->instances[0].y += 3;
-	// if (mlx_is_key_down(mlx_lib->mlx, MLX_KEY_LEFT))
-	// 	mlx_lib->player->direction -= 1;
-	// if (mlx_is_key_down(mlx_lib->mlx, MLX_KEY_RIGHT))
-	// 	mlx_lib->player->direction += 1;
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS)
+	{
+		mlx->player->direction = -1;
+		update_after_move(mlx);
+	}
+	if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
+		mlx->player->direction = 0;
+	if (key.key == MLX_KEY_UP && key.action == MLX_PRESS)
+	{
+		mlx->player->move_direction = +1;
+		update_after_move(mlx);
+	}
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_RELEASE)
+		mlx->player->move_direction = 0;
+	if (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS)
+	{
+		mlx->player->move_direction = -1;
+		update_after_move(mlx);
+	}
+	if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
+		mlx->player->move_direction = 0;
+	if (key.key == MLX_KEY_ESCAPE)
+	{
+		mlx_close_window(mlx->mlx);
+		exit(1);
+	};
 }
