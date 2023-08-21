@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 14:43:25 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/21 11:31:52 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,18 @@ int	ft_give_posx(char **str)
 t_player	*initilize_player(t_cub3d	*my_struct)
 {
 	t_player	*player;
+	(void)my_struct;
 
 	player = malloc(sizeof(t_player));
-	player->x = 25;//ft_give_posx(my_struct->holdmap);
-	player->y = 25;//ft_give_posy(my_struct->holdmap);
-	player->direction = ft_player_direction(my_struct);
-	player->rotate_speed = 3 + (M_PI / 180);// should that be modified
-	player->move_speed = 3; //increment it to add speed to player
-	player->move_direction = 0; // -1 if left +1 is right
-	player->turn_direction = M_PI / 2;
+	if (!player)
+		return (NULL);
+	player->x = 25; //ft_give_posx(my_struct->holdmap);
+	player->y = 25; //ft_give_posy(my_struct->holdmap);
+	player->direction = 1; //ft_player_direction(my_struct);
+	player->rotate_speed = (5 * (M_PI / 180));
+	player->move_speed = 3;
+	player->move_direction = 0;
+	player->turn_direction = (90 * (M_PI / 180));
 	return (player);
 }
 /*by noaman ilook for the biig len and i return thier lane*/
@@ -105,10 +108,8 @@ int	colons(char **map)
 	{
 		if (ft_strlen(map[j]) >= holder)
 			holder = ft_strlen(map[j]);
-		// printf("[%lu]\n", holder);
 		j++;
 	}
-	// exit(1);
 	return (holder);
 }
 
@@ -154,7 +155,7 @@ void	initilize_cub3d(t_cub3d *my_struct)
 // 		}
 // 		x = mlx->image->width/4;
 // 		for (uint32_t y = mlx->image->height/2 ; y < mlx->image->height; y++)
-// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);	
+// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);
 // 	}
 // 	else if (mlx->player->direction == 'N')
 // 	{
@@ -176,7 +177,7 @@ void	initilize_cub3d(t_cub3d *my_struct)
 // 		}
 // 		x = 3 * mlx->image->width/4;
 // 		for (uint32_t y = mlx->image->height/2 ; y != 0; y--)
-// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);		
+// 			mlx_put_pixel(mlx->image, y, x, 0x0FFFFFFF);
 // 	}
 // }
 

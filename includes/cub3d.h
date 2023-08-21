@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 15:18:56 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/21 10:27:19 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef	struct	s_player
 	float	radius;
 	int		direction;
 	double	turn_direction;
-	int		rotate_speed;
+	double	rotate_speed;
 	int		move_speed;
 	int		move_direction;
 }	t_player;
