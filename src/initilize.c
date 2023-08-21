@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 23:07:37 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/21 19:11:49 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char ft_player_direction(t_cub3d *my_struct)
 
 int	ft_give_posy(char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while(map[j])
@@ -87,8 +87,8 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-	player->x = 25; //ft_give_posx(my_struct->holdmap);
-	player->y = 25; //ft_give_posy(my_struct->holdmap);
+	player->x = ft_give_posx(my_struct->holdmap);
+	player->y = ft_give_posy(my_struct->holdmap);
 	player->direction = 0; //ft_player_direction(my_struct);
 	player->rotate_speed = (5 * (M_PI / 180));
 	player->move_speed = 3;

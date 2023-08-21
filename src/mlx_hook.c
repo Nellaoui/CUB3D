@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 23:15:36 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/21 19:25:46 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	draw_player(void *param)
 	mlx = param;
 
 	draw_carre(mlx->image, mlx->image->width * 3 / 4);
-	draw_line(mlx->image, mlx->player->x , mlx->player->y
-	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->image->width/2)
-	, mlx->player->y + (sin(mlx->player->turn_direction) * mlx->image->height/2));
+	draw_line(mlx->image, mlx->image->width/2 , mlx->image->height/2
+	, mlx->image->width/2 + (cos(mlx->player->turn_direction) * mlx->image->width/2)
+	, mlx->image->height/2 + (sin(mlx->player->turn_direction) * mlx->image->height/2));
 	mlx->player->direction = 0;
 }
 
@@ -63,11 +63,7 @@ void	update_after_move(void *param)
 	move_step = 0;
 	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180))) 
 		mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
-	// var newPlayerX = this.x + Math.cos(this.rotationAngle) * moveStep;
-	// var newPlayerY = this.y + Math.sin(this.rotationAngle) * moveStep;
-	
 	mlx_delete_image(mlx->mlx, mlx->image);
-	render_map(mlx);
 	render_player(mlx);
 }
 
