@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/20 20:48:43 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/21 20:25:55 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct	s_coordinates
 
 typedef	struct	s_player
 {
+	int		x_map;
+	int		y_map;
 	int		x;
 	int		y;
 	float	radius;
