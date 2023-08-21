@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 13:51:19 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 00:00:39 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,41 @@ void	draw_player(void *param)
 
 	mlx = param;
 
-	printf("%d\n", mlx->player->move_direction);
+	// printf("%d\n", mlx->player->move_direction);
 	draw_carre(mlx->image, mlx->image->width * 3 / 4);
 	draw_line(mlx->image, mlx->player->x , mlx->player->y
-	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->image->width/2)
-	, mlx->player->y + (sin(mlx->player->turn_direction) * mlx->image->height/2));
+	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->player->x)
+	, mlx->player->y + (sin(mlx->player->turn_direction) * mlx->player->y));
 	mlx->player->direction = 0;
+	mlx->player->move_direction = 0;
 }
 
 void	update_after_move(void *param)
 {
 	t_cub3d	*mlx;
-	int		move_step;
+	int	move_step ;
+	int	x_grid ;
+	int	y_grid ;
+	int new_x;
+	int	new_y;
 
-	mlx = param;
 	move_step = 0;
+	mlx = param;
 	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180)))
 		mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
-	mlx_delete_image(mlx->mlx, mlx->image);
-	render_map(mlx);
-	render_player(mlx);
+	move_step += mlx->player->move_direction * mlx->player->move_speed;
+	new_x = mlx->player->x_map + (cos(mlx->player->turn_direction) * move_step);
+	new_y = mlx->player->y_map + (sin(mlx->player->turn_direction) * move_step);
 
+	x_grid = new_x / 50;
+	y_grid = new_y / 50;
+	if (mlx->holdmap[y_grid][x_grid] != '1')
+	{
+		mlx->player->x_map = new_x;
+		mlx->player->y_map = new_y;
+	}
+	mlx_delete_image(mlx->mlx, mlx->image);
+	render_player(mlx);
 }
 
 void	move_on(mlx_key_data_t key, void *prm)
@@ -81,40 +95,22 @@ void	move_on(mlx_key_data_t key, void *prm)
 	t_cub3d	*mlx;
 
 	mlx	= prm;
-		/*-------LEFT-------*/
-	if (key.key == MLX_KEY_LEFT && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	{
-		mlx->player->direction = +1;
-		update_after_move(mlx);
-	}
-	if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
-		mlx->player->direction = 0;
-		/*-------------------*/
-		/*-------RIGHT-------*/
-	if (key.key == MLX_KEY_RIGHT && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	{
+	if (key.key == MLX_KEY_A && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->direction = -1;
-		update_after_move(mlx);
-	}
-	if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
-		mlx->player->direction = 0;
-		/*-------------------*/
-		/*-------UP-------*/
-	if (key.key == MLX_KEY_UP && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	{
-		mlx->player->move_direction = 1;
-		update_after_move(mlx);
-	}
-	if (key.key == MLX_KEY_DOWN && key.action == MLX_RELEASE)
-		mlx->player->move_direction = 0;
-		/*-------------------*/
-		/*---------DOWN-------*/
-	if (key.key == MLX_KEY_DOWN && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	{
+	else if (key.key == MLX_KEY_D && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+		mlx->player->direction = +1;
+	else if (key.key == MLX_KEY_UP && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+		mlx->player->move_direction = +1;
+	else if (key.key == MLX_KEY_DOWN && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->move_direction = -1;
-		update_after_move(mlx);
-	}
-	if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
+
+	if (key.key == MLX_KEY_A && key.action == MLX_RELEASE)
+		mlx->player->direction = 0;
+	else if (key.key == MLX_KEY_D && key.action == MLX_RELEASE)
+		mlx->player->direction = 0;
+	else if (key.key == MLX_KEY_UP && key.action == MLX_RELEASE)
+		mlx->player->move_direction = 0;
+	else if (key.key == MLX_KEY_DOWN && key.action == MLX_RELEASE)
 		mlx->player->move_direction = 0;
 		/*-------------------*/
 	if (key.key == MLX_KEY_ESCAPE)
@@ -122,4 +118,5 @@ void	move_on(mlx_key_data_t key, void *prm)
 		mlx_close_window(mlx->mlx);
 		exit(1);
 	};
+	update_after_move(mlx);
 }

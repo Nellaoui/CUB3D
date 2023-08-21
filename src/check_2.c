@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:17:17 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/16 10:42:07 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/21 23:03:45 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_check_data(char **str)
 	}
 	if (count == 4 && ft_rgb(str))
 		return 0;
-	printf("[%d]  [%d]  \n", count, ft_rgb(str));
+	// printf("[%d]  [%d]  \n", count, ft_rgb(str));
 	ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
 		exit(EXIT_FAILURE);
 }
