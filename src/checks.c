@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/16 08:33:59 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:19:59 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_check_file_cub(char *string)
 		ft_putstr_fd("misiing `.cub` file, Please check it\n", 2);
 		exit(EXIT_FAILURE);
 	}
-
 }
 
 int	ft_check_floor(char **str, int j)
@@ -76,6 +75,7 @@ int ft_check_valid_rgb(char **str, int j, int count)
 int	ft_check_dl(char *str)
 {
 	int j;
+
 	j = 0;
 	while(str[j])
 	{
@@ -92,10 +92,48 @@ int	ft_check_dl(char *str)
 	return (0);
 }
 
+int	ft_check_data(char **str)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	j = 0;
+	count = 0;
+	while(str[j])
+	{
+		i = 0;
+		while(str[j][i])
+		{
+			if (str[j][i] == ' ')
+				i++;
+			if (str[j][i] == 'N')
+				count += ft_north(str[j]);
+			if (str[j][i] == 'W')
+				count += ft_west(str[j]);
+			if (str[j][i] == 'E')
+				count += ft_east(str[j]);
+			if (str[j][i] == 'S')
+				count += ft_south(str[j]);
+			i++;
+		}
+		j++;
+	}
+	if (count == 4 && ft_rgb(str))
+		return 0;
+	ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
+		exit(EXIT_FAILURE);
+}
+
 int	ft_good(char **map, int j, int i)
 {
 	if (map[j][i] == '0' || map[j][i]  == 'W' || map[j][i]  == 'E' || map[j][i]  == 'N' || map[j][i]  == 'S')
 	{
+		if (ft_strlen(map[j - 1]) < (unsigned long)i)
+			return (1);
+		if (ft_strlen(map[j + 1]) < (unsigned long)i)
+			return (1);
 		if (map[j - 1][i] == ' ' || map[j - 1][i] == '\0')
 			return (1);
 		if (map[j + 1][i] == ' ' || map[j + 1][i] == '\0')
@@ -104,10 +142,41 @@ int	ft_good(char **map, int j, int i)
 			return (1);
 		if (map[j][i - 1] == ' ' || map[j][i - 1] == '\0')
 			return (1);
-		if (ft_strlen(map[j - 1]) < (unsigned long)i)
-			return (1);
-		if (ft_strlen(map[j + 1]) < (unsigned long)i)
-			return (1);
 	}
 	return (0);
 }
+
+// void	ft_check_map(char **str)
+// {
+// 	int i;
+// 	int j = 0;
+// 	while(str[j])
+// 	{
+// 		i = 0;
+// 		while (str[i])
+// 		{
+// 			str[]
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// }
+
+// int	ft_check_dl(char **str)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	j = 0;
+// 	while (str[j])
+// 	{
+// 		i = 0;
+// 		while (str[j][i])
+// 		{
+// 			if (str[j][i] == '1' )
+// 			i++;
+// 		}
+// 	}
+// 	return (false);
+// }
+

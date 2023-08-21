@@ -6,16 +6,16 @@
 #    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/16 08:35:32 by nelallao         ###   ########.fr        #
+#    Updated: 2023/08/20 15:19:17 by nelallao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #***************************************VARIABLES******************************#
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NAME = cub3D
-SRCS = main.c checks.c mlx_hook.c rgb.c map_hundling.c directons.c check_rgb.c check_2.c
+SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c
 OBJS = $(SRCS:.c=.o)
 OBJS := $(addprefix obj/, $(OBJS))
 OBJ_DIR = obj/
