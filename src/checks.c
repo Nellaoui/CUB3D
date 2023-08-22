@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/21 10:27:21 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:47:47 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_check_floor(char **str, int j)
 		return (1);
 	while (str[j][i])
 	{
-		if (!ft_isdigit(str[j][i]) && str[j][i] != ',')
+		if (!ft_isdigit(str[j][i]) && str[j][i] != ',' && str[j][i] != ' ')
 			return (1);
 		if (str[j][i] == ',')
 			count++;
@@ -79,7 +79,7 @@ int	ft_check_dl(char *str)
 	j = 0;
 	while(str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1')
+		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
 			break ;
 		j++;
 	}
@@ -106,15 +106,13 @@ int	ft_check_data(char **str)
 		i = 0;
 		while(str[j][i])
 		{
-			if (str[j][i] == ' ')
-				i++;
 			if (str[j][i] == 'N')
 				count += ft_north(str[j]);
-			if (str[j][i] == 'W')
+			else if (str[j][i] == 'W')
 				count += ft_west(str[j]);
-			if (str[j][i] == 'E')
+			else if (str[j][i] == 'E')
 				count += ft_east(str[j]);
-			if (str[j][i] == 'S')
+			else if (str[j][i] == 'S')
 				count += ft_south(str[j]);
 			i++;
 		}
@@ -122,7 +120,7 @@ int	ft_check_data(char **str)
 	}
 	if (count == 4 && ft_rgb(str))
 		return 0;
-	ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
+	ft_putstr_fd("somthing went wrong : map can't be loaded 1", 2);
 		exit(EXIT_FAILURE);
 }
 
@@ -145,38 +143,3 @@ int	ft_good(char **map, int j, int i)
 	}
 	return (0);
 }
-
-// void	ft_check_map(char **str)
-// {
-// 	int i;
-// 	int j = 0;
-// 	while(str[j])
-// 	{
-// 		i = 0;
-// 		while (str[i])
-// 		{
-// 			str[]
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }
-
-// int	ft_check_dl(char **str)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	while (str[j])
-// 	{
-// 		i = 0;
-// 		while (str[j][i])
-// 		{
-// 			if (str[j][i] == '1' )
-// 			i++;
-// 		}
-// 	}
-// 	return (false);
-// }
-

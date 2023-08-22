@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 00:00:39 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:41:56 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2)
 	x = x1;
 	y = y1;
 	// printf("x->%f y->%f\n", x, y);
-	for (int i = 0; i <= steps; i++) {
+	for (int i = 0; i <= steps; i++)
+	{
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, 0x000000FF);
 		x += x_increment;
 		y += y_increment;
@@ -52,8 +53,6 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-
-	// printf("%d\n", mlx->player->move_direction);
 	draw_carre(mlx->image, mlx->image->width * 3 / 4);
 	draw_line(mlx->image, mlx->player->x , mlx->player->y
 	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->player->x)
@@ -81,6 +80,7 @@ void	update_after_move(void *param)
 
 	x_grid = new_x / 50;
 	y_grid = new_y / 50;
+	printf("{%c}\n", mlx->holdmap[y_grid][x_grid]);
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 	{
 		mlx->player->x_map = new_x;

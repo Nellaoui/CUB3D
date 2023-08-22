@@ -6,39 +6,12 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:28:25 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/16 08:36:50 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:38:36 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	ft_rgb(char **str)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-
-	while(str[j])
-	{
-		i = 0;
-		while(str[j][i])
-		{
-			if ((str[j][i] == 'F' || str[j][i] == 'C') && str[j][i + 1] == ' ')
-			{
-				if (ft_check_floor(str, j))
-				{
-					ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
-					exit (1);
-				}
-			}
-			i++;
-		}
-		j++;
-	}
-	return (1);
-}
 
 int	ft_st(char *str)
 {
