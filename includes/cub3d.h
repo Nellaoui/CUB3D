@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 20:25:55 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/22 17:42:33 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,8 @@ int		number_of_rows(char **map);
 int		number_of_colons(char *map);
 void	printf_double_pointer(char **map);
 uint32_t createcolor(int red, int green, int blue, int alpha);
+void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
+
+/*----------------------------RAYCASTING------------------*/
+void	cast_ray(t_cub3d *cub3d);
 # endif

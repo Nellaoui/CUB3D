@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 20:44:33 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/22 08:07:15 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player->y = 25;
 	player->direction = 0; //ft_player_direction(my_struct);
 	player->rotate_speed = (5 * (M_PI / 180));
-	player->move_speed = 5;
+	player->move_speed = 7;
 	player->move_direction = 0; 
 	player->turn_direction = (-90 * (M_PI / 180));
 	return (player);

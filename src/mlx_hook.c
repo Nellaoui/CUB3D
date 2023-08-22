@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 21:36:08 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:19:56 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,30 @@ void	draw_player(void *param)
 void	update_after_move(void *param)
 {
 	t_cub3d	*mlx;
-	int		move_step;
+	int	move_step ;
 	int	x_grid ;
 	int	y_grid ;
-	
+	int new_x;
+	int	new_y;
 
-	mlx = param;
 	move_step = 0;
-	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180))) 
+	mlx = param;
+	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180)))
 		mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
 	move_step += mlx->player->move_direction * mlx->player->move_speed;
-	mlx->player->x_map = mlx->player->x_map + (cos(mlx->player->turn_direction) * move_step);
-	mlx->player->y_map = mlx->player->y_map + (sin(mlx->player->turn_direction) * move_step);
-	x_grid = mlx->player->x_map / 50;
-	y_grid = mlx->player->y_map / 50;
-	if (mlx->holdmap[x_grid][y_grid] == '0')
+	new_x = mlx->player->x_map + (cos(mlx->player->turn_direction) * move_step);
+	new_y = mlx->player->y_map + (sin(mlx->player->turn_direction) * move_step);
+
+	x_grid = new_x / 50;
+	y_grid = new_y / 50;
+	if (mlx->holdmap[y_grid][x_grid] != '1')
 	{
-		mlx_delete_image(mlx->mlx, mlx->image);
-		render_player(mlx);
+		mlx->player->x_map = new_x;
+		mlx->player->y_map = new_y;
 	}
+	mlx_delete_image(mlx->mlx, mlx->image);
+	render_player(mlx);
+	cast_ray(mlx);
 }
 
 void	move_on(mlx_key_data_t key, void *prm)
@@ -84,28 +89,6 @@ void	move_on(mlx_key_data_t key, void *prm)
 	t_cub3d	*mlx;
 
 	mlx	= prm;
-	// if (key.key == MLX_KEY_LEFT && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	// 	mlx->player->direction = +1;
-	// if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
-	// 	mlx->player->direction = 0;
-	// if (key.key == MLX_KEY_RIGHT && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	// 	mlx->player->direction = -1;
-	// if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
-	// 	mlx->player->direction = 0;
-		
-	// if (key.key == MLX_KEY_UP && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	// 	mlx->player->move_direction = +1;
-	// if (key.key == MLX_KEY_UP && key.action == MLX_RELEASE)
-	// 	mlx->player->move_direction = 0;
-	// if (key.key == MLX_KEY_DOWN && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
-	// 	mlx->player->move_direction = -1;
-	// if (key.key == MLX_KEY_DOWN && key.action == MLX_RELEASE)
-	// 	mlx->player->move_direction = 0;
-	// if (key.key == MLX_KEY_ESCAPE)
-	// {
-	// 	mlx_close_window(mlx->mlx);
-	// 	exit(1);
-	// };
 	if (key.key == MLX_KEY_A && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->direction = -1;
 	else if (key.key == MLX_KEY_D && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
@@ -114,7 +97,6 @@ void	move_on(mlx_key_data_t key, void *prm)
 		mlx->player->move_direction = +1;
 	else if (key.key == MLX_KEY_DOWN && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->move_direction = -1;
-
 	if (key.key == MLX_KEY_A && key.action == MLX_RELEASE)
 		mlx->player->direction = 0;
 	else if (key.key == MLX_KEY_D && key.action == MLX_RELEASE)
@@ -127,6 +109,6 @@ void	move_on(mlx_key_data_t key, void *prm)
 	{
 		mlx_close_window(mlx->mlx);
 		exit(1);
-	};
+	}
 	update_after_move(mlx);
 }
