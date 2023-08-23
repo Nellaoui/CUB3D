@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/23 10:40:06 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:54:36 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	update_after_move(void *param)
 
 	x_grid = new_x / 50;
 	y_grid = new_y / 50;
-	// printf("{%c}\n", mlx->holdmap[y_grid][x_grid]);
+	printf("{%c}\n", mlx->holdmap[y_grid][x_grid]);
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 	{
 		mlx->player->x_map = new_x;
@@ -89,7 +89,7 @@ void	update_after_move(void *param)
 	}
 	mlx_delete_image(mlx->mlx, mlx->image);
 	render_player(mlx);
-	// cast_ray(mlx);
+	cast_ray(mlx);
 }
 
 void	move_on(mlx_key_data_t key, void *prm)

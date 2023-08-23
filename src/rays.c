@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 18:35:13 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:51:04 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
 	float x = x1;
 	float y = y1;
 
-	for (int i = 0; i <= steps; i++) 
+	for (int i = 0; i < steps; i++) 
 	{
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 127, 1));
 		x += x_increment;
