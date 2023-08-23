@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 17:41:56 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:14:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2)
 	y_increment = (float)dy / steps;
 	x = x1;
 	y = y1;
-	// printf("x->%f y->%f\n", x, y);
 	for (int i = 0; i <= steps; i++)
 	{
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, 0x000000FF);
@@ -53,12 +52,12 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_carre(mlx->image, mlx->image->width * 3 / 4);
-	draw_line(mlx->image, mlx->player->x , mlx->player->y
-	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->player->x)
+	// draw_carre(mlx->image, mlx->image->width * 3 / 4);
+	draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->turn_direction) * mlx->player->x)
 	, mlx->player->y + (sin(mlx->player->turn_direction) * mlx->player->y));
 	mlx->player->direction = 0;
 	mlx->player->move_direction = 0;
+	printf("[[%f]]\n", mlx->player->turn_direction);
 }
 
 void	update_after_move(void *param)
@@ -77,10 +76,8 @@ void	update_after_move(void *param)
 	move_step += mlx->player->move_direction * mlx->player->move_speed;
 	new_x = mlx->player->x_map + (cos(mlx->player->turn_direction) * move_step);
 	new_y = mlx->player->y_map + (sin(mlx->player->turn_direction) * move_step);
-
 	x_grid = new_x / 50;
 	y_grid = new_y / 50;
-	printf("{%c}\n", mlx->holdmap[y_grid][x_grid]);
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 	{
 		mlx->player->x_map = new_x;

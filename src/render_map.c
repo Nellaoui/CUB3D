@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 23:04:01 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 21:14:16 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	render_map(t_cub3d *mlx_lib)
 
 void	render_player(t_cub3d *mlx_lib)
 {
-	// printf("[%d]\n", mlx_lib->player->x);
-	// printf("[%d]\n", mlx_lib->player->y);
+	printf("[%d]\n", mlx_lib->player->x);
+	printf("[%d]\n", mlx_lib->player->y);
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, 50, 50)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x_map, mlx_lib->player->y_map);

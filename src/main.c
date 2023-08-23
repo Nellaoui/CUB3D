@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 19:38:18 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:26:06 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,7 +369,10 @@ void	ft_checks(t_cub3d *s, char **av)
 	file = ft_split_map(map);
 	s->holdmap = ft_hold_map(map);
 	if (ft_check_valid(s->holdmap) || ft_check_data(file))
+	{
+		ft_putstr_fd("somthing went wrong : data is not valid", 2);
 		exit(1);
+	}
 }
 
 void	ft_cub3d(char **av)
@@ -387,7 +390,10 @@ void	ft_cub3d(char **av)
 int main(int ac, char **av)
 {
 	if (ac == 2)
+	{
 		ft_cub3d(av);
+		system("leaks cub3D");
+	}
 	else
 	{
 		ft_putstr_fd("Error : Number of arguments isn't Correct\n", 2);
