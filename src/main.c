@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 17:44:34 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:42:50 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	ft_rgb(char **str)
 			{
 				if (ft_check_floor(str, j))
 				{
-					ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
+					ft_putstr_fd("somthing went wrong : map can't be loaded X", 2);
 					exit (1);
 				}
 			}
@@ -208,7 +208,7 @@ int	ft_map_line(char **str)
 		i = 0;
 		while (str[j][i])
 		{
-			if (str[j][i] == '1' && str[j][i+1] == '1'&&str[j][i+2] == '1'&&str[j][i+3] == '1')
+			if (str[j][i] == '1' && str[j][i+1] == '1'&& str[j][i+2] == '1'&& str[j][i+3] == '1')
 				return (j);
 			i++;
 		}
@@ -225,7 +225,7 @@ int	give_index(char *str)
 	j = 0;
 	while(str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1')
+		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
 		{
 			while(str[j])
 			{
@@ -395,4 +395,3 @@ int main(int ac, char **av)
 	}
 	return (0);
 }
-

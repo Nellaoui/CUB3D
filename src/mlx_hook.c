@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/23 10:34:47 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:40:06 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-
-	// draw_carre(mlx->image, mlx->image->width * 3 / 4);
+	draw_carre(mlx->image, mlx->image->width * 3 / 4);
 	draw_line(mlx->image, mlx->player->x , mlx->player->y
 	, mlx->player->x + (cos(mlx->player->turn_direction) * mlx->player->x)
 	, mlx->player->y + (sin(mlx->player->turn_direction) * mlx->player->y));
@@ -74,14 +73,15 @@ void	update_after_move(void *param)
 
 	move_step = 0;
 	mlx = param;
-	// if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180)))
-	mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
+	if (mlx->player->turn_direction >= 0 || mlx->player->turn_direction <= (360 * (M_PI / 180)))
+		mlx->player->turn_direction += mlx->player->direction * mlx->player->rotate_speed;
 	move_step += mlx->player->move_direction * mlx->player->move_speed;
 	new_x = mlx->player->x_map + (cos(mlx->player->turn_direction) * move_step);
 	new_y = mlx->player->y_map + (sin(mlx->player->turn_direction) * move_step);
 
 	x_grid = new_x / 50;
 	y_grid = new_y / 50;
+	// printf("{%c}\n", mlx->holdmap[y_grid][x_grid]);
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 	{
 		mlx->player->x_map = new_x;
@@ -113,6 +113,7 @@ void	move_on(mlx_key_data_t key, void *prm)
 		mlx->player->move_direction = 0;
 	else if (key.key == MLX_KEY_DOWN && key.action == MLX_RELEASE)
 		mlx->player->move_direction = 0;
+		/*-------------------*/
 	if (key.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(mlx->mlx);

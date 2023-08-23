@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/22 18:45:51 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:42:13 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	ft_check_file_cub(char *string)
 
 int	ft_check_floor(char **str, int j)
 {
-	int	st;
-	int	nd;
-	int rd;
 	int count;
 	int i;
 
@@ -47,12 +44,23 @@ int	ft_check_floor(char **str, int j)
 		return (1);
 	while (str[j][i])
 	{
-		if (!ft_isdigit(str[j][i]) && str[j][i] != ',')
+		if (!ft_isdigit(str[j][i]) && str[j][i] != ',' && str[j][i] != ' ')
 			return (1);
 		if (str[j][i] == ',')
 			count++;
-				i++;
+		i++;
 	}
+	if (ft_check_valid_rgb(str, j, count))
+		return (1);
+	return (0);
+}
+
+int ft_check_valid_rgb(char **str, int j, int count)
+{
+	int	st;
+	int	nd;
+	int rd;
+
 	st = ft_st(str[j]);
 	nd = ft_nd(str[j]);
 	rd = ft_rd(str[j]);
@@ -98,15 +106,13 @@ int	ft_check_data(char **str)
 		i = 0;
 		while(str[j][i])
 		{
-			if (str[j][i] == ' ')
-				i++;
 			if (str[j][i] == 'N')
 				count += ft_north(str[j]);
-			if (str[j][i] == 'W')
+			else if (str[j][i] == 'W')
 				count += ft_west(str[j]);
-			if (str[j][i] == 'E')
+			else if (str[j][i] == 'E')
 				count += ft_east(str[j]);
-			if (str[j][i] == 'S')
+			else if (str[j][i] == 'S')
 				count += ft_south(str[j]);
 			i++;
 		}
@@ -114,7 +120,7 @@ int	ft_check_data(char **str)
 	}
 	if (count == 4 && ft_rgb(str))
 		return 0;
-	ft_putstr_fd("somthing went wrong : map can't be loaded", 2);
+	ft_putstr_fd("somthing went wrong : map can't be loaded 1", 2);
 		exit(EXIT_FAILURE);
 }
 
@@ -137,38 +143,3 @@ int	ft_good(char **map, int j, int i)
 	}
 	return (0);
 }
-
-// void	ft_check_map(char **str)
-// {
-// 	int i;
-// 	int j = 0;
-// 	while(str[j])
-// 	{
-// 		i = 0;
-// 		while (str[i])
-// 		{
-// 			str[]
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }
-
-// int	ft_check_dl(char **str)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	j = 0;
-// 	while (str[j])
-// 	{
-// 		i = 0;
-// 		while (str[j][i])
-// 		{
-// 			if (str[j][i] == '1' )
-// 			i++;
-// 		}
-// 	}
-// 	return (false);
-// }
-

@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 17:42:33 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/23 10:40:22 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ int st_line(char *map);
 int	last_line(char **map);
 void	ft_double_player(char **map);
 int	ft_player(char	**map);
-int	ft_check_valid(char **map);
+int		ft_check_valid(char **map);
 void	ft_checks(t_cub3d *s, char **av);
+int ft_check_valid_rgb(char **str, int j, int count);
 void	ft_cub3d(char **av);
 /*-------------------------------------------------------*/
 
