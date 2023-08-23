@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 18:24:46 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/22 18:35:13 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
 	float x = x1;
 	float y = y1;
 
-	for (int i = 0; i <= steps; i++) {
+	for (int i = 0; i <= steps; i++) 
+	{
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 127, 1));
 		x += x_increment;
 		y += y_increment;
@@ -34,15 +35,18 @@ void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
 void	cast_ray(t_cub3d *cub3d)
 {
 	double FOV = (60  * (M_PI / 180));
+	int	i;
 	double  ray_angle = cub3d->player->turn_direction - (FOV / 2);
 	
-	for (int i = 0; i < 320; i++)
+	i = 0;
+	while (i < 480)
 	{
 		draw_ray(cub3d->image, 
 			cub3d->player->x,
 			cub3d->player->y,
 			cub3d->player->x + (cos(ray_angle) * 25),
 			cub3d->player->y + (sin(ray_angle) * 25));
-		ray_angle += (FOV / 320);
+		ray_angle += (FOV / 480);
+		i++;
 	}
 }

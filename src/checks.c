@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/16 11:53:32 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:45:51 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_check_dl(char *str)
 	j = 0;
 	while(str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1')
+		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
 			break ;
 		j++;
 	}
