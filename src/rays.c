@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:49:32 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:07:18 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
 
 	for (int i = 0; i < steps; i++)
 	{
+		if (x < 0 || y < 0)
+		{
+			printf("x === %f\n", x);
+			printf("y === %f\n", y);
+			break;
+		}
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 127, 1));
 		x += x_increment;
 		y += y_increment;
@@ -37,12 +43,12 @@ void	cast_ray(t_cub3d *cub3d)
 	t_ray s;
 	float FOV = (60  * (M_PI / 180));
 	int	i;
-	int column = 0;
-	float  ray_angle = cub3d->player->rotation - (FOV / 2);
+	int	column = 0;
+	float	ray_angle = cub3d->player->rotation - (FOV / 2);
 	ray_angle = ft_absolute_angle(ray_angle);
 	i = 0;
-	while (i < 480)
-	{
+	// while (i < 480)
+	// {
 		casting(cub3d, ray_angle, column , &s);
 		draw_ray(cub3d->image,
 			cub3d->player->x,
@@ -51,7 +57,7 @@ void	cast_ray(t_cub3d *cub3d)
 			s.next_horzintal_y);
 		ray_angle += (FOV / 480);
 		ray_angle = ft_absolute_angle(ray_angle);
-		i++;
-		column++;
-	}
+	// 	i++;
+	// 	column++;
+	// }
 }

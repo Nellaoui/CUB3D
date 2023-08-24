@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 16:05:05 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
 	// draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
 	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;

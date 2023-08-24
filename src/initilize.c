@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:56:25 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 		return (NULL);
 	player->x = ft_give_posx(my_struct->holdmap) * 50;
 	player->y = ft_give_posy(my_struct->holdmap) * 50;
-	player->x = 25;
-	player->y = 25;
 	player->direction = 0; // left or right //ft_player_direction(my_struct);
 	player->move = 0; // back or front
 	player->rotate_speed = 10 * (M_PI / 180);
