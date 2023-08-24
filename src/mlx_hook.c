@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 16:05:05 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/24 22:21:55 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	// draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
-	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	// draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 100)
+	// , mlx->player->y + (sin(mlx->player->rotation) * 100));
 	mlx->player->direction = 0;
 	mlx->player->move = 0;
 }
@@ -62,11 +62,10 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	int	x_grid;
 	int	y_grid;
 
-	if (x < 0 || x > WIDGHT || y < 0 || y > HEIGHT)
+	if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
 		return (1);
 	x_grid = round(x / TILE_SIZE);
 	y_grid = round(y / TILE_SIZE);
-
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 		return (0);
 	return (1);
@@ -107,7 +106,7 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 	y_inter = round(mlx->player->y  / TILE_SIZE) * TILE_SIZE;
 	if (down)
 		y_inter += TILE_SIZE;
-	x_inter = mlx->player->x + (y_inter - mlx->player->y) / tan(ray_angle);
+	x_inter = mlx->player->x + ((y_inter - mlx->player->y) / tan(ray_angle));
 	y_step = TILE_SIZE;
 	if (up)
 		y_step *= (-1);
@@ -116,12 +115,11 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		x_step *= -1;
 	if (right && x_step < 0)
 		x_step *= -1;
-
 	s->next_horzintal_x = x_inter;
 	s->next_horzintal_y = y_inter;
 	if (up)
 		s->next_horzintal_y--;
-	while (s->next_horzintal_x >= 0 && s->next_horzintal_x <= WIDGHT && s->next_horzintal_y >= 0 && s->next_horzintal_y <= HEIGHT)
+	while (s->next_horzintal_x >= 0 && s->next_horzintal_x <= mlx->tile_x * mlx->colons && s->next_horzintal_y >= 0 && s->next_horzintal_y <= mlx->tile_y * mlx->rows)
 	{
 		if (ft_wall_here(s->next_horzintal_x, s->next_horzintal_y, mlx))
 		{
@@ -139,19 +137,17 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 void	update_after_move(void *param)
 {
 	t_cub3d	*mlx;
-	int	move_step ;
+	int	move_step;
 	float new_x;
 	float new_y;
 
 	move_step = 0;
 	mlx = param;
-	// if (mlx->player->rotation >= 0 || mlx->player->rotation <= (360 * (M_PI / 180)))
+	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (360 * (M_PI / 180)))
 		mlx->player->rotation += (mlx->player->direction * mlx->player->rotate_speed);
 	move_step = mlx->player->move * mlx->player->move_speed;
-
 	new_x = (mlx->player->x + (cos(mlx->player->rotation) * move_step));
 	new_y = (mlx->player->y + (sin(mlx->player->rotation) * move_step));
-
 	if (!ft_wall_here(new_x, new_y, mlx))
 	{
 		mlx->player->x = new_x;
@@ -159,7 +155,6 @@ void	update_after_move(void *param)
 	}
 	mlx_delete_image(mlx->mlx, mlx->image);
 	render_player(mlx);
-	// casting(mlx);
 	cast_ray(mlx);
 }
 
@@ -184,7 +179,6 @@ void	move_on(mlx_key_data_t key, void *prm)
 		mlx->player->move = 0;
 	else if (key.key == MLX_KEY_S && key.action == MLX_RELEASE)
 		mlx->player->move = 0;
-		/*-------------------*/
 	if (key.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(mlx->mlx);

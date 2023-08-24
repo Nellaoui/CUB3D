@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 22:00:09 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	render_player(t_cub3d *mlx_lib)
 {
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
-	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x, mlx_lib->player->y);
+	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
 	draw_player(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }
