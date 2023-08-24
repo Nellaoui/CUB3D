@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 19:47:32 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 		return (NULL);
 	player->x = ft_give_posx(my_struct->holdmap) * 50;
 	player->y = ft_give_posy(my_struct->holdmap) * 50;
-	player->x = 25;
-	player->y = 25;
 	player->direction = 0; // left or right //ft_player_direction(my_struct);
 	player->move = 0; // back or front
 	player->rotate_speed = 10 * (M_PI / 180);
@@ -123,7 +121,10 @@ void	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->tile_x = TILE_SIZE;
 	my_struct->tile_y = TILE_SIZE;
 	my_struct->color = 0xFFFFFFFF;
+	my_struct->width = my_struct->colons * my_struct->tile_x;
+	my_struct->height = my_struct->rows * my_struct->tile_y;
 	my_struct->player = initilize_player(my_struct);
+
 	my_struct->mlx = mlx_init(my_struct->colons * my_struct->tile_x
 							, my_struct->rows * my_struct->tile_y
 							, "cub3d", true);

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:47:01 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:31:49 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define BUFFER_SIZE 500000
 # endif
 
-#define	WIDGHT	700
-#define	HEIGHT	700
+#define	WIDGHT	900
+#define	HEIGHT	1000
 #define	TILE_SIZE	50
 
 #include <stdio.h>
@@ -69,6 +69,8 @@ typedef struct s_cub3d
 	mlx_t		*mlx;
 	int			rows;
 	int			colons;
+	long			width;
+	long			height;
 }	t_cub3d;
 
 // typedef struct s_data

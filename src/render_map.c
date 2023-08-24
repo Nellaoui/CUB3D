@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:35:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t s
 	uint32_t	lenght_y;
 	uint32_t	y;
 
-	lenght_x = start_x + 49;
-	lenght_y = start_y + 49;
+	lenght_x = start_x + 48;
+	lenght_y = start_y + 48;
 	while (start_x < lenght_x)
 	{
 		y = start_y;
@@ -42,6 +42,8 @@ void	render_map(t_cub3d *mlx_lib)
 	i = -1;
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
+		// printf("%d  ||    %d\n",mlx_lib->tile_x * mlx_lib->colons / 48, mlx_lib->tile_y * mlx_lib->rows / 50);
+		// exit(14);
 	while (++i < mlx_lib->rows)
 	{
 		j = -1;
@@ -52,6 +54,7 @@ void	render_map(t_cub3d *mlx_lib)
 			else if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
 			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j, mlx_lib->tile_y * i);
+			printf("[[%d]] || [[%d]] \n",mlx_lib->tile_x * j, mlx_lib->tile_y * i);
 		}
 	}
 	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))
@@ -75,9 +78,10 @@ void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius)
 
 void	render_player(t_cub3d *mlx_lib)
 {
-	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
+	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons - 1, mlx_lib->tile_y * mlx_lib->rows - 1)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
-	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x, mlx_lib->player->y);
+	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 60, 60);
+		printf("%d  ||    %d\n",mlx_lib->player->x, mlx_lib->player->y);
 	draw_player(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }

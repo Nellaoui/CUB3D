@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 15:49:32 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:08:12 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	cast_ray(t_cub3d *cub3d)
 	float  ray_angle = cub3d->player->rotation - (FOV / 2);
 	ray_angle = ft_absolute_angle(ray_angle);
 	i = 0;
-	while (i < 480)
-	{
+	// while (i < 480)
+	// {
+		printf("x->[%d] || y->[%d]\n", cub3d->player->x, cub3d->player->y);
 		casting(cub3d, ray_angle, column , &s);
 		draw_ray(cub3d->image,
 			cub3d->player->x,
@@ -51,7 +52,7 @@ void	cast_ray(t_cub3d *cub3d)
 			s.next_horzintal_y);
 		ray_angle += (FOV / 480);
 		ray_angle = ft_absolute_angle(ray_angle);
-		i++;
-		column++;
-	}
+		// i++;
+		// column++;
+	// }
 }

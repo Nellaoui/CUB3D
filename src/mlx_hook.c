@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 16:09:27 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:19:27 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	// draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
-	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y , 1);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
+	, mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
 	mlx->player->move = 0;
 }
@@ -62,7 +62,7 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	int	x_grid;
 	int	y_grid;
 
-	if (x < 0 || x > WIDGHT || y < 0 || y > HEIGHT)
+	if (x < 0 || x > mlx->width || y < 0 || y > mlx->height)
 		return (1);
 	x_grid = round(x / TILE_SIZE);
 	y_grid = round(y / TILE_SIZE);
@@ -160,7 +160,7 @@ void	update_after_move(void *param)
 	mlx_delete_image(mlx->mlx, mlx->image);
 	render_player(mlx);
 	// casting(mlx);
-	cast_ray(mlx);
+	// cast_ray(mlx);
 }
 
 void	move_on(mlx_key_data_t key, void *prm)
