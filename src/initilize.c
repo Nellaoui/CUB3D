@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 17:31:36 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-	player->x_map = ft_give_posx(my_struct->holdmap) * 50;
-	player->y_map = ft_give_posy(my_struct->holdmap) * 50;
+	player->x = ft_give_posx(my_struct->holdmap) * 50;
+	player->y = ft_give_posy(my_struct->holdmap) * 50;
 	player->x = 25;
 	player->y = 25;
-	player->direction = 0; //ft_player_direction(my_struct);
-	player->rotate_speed = (10 * (M_PI / 180));
+	player->direction = 0; // left or right //ft_player_direction(my_struct);
+	player->move = 0; // back or front
+	player->rotate_speed = 10 * (M_PI / 180);
 	player->move_speed = 10;
-	player->move_direction = 0;
-	player->turn_direction = (180 * (M_PI / 180));
+	player->rotation = M_PI / 2;
 	return (player);
 }
 /*by noaman ilook for the biig len and i return thier lane*/
@@ -120,8 +120,8 @@ void	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->rows = number_of_rows(my_struct->holdmap);
 	my_struct->colons = colons(my_struct->holdmap);
 	my_struct->image = NULL;
-	my_struct->tile_x = 50;
-	my_struct->tile_y = 50;
+	my_struct->tile_x = TILE_SIZE;
+	my_struct->tile_y = TILE_SIZE;
 	my_struct->color = 0xFFFFFFFF;
 	my_struct->player = initilize_player(my_struct);
 	my_struct->mlx = mlx_init(my_struct->colons * my_struct->tile_x
@@ -184,6 +184,6 @@ void	initilize_cub3d(t_cub3d *my_struct)
 // }
 
 // printf("x1 ==>%d\n", (mlx->image->width * 3 / 4));
-// printf("x2 ==>%f\n", (mlx->image->width * 3 / 4 ) + (cos(mlx->player->turn_direction) * 25));
+// printf("x2 ==>%f\n", (mlx->image->width * 3 / 4 ) + (cos(mlx->player->rotation) * 25));
 // printf("y1 ==>%d\n", mlx->player->y);
-// printf("y2 ==>%f\n", mlx->player->y + (sin(mlx->player->turn_direction) * 25));
+// printf("y2 ==>%f\n", mlx->player->y + (sin(mlx->player->rotation) * 25));

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/22 21:14:16 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:46:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,30 @@ void	render_map(t_cub3d *mlx_lib)
 			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j, mlx_lib->tile_y * i);
 		}
 	}
-	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0))
+	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))
 		ft_putstr_fd("error : putin map in window\n", 2);
+}
+
+void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius)
+{
+	int x = 0;
+	int y = 0;
+	int angle =0;
+
+	while (angle < 360)
+	{
+		x = center_x + (radius * cos(angle * M_PI / 180));
+		y = center_y + (radius * sin(angle * M_PI / 180));
+		mlx_put_pixel(image, x, y, createcolor(200, 25, 175, 255));
+		angle++;
+	}
 }
 
 void	render_player(t_cub3d *mlx_lib)
 {
-	printf("[%d]\n", mlx_lib->player->x);
-	printf("[%d]\n", mlx_lib->player->y);
-	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, 50, 50)))
+	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
-	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x_map, mlx_lib->player->y_map);
+	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, mlx_lib->player->x, mlx_lib->player->y);
 	draw_player(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }

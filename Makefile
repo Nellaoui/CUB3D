@@ -6,7 +6,7 @@
 #    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/21 13:58:08 by nelallao         ###   ########.fr        #
+#    Updated: 2023/08/24 13:28:01 by nelallao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NAME = cub3D
-SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c
+SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c
 OBJS = $(SRCS:.c=.o)
 OBJS := $(addprefix obj/, $(OBJS))
 OBJ_DIR = obj/

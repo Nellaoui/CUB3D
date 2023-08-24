@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/21 22:07:01 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:47:01 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #define	WIDGHT	700
 #define	HEIGHT	700
+#define	TILE_SIZE	50
 
 #include <stdio.h>
 #include <unistd.h>
@@ -35,18 +36,26 @@ typedef struct	s_coordinates
 	int	y;
 }	t_coordinate;
 
+typedef	struct	s_ray
+{
+	float	ray_angle;
+	float	point_wall_x;
+	float	point_wall_y;
+	float	distance;
+	float	next_horzintal_x;
+	float	next_horzintal_y;
+} t_ray;
+
 typedef	struct	s_player
 {
-	int		x_map;
-	int		y_map;
 	int		x;
 	int		y;
 	float	radius;
 	int		direction;
-	double	turn_direction;
+	double	rotation;
 	double	rotate_speed;
 	int		move_speed;
-	int		move_direction;
+	int		move;
 }	t_player;
 
 typedef struct s_cub3d
@@ -98,7 +107,11 @@ int		ft_check_valid(char **map);
 void	ft_checks(t_cub3d *s, char **av);
 int ft_check_valid_rgb(char **str, int j, int count);
 void	ft_cub3d(char **av);
-/*-------------------------------------------------------*/
+/*---------------------------DRAW----------------------------*/
+void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius);
+void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2);
+void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s);
+double	ft_absolute_angle(double ray_angle);
 
 /*---------------------Initilisation---------------------*/
 void	initilize_cub3d(t_cub3d *my_struct);
@@ -115,4 +128,8 @@ int		number_of_rows(char **map);
 int		number_of_colons(char *map);
 void	printf_double_pointer(char **map);
 uint32_t createcolor(int red, int green, int blue, int alpha);
+void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
+
+/*----------------------------RAYCASTING------------------*/
+void	cast_ray(t_cub3d *cub3d);
 # endif
