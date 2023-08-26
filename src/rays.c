@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:55:09 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:31:07 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	cast_ray(t_cub3d *cub3d)
 
 	i = 0;
 	// ray_angle = ft_absolute_angle(ray_angle);
-	while (i < 500)
+	while (i < 480)
 	{
 	ray_angle = ft_absolute_angle(ray_angle);
 	casting(cub3d, ray_angle, column , &s);
@@ -67,7 +67,14 @@ void	cast_ray(t_cub3d *cub3d)
 		vertical_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.ver_wall_hit_x, s.ver_wall_hit_y);
 	else
 		vertical_distance = MAXFLOAT;
-	if (horizantal_distance < vertical_distance)
+	if ((int)horizantal_distance == (int)vertical_distance)
+	{
+		write(1, "X\n", 1);
+		hit_x = s.hor_wall_hit_x;
+		hit_y = s.hor_wall_hit_y;
+		distance = horizantal_distance;
+	}
+	else if (horizantal_distance < vertical_distance)
 	{
 		hit_x = s.hor_wall_hit_x;
 		hit_y = s.hor_wall_hit_y;

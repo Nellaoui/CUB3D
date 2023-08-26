@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 00:06:30 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:31:24 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player->y = ft_give_posy(my_struct->holdmap) * 50 + 25;
 	player->direction = 0; // left or right //ft_player_direction(my_struct);
 	player->move = 0; // back or front
-	player->rotate_speed = 10 * (M_PI / 180);
+	player->rotate_speed = 5 * (M_PI / 180);
 	player->move_speed = 10;
 	player->rotation = 3 * M_PI / 2;
 	return (player);
