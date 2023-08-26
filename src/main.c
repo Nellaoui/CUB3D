@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/25 12:33:44 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 22:26:44 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -374,6 +374,8 @@ void	ft_checks(t_cub3d *s, char **av)
 		exit(1);
 	}
 }
+
+
 
 void	ft_cub3d(char **av)
 {

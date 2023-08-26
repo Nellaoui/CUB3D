@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+         #
+#    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/26 14:05:50 by ndahib           ###   ########.fr        #
+#    Updated: 2023/08/26 22:51:21 by nelallao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #***************************************VARIABLES******************************#
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # CFLAGS =
 NAME = cub3D
 SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c

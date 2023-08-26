@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 17:43:30 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 22:54:39 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void	cast_ray(t_cub3d *cub3d)
 	// float	was_hit_horizatal = false;
 	float	ray_angle = cub3d->player->rotation - (FOV / 2);
 
+	int a  = cub3d->width;
 	i = 0;
 	// ray_angle = ft_absolute_angle(ray_angle);
-	while (i < cub3d->width)
+	while (i < a)// cub3d->width)
 	{
 	ray_angle = ft_absolute_angle(ray_angle);
 	casting(cub3d, ray_angle, column , &s);
@@ -87,22 +88,13 @@ void	cast_ray(t_cub3d *cub3d)
 		s.distance = vertical_distance;
 		was_hit_vertical = true;
 	}
-	// printf("horizantal_distance %f\n", horizantal_distance);
-	// printf("vertical_distance %f\n", vertical_distance);
-
-		// draw_ray(cub3d->image,
-		// 	cub3d->player->x,
-		// 	cub3d->player->y,
-		// 	s.ver_wall_hit_x,
-		// 	s.ver_wall_hit_y);
 		draw_ray(cub3d->image,
-			cub3d->player->x,
-			cub3d->player->y,
-			hit_x,
-			hit_y);
-		// printf("%f\n", ray_angle);
-		// render_wall(cub3d, &s, i);
-		ray_angle += (FOV / cub3d->width);
+			cub3d->player->x * CAST,
+			cub3d->player->y * CAST,
+			hit_x * CAST,
+			hit_y * CAST);
+		render_wall(cub3d, &s, i);
+		ray_angle += (FOV / a);
 		ray_angle = ft_absolute_angle(ray_angle);
 		i++;
 		column++;

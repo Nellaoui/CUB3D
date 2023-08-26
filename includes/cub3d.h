@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:29:07 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:09:28 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #define	WIDGHT	900
 #define	HEIGHT	1000
 #define	TILE_SIZE	50
+#define	CAST	0.2
 
 #include <stdio.h>
 #include <unistd.h>

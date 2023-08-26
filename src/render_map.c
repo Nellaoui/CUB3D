@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 17:40:11 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 23:32:31 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t s
 	uint32_t	lenght_y;
 	uint32_t	y;
 
-	lenght_x = start_x + 49;
-	lenght_y = start_y + 49;
+	lenght_x = start_x + 49 * CAST;
+	lenght_y = start_y + 49 * CAST;
 	while (start_x < lenght_x)
 	{
 		y = start_y;
@@ -29,6 +29,35 @@ void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t s
 			y++;
 		}
 		start_x++;
+	}
+}
+void draw_c_f(t_cub3d *mlx)
+{
+	int	x;
+	int y;
+
+	y = 0;
+
+	while(y < mlx->height / 2)
+	{
+		x = 0;
+		while (x < mlx->width)
+		{
+			mlx_put_pixel(mlx->image, x, y , createcolor(0, 255, 0, 255));
+			x++;
+		}
+		y++;
+	}
+	y  = mlx->height / 2;
+	while (y < mlx->height)
+	{
+		x = 0;
+		while (x < mlx->width)
+		{
+			mlx_put_pixel(mlx->image, x, y , createcolor(0, 0, 255, 255));
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -42,6 +71,7 @@ void	render_map(t_cub3d *mlx_lib)
 	i = -1;
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
+	draw_c_f(mlx_lib);
 	while (++i < mlx_lib->rows)
 	{
 		j = -1;
@@ -51,7 +81,7 @@ void	render_map(t_cub3d *mlx_lib)
 				color = createcolor(255, 255, 255, 255);
 			else if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
-			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j, mlx_lib->tile_y * i);
+			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j * CAST, mlx_lib->tile_y * i * CAST);
 		}
 	}
 	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 17:39:06 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 22:41:31 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
 	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
 	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
@@ -69,7 +69,26 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
 	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
 	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
-	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1')
+	if (mlx->holdmap[(int)((y + 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y - 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 1) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 1) / TILE_SIZE)] != '1')
+		return (0);
+	return (1);
+}
+int	ft_wall_here_a(float x, float y, t_cub3d	*mlx)
+{
+	int	x_grid;
+	int	y_grid;
+
+	if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
+		return (1);
+	x_grid = (int)((x) / TILE_SIZE);
+	y_grid = (int)((y) / TILE_SIZE);
+	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
+	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
+	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
+	if (mlx->holdmap[y_grid][x_grid] != '1')
 	// && mlx->holdmap[(int)((y - 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
 	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 2) / TILE_SIZE)] != '1'
 	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 2) / TILE_SIZE)] != '1')
@@ -136,7 +155,7 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		// printf("%f\n", x_step);
 		// printf("%f\n", y_step);
 		// printf("-------------------\n");
-		if (ft_wall_here(nexthorzx, nexthorzy, mlx))
+		if (ft_wall_here_a(nexthorzx, nexthorzy, mlx))
 		{
 			s->horizantal_founded = true;
 			s->hor_wall_hit_x = nexthorzx;
@@ -211,13 +230,7 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		s->next_vertical_x--;
 	while (s->next_vertical_x >= 0 && s->next_vertical_x <= TILE_SIZE * mlx->colons && s->next_vertical_y >= 0 && s->next_vertical_y <= TILE_SIZE * mlx->rows)
 	{
-		// printf("--------vert--------\n");
-		// printf("%f\n", s->next_vertical_x);
-		// printf("%f\n", s->next_vertical_y);
-		// printf("%f\n", ver_x_step);
-		// printf("%f\n", ver_y_step);
-		// printf("-------------------\n");
-		if (ft_wall_here(s->next_vertical_x, s->next_vertical_y, mlx))
+		if (ft_wall_here_a(s->next_vertical_x, s->next_vertical_y, mlx))
 		{
 			s->vertical_founded = true;
 			s->ver_wall_hit_x = s->next_vertical_x;
@@ -229,6 +242,24 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 			s->next_vertical_y += ver_y_step;
 	}
 }
+
+// static void draw_c_f(t_cub3d *mlx_lib)
+// {
+// 	int	x;
+// 	int y;
+
+// 	y = 0;
+// 	while (y < mlx_lib->height)
+// 	{
+// 		x = 0;
+// 		while (x < mlx_lib->width)
+// 		{
+// 			mlx_put_pixel(mlx_lib->image, x, y, createcolor(0, 0, 255, 255));
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 void	update_after_move(void *param)
 {
