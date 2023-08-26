@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/23 10:59:37 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/25 12:33:44 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,7 @@ int main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_cub3d(av);
-		system("leaks cub3D");
+		// system("leaks cub3D");
 	}
 	else
 	{

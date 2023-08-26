@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../walls"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"fcntl.h": "c",
+			"__bit_reference": "c",
+			"algorithm": "c",
+			"bitset": "c",
+			"chrono": "c",
+			"unordered_map": "c",
+			"sstream": "c",
+			"string": "c",
+			"iosfwd": "c",
+			"complex": "c",
+			"__string": "c",
+			"ios": "c"
+		}
+	}
+}

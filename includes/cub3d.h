@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/24 20:31:49 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/25 10:41:02 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef	struct	s_ray
 	float	distance;
 	float	next_horzintal_x;
 	float	next_horzintal_y;
+	float	next_vertical_x;
+	float	next_vertical_y;
+	float	vertical_founded;
+	float	horizantal_founded;
+	float	hor_wall_hit_x;
+	float	hor_wall_hit_y;
+	float	ver_wall_hit_x;
+	float	ver_wall_hit_y;
 } t_ray;
 
 typedef	struct	s_player
@@ -113,6 +121,7 @@ void	ft_cub3d(char **av);
 void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius);
 void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2);
 void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s);
+void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s);
 double	ft_absolute_angle(double ray_angle);
 
 /*---------------------Initilisation---------------------*/
