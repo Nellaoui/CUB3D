@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 10:56:55 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:31:39 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2)
 
 	for (int i = 0; i < steps; i++) {
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, 0x000000FF);
-		// printf("%f ==\n", x);
-		// printf("%f ==\n", y);
 		x += x_increment;
 		y += y_increment;
 	}
@@ -49,12 +47,12 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
-	draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
-	, mlx->player->y + (sin(mlx->player->rotation) * 20));
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
+	draw_cercle(mlx->image, mlx->player->x * 0.2 , mlx->player->y * 0.2, 4);
+	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
+	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
 	mlx->player->move = 0;
 }
@@ -64,8 +62,8 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	int	x_grid;
 	int	y_grid;
 
-	// if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
-	// 	return (1);
+	if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
+		return (1);
 	x_grid = (int)((x) / TILE_SIZE);
 	y_grid = (int)((y) / TILE_SIZE);
 	// printf("x ->>>>[%d] || y--->>>>[%d]\n", x_grid, y_grid);

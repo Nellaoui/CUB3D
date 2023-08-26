@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/25 10:41:02 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:29:07 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,4 +143,5 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
 
 /*----------------------------RAYCASTING------------------*/
 void	cast_ray(t_cub3d *cub3d);
+void    render_wall(t_cub3d *mlx, t_ray *ray, int i);
 # endif
