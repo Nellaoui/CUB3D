@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:46:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 14:07:02 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2)
 
 	for (int i = 0; i < steps; i++) {
 		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, 0x000000FF);
-		// printf("%f ==\n", x);
-		// printf("%f ==\n", y);
 		x += x_increment;
 		y += y_increment;
 	}
@@ -49,12 +47,12 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
-	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
-	draw_line(mlx->image, mlx->player->x , mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
-	, mlx->player->y + (sin(mlx->player->rotation) * 20));
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
+	draw_cercle(mlx->image, mlx->player->x * 0.2 , mlx->player->y * 0.2, 4);
+	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
+	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
 	mlx->player->move = 0;
 }
@@ -132,15 +130,6 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 
 	while (nexthorzx >= 0 && nexthorzx <= mlx->tile_x * mlx->colons && nexthorzy >= 0 && nexthorzy <= s->next_horzintal_y <= mlx->tile_y * mlx->rows)
 	{
-		// printf("------hor---------\n");
-		// printf("{%f} ->>>\n", ray_angle * (180 / M_PI));
-		// printf("y_step %f\n", y_step);
-		// printf("x_step %f\n", x_step);
-		// printf("x_inter%f\n", nexthorzx);
-		// printf("y_inter%f\n", nexthorzy);
-		// printf("s->hor_wall_hit_x%f\n", s->hor_wall_hit_x);
-		// printf("s->hor_wall_hit_y%f\n", s->hor_wall_hit_y);
-		// printf("-----------------\n");
 		if (ft_wall_here(nexthorzx, nexthorzy - up, mlx))
 		{
 			s->horizantal_founded = true;
@@ -212,8 +201,8 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		ver_y_step *= -1;
 	s->next_vertical_y = ver_y_inter;
 	s->next_vertical_x = ver_x_inter;
-	if (ver_left)
-		s->next_vertical_x--;
+	// if (ver_left)
+	// 	s->next_vertical_x--;
 	while (s->next_vertical_x >= 0 && s->next_vertical_x <= TILE_SIZE * mlx->colons && s->next_vertical_y >= 0 && s->next_vertical_y <= TILE_SIZE * mlx->rows)
 	{
 		if (ft_wall_here(s->next_vertical_x - ver_left, s->next_vertical_y, mlx))
