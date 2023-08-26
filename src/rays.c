@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:52:45 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:13:54 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ float	ft_distance_beteween(float x1, float y1, float x2, float y2)
 
 void	cast_ray(t_cub3d *cub3d)
 {
-	t_ray s;
-	float FOV = (60  * (M_PI / 180));
-	int	i;
-	int	column = 0;
+	t_ray	s;
+	float	FOV = (60  * (M_PI / 180));
+	int		i;
+	int		column = 0;
 	float horizantal_distance = 0;
 	float vertical_distance = 0;
 	float	hit_x = 0;
@@ -84,8 +84,11 @@ void	cast_ray(t_cub3d *cub3d)
 	// printf("horizantal_distance %f\n", horizantal_distance);
 	// printf("vertical_distance %f\n", vertical_distance);
 
-	// printf("%d\n", s.horizantal_founded/);
-	// printf("[%f] || [%f] || ray_angle {%f}\n", hit_x, hit_y, ray_angle  * (180 / M_PI));
+		// draw_ray(cub3d->image,
+		// 	cub3d->player->x,
+		// 	cub3d->player->y,
+		// 	s.ver_wall_hit_x,
+		// 	s.ver_wall_hit_y);
 		draw_ray(cub3d->image,
 			cub3d->player->x * 0.2,
 			cub3d->player->y * 0.2,
