@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 12:04:59 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:46:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 		return (1);
 	x_grid = (int)((x) / TILE_SIZE);
 	y_grid = (int)((y) / TILE_SIZE);
-	printf("x ->>>>[%f] || y--->>>>[%f]\n", x, y);
-	printf("x ->>>>[%f] || y--->>>>[%f]\n", x - 1, y - 1);
-	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1')
+	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
+	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
+	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
+	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 2) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y + 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y - 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 2) / TILE_SIZE)] != '1')
 		return (0);
 	return (1);
 }
@@ -208,19 +212,10 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		ver_y_step *= -1;
 	s->next_vertical_y = ver_y_inter;
 	s->next_vertical_x = ver_x_inter;
-	// if (ver_left)
-	// 	s->next_vertical_x--;
+	if (ver_left)
+		s->next_vertical_x--;
 	while (s->next_vertical_x >= 0 && s->next_vertical_x <= TILE_SIZE * mlx->colons && s->next_vertical_y >= 0 && s->next_vertical_y <= TILE_SIZE * mlx->rows)
 	{
-		// printf("-------vert-------\n");
-		// printf("ver_left %f\n", ver_left);
-		// printf("y_step %f\n", ver_y_step);
-		// printf("x_step %f\n", ver_x_step);
-		// printf("x_inter%f\n", ver_x_inter);
-		// printf("y_inter%f\n", ver_y_inter);
-		// printf("s->ver_wall_hit_x%f\n", s->ver_wall_hit_x);
-		// printf("s->ver_wall_hit_y%f\n", s->ver_wall_hit_y);
-		// printf("-----------------\n");
 		if (ft_wall_here(s->next_vertical_x - ver_left, s->next_vertical_y, mlx))
 		{
 			s->vertical_founded = true;

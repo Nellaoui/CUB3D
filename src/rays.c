@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 10:56:43 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 13:55:09 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	cast_ray(t_cub3d *cub3d)
 	float	hit_y = 0;
 	float	distance = 0;
 	float	was_hit_vertical = false;
-	float	was_hit_horizatal = false;
+	// float	was_hit_horizatal = false;
 	float	ray_angle = cub3d->player->rotation - (FOV / 2);
 
 	i = 0;
 	// ray_angle = ft_absolute_angle(ray_angle);
-	while (i < 480)
+	while (i < 500)
 	{
 	ray_angle = ft_absolute_angle(ray_angle);
 	casting(cub3d, ray_angle, column , &s);
@@ -84,8 +84,11 @@ void	cast_ray(t_cub3d *cub3d)
 	// printf("horizantal_distance %f\n", horizantal_distance);
 	// printf("vertical_distance %f\n", vertical_distance);
 
-	// printf("%d\n", s.horizantal_founded/);
-	// printf("[%f] || [%f] || ray_angle {%f}\n", hit_x, hit_y, ray_angle  * (180 / M_PI));
+		// draw_ray(cub3d->image,
+		// 	cub3d->player->x,
+		// 	cub3d->player->y,
+		// 	s.ver_wall_hit_x,
+		// 	s.ver_wall_hit_y);
 		draw_ray(cub3d->image,
 			cub3d->player->x,
 			cub3d->player->y,
