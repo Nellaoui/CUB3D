@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:30:25 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/26 17:40:11 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t s
 	uint32_t	lenght_y;
 	uint32_t	y;
 
-	lenght_x = start_x + 9;
-	lenght_y = start_y + 9;
+	lenght_x = start_x + 49;
+	lenght_y = start_y + 49;
 	while (start_x < lenght_x)
 	{
 		y = start_y;
@@ -51,7 +51,7 @@ void	render_map(t_cub3d *mlx_lib)
 				color = createcolor(255, 255, 255, 255);
 			else if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
-			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j * 0.2, mlx_lib->tile_y * i * 0.2);
+			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j, mlx_lib->tile_y * i);
 		}
 	}
 	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))

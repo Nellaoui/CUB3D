@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 14:07:02 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/26 17:39:06 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
-	draw_cercle(mlx->image, mlx->player->x * 0.2 , mlx->player->y * 0.2, 4);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
+	draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
 	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
 	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
@@ -69,10 +69,10 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
 	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
 	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
-	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 2) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y + 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y - 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 2) / TILE_SIZE)] != '1')
+	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1')
+	// && mlx->holdmap[(int)((y - 2) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 2) / TILE_SIZE)] != '1'
+	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 2) / TILE_SIZE)] != '1')
 		return (0);
 	return (1);
 }
@@ -130,7 +130,13 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 
 	while (nexthorzx >= 0 && nexthorzx <= mlx->tile_x * mlx->colons && nexthorzy >= 0 && nexthorzy <= s->next_horzintal_y <= mlx->tile_y * mlx->rows)
 	{
-		if (ft_wall_here(nexthorzx, nexthorzy - up, mlx))
+		// printf("--------hor-------\n");
+		// printf("%f\n", nexthorzx);
+		// printf("%f\n", nexthorzy);
+		// printf("%f\n", x_step);
+		// printf("%f\n", y_step);
+		// printf("-------------------\n");
+		if (ft_wall_here(nexthorzx, nexthorzy, mlx))
 		{
 			s->horizantal_founded = true;
 			s->hor_wall_hit_x = nexthorzx;
@@ -201,11 +207,17 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		ver_y_step *= -1;
 	s->next_vertical_y = ver_y_inter;
 	s->next_vertical_x = ver_x_inter;
-	// if (ver_left)
-	// 	s->next_vertical_x--;
+	if (ver_left)
+		s->next_vertical_x--;
 	while (s->next_vertical_x >= 0 && s->next_vertical_x <= TILE_SIZE * mlx->colons && s->next_vertical_y >= 0 && s->next_vertical_y <= TILE_SIZE * mlx->rows)
 	{
-		if (ft_wall_here(s->next_vertical_x - ver_left, s->next_vertical_y, mlx))
+		// printf("--------vert--------\n");
+		// printf("%f\n", s->next_vertical_x);
+		// printf("%f\n", s->next_vertical_y);
+		// printf("%f\n", ver_x_step);
+		// printf("%f\n", ver_y_step);
+		// printf("-------------------\n");
+		if (ft_wall_here(s->next_vertical_x, s->next_vertical_y, mlx))
 		{
 			s->vertical_founded = true;
 			s->ver_wall_hit_x = s->next_vertical_x;

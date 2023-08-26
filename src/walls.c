@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 15:54:52 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/26 16:23:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, uint32_t y1, uint32_t len1, uint
 			y++;
 		}
 		x1++;
-	}	
+	}
 }
 
 void    render_wall(t_cub3d *mlx, t_ray *ray, int i)
@@ -40,7 +40,7 @@ void    render_wall(t_cub3d *mlx, t_ray *ray, int i)
 
 	angle = (30 * (M_PI / 180));
 	projection_distance = (480 / 2) / tan(angle);
-	ray->distance = ray->distance *  cos(ray->ray_angle - mlx->player->rotation);
+	// ray->distance = ray->distance *  cos(ray->ray_angle - mlx->player->rotation);
 	printf("[%f]\n", ray->distance);
 	projection_height = (TILE_SIZE / ray->distance) * projection_distance;
 	draw_wall(mlx->image, i * 2, ((mlx->height / 2) - (projection_height / 2)), 2, projection_height);
