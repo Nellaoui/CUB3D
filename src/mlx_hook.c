@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 10:56:55 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/26 12:04:59 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	int	x_grid;
 	int	y_grid;
 
-	// if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
-	// 	return (1);
+	if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
+		return (1);
 	x_grid = (int)((x) / TILE_SIZE);
 	y_grid = (int)((y) / TILE_SIZE);
-	// printf("x ->>>>[%d] || y--->>>>[%d]\n", x_grid, y_grid);
-	if (mlx->holdmap[y_grid][x_grid] != '1')
+	printf("x ->>>>[%f] || y--->>>>[%f]\n", x, y);
+	printf("x ->>>>[%f] || y--->>>>[%f]\n", x - 1, y - 1);
+	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1')
 		return (0);
 	return (1);
 }
