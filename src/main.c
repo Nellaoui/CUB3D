@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 22:26:44 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:12:47 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,6 +385,7 @@ void	ft_cub3d(char **av)
 	initilize_cub3d(&mlx_lib);
 	render_map(&mlx_lib);
 	render_player(&mlx_lib);
+	render_map(&mlx_lib);
 	mlx_loop(mlx_lib.mlx);
 	mlx_terminate(mlx_lib.mlx);
 }
