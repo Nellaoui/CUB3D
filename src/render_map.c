@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 23:32:31 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 12:17:42 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void draw_c_f(t_cub3d *mlx)
 		x = 0;
 		while (x < mlx->width)
 		{
-			mlx_put_pixel(mlx->image, x, y , createcolor(0, 255, 0, 255));
+			mlx_put_pixel(mlx->image, x, y , createcolor(242, 236, 190, 200));
 			x++;
 		}
 		y++;
@@ -54,7 +54,7 @@ void draw_c_f(t_cub3d *mlx)
 		x = 0;
 		while (x < mlx->width)
 		{
-			mlx_put_pixel(mlx->image, x, y , createcolor(0, 0, 255, 255));
+			mlx_put_pixel(mlx->image, x, y , createcolor(154, 59, 59, 200));
 			x++;
 		}
 		y++;
@@ -77,8 +77,8 @@ void	render_map(t_cub3d *mlx_lib)
 		j = -1;
 		while (++j < number_of_colons(mlx_lib->holdmap[i]))
 		{
-			if (mlx_lib->holdmap[i][j] == '0' || (mlx_lib->holdmap[i][j] != '1'))
-				color = createcolor(255, 255, 255, 255);
+			if (mlx_lib->holdmap[i][j] == '0')
+				color = createcolor(0, 255, 255, 255);
 			else if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
 			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j * CAST, mlx_lib->tile_y * i * CAST);

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 23:09:03 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:49:49 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, uint32_t y1, uint32_t len1, uint
 		{
 			if(x1 < mlx->width && y < mlx->height)
 			{
-				mlx_put_pixel(image, x1, y, createcolor(255, 255, 255, 255));
+				mlx_put_pixel(image, x1, y, createcolor(192, 130, 97, 254));
 			}
 			y++;
 		}
@@ -35,15 +35,16 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, uint32_t y1, uint32_t len1, uint
 	}
 }
 
-void    render_wall(t_cub3d *mlx, t_ray *ray, int i)
+void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle)
 {
 	// double  angle;
 	double  projection_height;
 	double  projection_distance;
+	float	good_ray_distance;
 	float	FOV = (60  * (M_PI / 180));
-
+	good_ray_distance = ray->distance * cos(ray_angle - mlx->player->rotation);
 	projection_distance = (mlx->width / 2) / tan(FOV / 2);
-	projection_height = (TILE_SIZE / ray->distance) * projection_distance;
+	projection_height = (TILE_SIZE / good_ray_distance) * projection_distance;
 	if (projection_height > mlx->height)
 		projection_height = mlx->height - 2;
 	draw_wall(mlx->image, // image

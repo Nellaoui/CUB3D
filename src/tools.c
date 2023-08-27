@@ -6,17 +6,28 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 08:16:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 23:29:38 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 10:51:35 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 
-uint32_t createcolor(int red, int green, int blue, int alpha)
+uint32_t createcolor(int red, int green, int blue, float alpha)
 {
+	int	hex;
 
-	return (alpha << 24 | red << 16 | green << 8 | blue);
+	hex = (red << 24) | (green << 16) | (blue << 8) | (int)(alpha);
+	return (hex);
+    // int color = 0;
+    // color |= (int)(blue * 255);
+    // color |= (int)(green * 255) << 8;
+    // color |= (int)(red * 255) << 16;
+    // color |= (int)(alpha * 255) << 24;
+    // return (color);
+// }
+
+	// return (alpha << 24 | red << 16 | green << 8 | blue);
 	// uint32_t	color;
 
 	// color = 0;

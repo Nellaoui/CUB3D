@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 19:09:28 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:45:29 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef	struct	s_player
 	double	rotate_speed;
 	int		move_speed;
 	int		move;
+	int 		left_right;
 }	t_player;
 
 typedef struct s_cub3d
@@ -139,10 +140,10 @@ void	render_player(t_cub3d *mlx_lib);
 int		number_of_rows(char **map);
 int		number_of_colons(char *map);
 void	printf_double_pointer(char **map);
-uint32_t createcolor(int red, int green, int blue, int alpha);
+uint32_t createcolor(int red, int green, int blue, float alpha);
 void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
 
 /*----------------------------RAYCASTING------------------*/
 void	cast_ray(t_cub3d *cub3d);
-void    render_wall(t_cub3d *mlx, t_ray *ray, int i);
+void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle);
 # endif

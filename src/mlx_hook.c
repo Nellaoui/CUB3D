@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 22:41:31 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:43:38 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 1);
+	draw_cercle(mlx->image, mlx->player->x * CAST , mlx->player->y * CAST, 1);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
-	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y , mlx->player->x + (cos(mlx->player->rotation) * 20)
+	// draw_line(mlx->image, mlx->player->x  * 0.2, mlx->player->y 0.2, mlx->player->x + (cos(mlx->player->rotation) * 20)
 	// , mlx->player->y + (sin(mlx->player->rotation) * 20));
 	mlx->player->direction = 0;
 	mlx->player->move = 0;
@@ -268,13 +268,22 @@ void	update_after_move(void *param)
 	float new_x;
 	float new_y;
 
+
 	move_step = 0;
 	mlx = param;
 	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (360 * (M_PI / 180)))
 		mlx->player->rotation += (mlx->player->direction * mlx->player->rotate_speed);
 	move_step = mlx->player->move * mlx->player->move_speed;
-	new_x = (mlx->player->x + (cos(mlx->player->rotation) * move_step));
-	new_y = (mlx->player->y + (sin(mlx->player->rotation) * move_step));
+	if(mlx->player->left_right == 1)
+	{
+		new_x = (mlx->player->x + (cos(mlx->player->rotation) * move_step));
+		new_y = (mlx->player->y + (sin(mlx->player->rotation) * move_step));
+	}
+	if (mlx->player->left_right == -1)
+	{
+		new_x = (mlx->player->x + (cos(mlx->player->rotation + (M_PI / 2))  * move_step));
+		new_y = (mlx->player->y + (sin(mlx->player->rotation + (M_PI / 2)) * move_step));
+	}
 	if (!ft_wall_here(new_x, new_y, mlx))
 	{
 		mlx->player->x = new_x;
@@ -290,22 +299,61 @@ void	move_on(mlx_key_data_t key, void *prm)
 	t_cub3d	*mlx;
 
 	mlx	= prm;
-	if ((key.key == MLX_KEY_LEFT || key.key == MLX_KEY_A)  && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+	// mlx->player->left_right = 1;
+	if (key.key == MLX_KEY_LEFT  && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->direction = -1;
-	else if ((key.key == MLX_KEY_RIGHT || key.key == MLX_KEY_D) && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+	else if (key.key == MLX_KEY_RIGHT && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->direction = +1;
+	else if (key.key == MLX_KEY_A  && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+	{
+		mlx->player->left_right = -1;
+		mlx->player->move = -1;
+	}
+	else if (key.key == MLX_KEY_D  && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
+	{
+		mlx->player->left_right = -1;
+		mlx->player->move = +1;
+	}
 	else if (key.key == MLX_KEY_W && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->move = +1;
 	else if (key.key == MLX_KEY_S && (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		mlx->player->move = -1;
-	if ((key.key == MLX_KEY_LEFT || key.key == MLX_KEY_A)  && key.action == MLX_RELEASE)
+	//////////////////////////////////////////////////////////////////////////////////////
+	//                                     ARROWS                                       //
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	if (key.key == MLX_KEY_LEFT  && key.action == MLX_RELEASE)
 		mlx->player->direction = 0;
-	else if ((key.key == MLX_KEY_RIGHT || key.key == MLX_KEY_D) && key.action == MLX_RELEASE)
+	else if (key.key == MLX_KEY_A  && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
+	}
+	else if (key.key == MLX_KEY_D  && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
+	}
+	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
 		mlx->player->direction = 0;
+	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
+		mlx->player->move = 0;
+	}
+	else if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
+		mlx->player->move = 0;
+	}
 	else if (key.key == MLX_KEY_W && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
 		mlx->player->move = 0;
+	}
 	else if (key.key == MLX_KEY_S && key.action == MLX_RELEASE)
+	{
+		mlx->player->left_right = 1;
 		mlx->player->move = 0;
+	}
 	if (key.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(mlx->mlx);

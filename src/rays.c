@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 22:54:39 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 13:44:39 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
 
 	for (int i = 0; i < steps; i++)
 	{
-		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 127, 1));
+		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 50, 50));
 		x += x_increment;
 		y += y_increment;
 	}
@@ -93,7 +93,7 @@ void	cast_ray(t_cub3d *cub3d)
 			cub3d->player->y * CAST,
 			hit_x * CAST,
 			hit_y * CAST);
-		render_wall(cub3d, &s, i);
+		render_wall(cub3d, &s, i, ray_angle);
 		ray_angle += (FOV / a);
 		ray_angle = ft_absolute_angle(ray_angle);
 		i++;
