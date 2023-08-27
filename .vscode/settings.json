@@ -8,6 +8,8 @@
         "unordered_map": "c",
         "sstream": "c",
         "string": "c",
-        "iosfwd": "c"
+        "iosfwd": "c",
+        "atomic": "c",
+        "cstdint": "c"
     }
 }

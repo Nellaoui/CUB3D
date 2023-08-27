@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/27 13:45:29 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/27 23:15:36 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ typedef struct s_cub3d
 	mlx_t		*mlx;
 	int			rows;
 	int			colons;
-	long			width;
-	long			height;
+	long		width;
+	long		height;
+	mlx_texture_t	*texture;
 }	t_cub3d;
 
 // typedef struct s_data
