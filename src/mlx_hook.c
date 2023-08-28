@@ -59,16 +59,8 @@ void	draw_player(void *param)
 
 int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 {
-	int	x_grid;
-	int	y_grid;
-
 	if (x < 0 || x >  mlx->tile_x * mlx->colons || y < 0 || y > mlx->tile_y * mlx->rows)
 		return (1);
-	x_grid = (int)((x) / TILE_SIZE);
-	y_grid = (int)((y) / TILE_SIZE);
-	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
-	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
-	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
 	if (mlx->holdmap[(int)((y + 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
 	&& mlx->holdmap[(int)((y - 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
 	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 1) / TILE_SIZE)] != '1'
@@ -147,7 +139,7 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 	float nexthorzx = x_inter;
 	float nexthorzy = y_inter;
 
-	while (nexthorzx >= 0 && nexthorzx <= mlx->tile_x * mlx->colons && nexthorzy >= 0 && nexthorzy <= s->next_horzintal_y <= mlx->tile_y * mlx->rows)
+	while (nexthorzx >= 0 && nexthorzx <= mlx->tile_x * mlx->colons && nexthorzy >= 0 && (nexthorzy <= s->next_horzintal_y && s->next_horzintal_y <= mlx->tile_y * mlx->rows))
 	{
 		// printf("--------hor-------\n");
 		// printf("%f\n", nexthorzx);
@@ -238,8 +230,10 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 			break;
 		}
 		else
+		{
 			s->next_vertical_x += ver_x_step;
 			s->next_vertical_y += ver_y_step;
+		}
 	}
 }
 

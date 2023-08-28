@@ -77,7 +77,9 @@ uint8_t	*loading_wall(t_cub3d *mlx_lib)
 		j++;
 		i = i + 4;
 	}
-	return (color);
+	(void)color;
+	// return (color);
+	return (NULL);
 }
 
 void	render_map(t_cub3d *mlx_lib)
@@ -89,7 +91,7 @@ void	render_map(t_cub3d *mlx_lib)
 	color = 0;
 	i = -1;
 
-	loading_wall();
+	loading_wall(mlx_lib);
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	draw_c_f(mlx_lib);

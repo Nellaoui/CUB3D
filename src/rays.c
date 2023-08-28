@@ -48,8 +48,8 @@ void	cast_ray(t_cub3d *cub3d)
 	float	hit_x = 0;
 	float	hit_y = 0;
 	// float	distance = 0;
-	float	was_hit_vertical = false;
-	// float	was_hit_horizatal = false;
+	// float	was_hit_vertical;
+	// float	was_hit_horizatal;
 	float	ray_angle = cub3d->player->rotation - (FOV / 2);
 
 	int a  = cub3d->width;
@@ -63,11 +63,11 @@ void	cast_ray(t_cub3d *cub3d)
 	if (s.horizantal_founded)
 		horizantal_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.hor_wall_hit_x, s.hor_wall_hit_y);
 	else
-		horizantal_distance = MAXFLOAT;
+		horizantal_distance = 500; // MAXFLOAT
 	if (s.vertical_founded)
 		vertical_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.ver_wall_hit_x, s.ver_wall_hit_y);
 	else
-		vertical_distance = MAXFLOAT;
+		vertical_distance = 500; // MAXFLOAT
 	if ((int)horizantal_distance == (int)vertical_distance)
 	{
 		s.distance = horizantal_distance;
@@ -86,7 +86,7 @@ void	cast_ray(t_cub3d *cub3d)
 		hit_x = s.ver_wall_hit_x;
 		hit_y = s.ver_wall_hit_y;
 		s.distance = vertical_distance;
-		was_hit_vertical = true;
+		// was_hit_vertical = true;
 	}
 		draw_ray(cub3d->image,
 			cub3d->player->x * CAST,

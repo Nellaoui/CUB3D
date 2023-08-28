@@ -25,7 +25,7 @@ char	**ft_split_map(char *string)
 char	*ft_map(char *string)
 {
 	int			fd;
-	char static	map_data[500000];
+	static char	map_data[500000];
 
 	fd = open(string, O_RDONLY);
 	if (read(fd, map_data, BUFFER_SIZE) == 0)

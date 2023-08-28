@@ -12,7 +12,7 @@
 
 #***************************************VARIABLES******************************#
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address,leak
 # CFLAGS =
 NAME = cub3D
 SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c
