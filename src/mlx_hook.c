@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/27 15:17:39 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:06:25 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_player(void *param)
 	t_cub3d	*mlx;
 
 	mlx = param;
-	draw_cercle(mlx->image, mlx->player->x * CAST , mlx->player->y * CAST, 1);
+	// draw_cercle(mlx->image, mlx->player->x * CAST , mlx->player->y * CAST, 1);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 2);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 3);
 	// draw_cercle(mlx->image, mlx->player->x , mlx->player->y, 4);
@@ -69,10 +69,11 @@ int	ft_wall_here(float x, float y, t_cub3d	*mlx)
 	// printf("x ->>>>[%d] || y--->>>>[%d]\n", (int)x, (int)y);
 	// printf("x - 1 ->>>>[%d] || y - 1 -->>>>[%d]\n", (int)x - 1, (int)(y - 1));
 	// printf("x  + 1->>>>[%d] || y + 1 --->>>>[%d]\n", (int)x + 1, (int)y + 1);
-	if (mlx->holdmap[(int)((y + 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y - 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 1) / TILE_SIZE)] != '1'
-	&& mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 1) / TILE_SIZE)] != '1')
+	if (mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1')
+	// if (mlx->holdmap[(int)((y + 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	// && mlx->holdmap[(int)((y - 1) / TILE_SIZE)][(int)((x) / TILE_SIZE)] != '1'
+	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x + 1) / TILE_SIZE)] != '1'
+	// && mlx->holdmap[(int)((y) / TILE_SIZE)][(int)((x - 1) / TILE_SIZE)] != '1')
 		return (0);
 	return (1);
 }
@@ -101,12 +102,12 @@ double	ft_absolute_angle(double ray_angle)
 	ray_angle = fmod(ray_angle, (2 * M_PI));
 	if (ray_angle < 0)
 		ray_angle += (2 * M_PI);
+	// printf("%f\n", ray_angle);
 	return (ray_angle) ;
 }
 
-void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
+void	casting(t_cub3d *mlx , double ray_angle	,t_ray *s)
 {
-	(void)cloumn;
 	// ft_absolute_angle(ray_angle);
 	float	x_inter = 0;
 	float	y_inter = 0;
@@ -128,10 +129,10 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 		right = true;
 	left = !right;
 	if (down)
-		y_inter = (int)((mlx->player->y  / TILE_SIZE) + 1) * TILE_SIZE;
+		y_inter = round((mlx->player->y  / TILE_SIZE) + 1) * TILE_SIZE;
 	else if (up)
 	{
-		y_inter = (int)((mlx->player->y  / TILE_SIZE)) * TILE_SIZE;
+		y_inter = round((mlx->player->y  / TILE_SIZE)) * TILE_SIZE;
 		y_inter--;
 	}
 	x_inter = mlx->player->x + (y_inter - mlx->player->y) / tan(ray_angle);
@@ -144,8 +145,11 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 	if (right && x_step < 0)
 		x_step *= -1;
 
+
 	float nexthorzx = x_inter;
 	float nexthorzy = y_inter;
+	// if (up)
+	// 	nexthorzy--;
 
 	while (nexthorzx >= 0 && nexthorzx <= mlx->tile_x * mlx->colons && nexthorzy >= 0 && nexthorzy <= s->next_horzintal_y <= mlx->tile_y * mlx->rows)
 	{
@@ -188,9 +192,8 @@ void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 	// 		s->next_horzintal_y += y_step;
 	// }
 }
-void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
+void	casting_vertical(t_cub3d *mlx , double ray_angle	,t_ray *s)
 {
-	(void)cloumn;
 	double	ver_x_inter = 0;
 	double	ver_y_inter = 0;
 	float	ver_x_step = 0;
@@ -211,7 +214,6 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s)
 	if (ray_angle < M_PI_2 || ray_angle > (3 * M_PI_2))
 		ver_right = true;
 	ver_left = !ver_right;
-
 	ver_x_inter = (int)(mlx->player->x / TILE_SIZE) * TILE_SIZE;
 	if (ver_right)
 		ver_x_inter += TILE_SIZE;

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/27 23:51:59 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/29 23:29:55 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,6 @@ void draw_c_f(t_cub3d *mlx)
 	}
 }
 
-uint8_t	*loading_wall(t_cub3d *mlx_lib)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	mlx_lib->texture = mlx_load_png("./src/walls/pfive.png");
-	uint8_t color[mlx_lib->texture->height * mlx_lib->texture->width * 4];
-	while(mlx_lib->texture->pixels[i])
-	{
-		color[j] = createcolor(mlx_lib->texture->pixels[i], mlx_lib->texture->pixels[i + 1],
-		mlx_lib->texture->pixels[i + 2],mlx_lib->texture->pixels[i + 3]);
-		j++;
-		i = i + 4;
-	}
-	return (color);
-}
 
 void	render_map(t_cub3d *mlx_lib)
 {
@@ -89,7 +71,7 @@ void	render_map(t_cub3d *mlx_lib)
 	color = 0;
 	i = -1;
 
-	loading_wall();
+	// loading_wall();
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	draw_c_f(mlx_lib);

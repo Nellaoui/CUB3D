@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/27 23:15:36 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/29 22:11:53 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef	struct	s_player
 	int		move_speed;
 	int		move;
 	int 		left_right;
+	int			compas;
+
 }	t_player;
 
 typedef struct s_cub3d
@@ -81,9 +83,16 @@ typedef struct s_cub3d
 	int			colons;
 	long		width;
 	long		height;
-	mlx_texture_t	*texture;
+	mlx_texture_t	*texture[4];
 }	t_cub3d;
 
+typedef enum e_type
+{
+	NORTH = 1,
+	WEST,
+	EAST,
+	SOUTH,
+} t_type;
 // typedef struct s_data
 // {
 // 	int	st;
@@ -121,11 +130,13 @@ void	ft_checks(t_cub3d *s, char **av);
 int ft_check_valid_rgb(char **str, int j, int count);
 void	ft_cub3d(char **av);
 /*---------------------------DRAW----------------------------*/
-void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius);
+// void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius);
 void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2);
-void	casting(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s);
-void	casting_vertical(t_cub3d *mlx , double ray_angle, int cloumn	,t_ray *s);
+void	casting(t_cub3d *mlx , double ray_angle,t_ray *s);
+void	casting_vertical(t_cub3d *mlx , double ray_angle,t_ray *s);
 double	ft_absolute_angle(double ray_angle);
+void	cast_ray(t_cub3d *cub3d);
+void	ft_give_direction(t_cub3d *cub3d);
 
 /*---------------------Initilisation---------------------*/
 void	initilize_cub3d(t_cub3d *my_struct);
@@ -146,5 +157,5 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
 
 /*----------------------------RAYCASTING------------------*/
 void	cast_ray(t_cub3d *cub3d);
-void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle);
+void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle, float hit_x, float hit_y, int was_hit_vertical);
 # endif
