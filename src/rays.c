@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/29 23:10:38 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:31:51 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	cast_ray(t_cub3d *cub3d)
 	float	was_hit_vertical = false;
 	float	ray_angle = cub3d->player->rotation - (FOV / 2);
 
-	int a = 1000;
+	int a = cub3d->width;
 	i = 0;
 	while (i < a)// cub3d->width)
 	{
@@ -107,10 +107,10 @@ void	cast_ray(t_cub3d *cub3d)
 			hit_x = s.hor_wall_hit_x;
 			hit_y = s.hor_wall_hit_y;
 			s.distance = horizantal_distance;
-			if (cos(ray_angle) >= 0)
-				cub3d->player->compas = EAST;
+			if (ray_angle > 0 && ray_angle < M_PI)
+				cub3d->player->compas = SOUTH;
 			else
-				cub3d->player->compas = WEST;
+				cub3d->player->compas = NORTH;
 		}
 		else
 		{
@@ -118,10 +118,10 @@ void	cast_ray(t_cub3d *cub3d)
 			hit_y = s.ver_wall_hit_y;
 			s.distance = vertical_distance;
 			was_hit_vertical = true;
-			if (sin(ray_angle) >= 0)
-				cub3d->player->compas = NORTH;
+			if (ray_angle > M_PI/2 && ray_angle < M_PI + M_PI/2)
+				cub3d->player->compas = EAST;
 			else
-				cub3d->player->compas = SOUTH;
+				cub3d->player->compas = WEST;
 		}
 	// printf("{{{{{{%f}}}}}}\n", sin(ray_angle));
 		// ft_give_direction(cub3d);
