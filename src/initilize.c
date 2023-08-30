@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 19:30:37 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:46:03 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ void	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->tile_x = TILE_SIZE;
 	my_struct->tile_y = TILE_SIZE;
 	my_struct->color = 0xFFFFFFFF;
-	my_struct->width = my_struct->colons * my_struct->tile_x;
-	my_struct->height = my_struct->rows * my_struct->tile_y;
+	my_struct->width = my_struct->colons * my_struct->tile_x ;
+	my_struct->height = my_struct->rows * my_struct->tile_y ;
 	my_struct->player = initilize_player(my_struct);
 
 	my_struct->mlx = mlx_init(my_struct->colons * my_struct->tile_x

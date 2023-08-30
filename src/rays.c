@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 16:55:23 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:30:21 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	cast_ray(t_cub3d *cub3d)
 				cub3d->player->compas = WEST;
 		}
 		draw_ray(cub3d->image,
-			cub3d->player->x * CAST,
-			cub3d->player->y * CAST,
-			hit_x * CAST,
-			hit_y * CAST);
+			cub3d->player->x * SCALE,
+			cub3d->player->y * SCALE,
+			hit_x * SCALE,
+			hit_y * SCALE);
 		render_wall(cub3d, &s, i, ray_angle, hit_x, hit_y, was_hit_vertical);
 		ray_angle += (FOV / a);
 		// ray_angle = ft_absolute_angle(ray_angle);

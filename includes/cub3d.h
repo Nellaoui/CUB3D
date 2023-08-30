@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 19:18:53 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:49:13 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #define	WIDGHT	900
 #define	HEIGHT	1000
 #define	TILE_SIZE	50
-#define	CAST	0.2
+#define	SCALE	0.2
+// #define	MAXIMIZE	3
 
 #include <stdio.h>
 #include <unistd.h>
