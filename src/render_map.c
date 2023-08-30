@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 13:55:46 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:31:13 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void draw_c_f(t_cub3d *mlx)
 		x = 0;
 		while (x < mlx->width)
 		{
-			mlx_put_pixel(mlx->image, x, y , createcolor(242, 236, 190, 200));
+			mlx_put_pixel(mlx->image, x, y , createcolor(mlx->c_st, mlx->c_nd, mlx->c_rd, 200));
 			x++;
 		}
 		y++;
@@ -54,7 +54,7 @@ void draw_c_f(t_cub3d *mlx)
 		x = 0;
 		while (x < mlx->width)
 		{
-			mlx_put_pixel(mlx->image, x, y , createcolor(154, 59, 59, 200));
+			mlx_put_pixel(mlx->image, x, y , createcolor(mlx->f_st, mlx->f_nd, mlx->f_rd, 200));
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 15:07:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:20:46 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ typedef struct s_cub3d
 	int			colons;
 	long		width;
 	long		height;
+	int			c_st;
+	int			c_nd;
+	int			c_rd;
+	int			f_st;
+	int			f_nd;
+	int			f_rd;
 	mlx_texture_t	*texture[4];
 }	t_cub3d;
 
@@ -104,20 +110,20 @@ typedef enum e_type
 void	ft_check_file_cub(char *string);
 int	ft_check_dl(char *str);
 int	ft_map_line(char **str);
-int	ft_check_floor(char **str, int j);
+int	ft_check_floor(char **str, int j, t_cub3d *s);
 int	ft_check_dl(char *str);
-int	ft_check_data(char **str);
+int	ft_check_data(char **str, t_cub3d *s);
 int	ft_good(char **map, int j, int i);
 char	**ft_split_map(char *string);
 char	*ft_map(char *string);
 int	ft_st(char *str);
 int ft_nd(char *str);
 int	ft_rd(char *str);
-int	ft_rgb(char **str);
-int ft_north(char *str);
-int	ft_west(char *str);
-int ft_east(char *str);
-int ft_south(char *str);
+int	ft_rgb(char **str, t_cub3d *s);
+int ft_north(char *str, t_cub3d *s);
+int	ft_west(char *str, t_cub3d *s);
+int ft_east(char *str, t_cub3d *s);
+int ft_south(char *str, t_cub3d *s);
 int	ft_map_line(char **str);
 int	give_index(char *str);
 char **ft_hold_map(char *str);
@@ -127,7 +133,7 @@ void	ft_double_player(char **map);
 int	ft_player(char	**map);
 int		ft_check_valid(char **map);
 void	ft_checks(t_cub3d *s, char **av);
-int ft_check_valid_rgb(char **str, int j, int count);
+int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s);
 void	ft_cub3d(char **av);
 /*---------------------------DRAW----------------------------*/
 // void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius);

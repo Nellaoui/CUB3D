@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 16:07:45 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:21:23 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,11 +281,10 @@ void	update_after_move(void *param)
 		new_x = (mlx->player->x + (cos(mlx->player->rotation + (M_PI / 2))  * move_step));
 		new_y = (mlx->player->y + (sin(mlx->player->rotation + (M_PI / 2)) * move_step));
 	}
-	if (!ft_wall_here(new_x, new_y, mlx))
-	{
+	if (!ft_wall_here(new_x, mlx->player->y, mlx))
 		mlx->player->x = new_x;
+	if (!ft_wall_here(mlx->player->x, new_y, mlx))
 		mlx->player->y = new_y;
-	}
 	mlx_delete_image(mlx->mlx, mlx->image);
 	render_player(mlx);
 	cast_ray(mlx);

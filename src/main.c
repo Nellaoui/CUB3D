@@ -6,11 +6,29 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 13:58:18 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 18:28:28 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+
+void	ft_give_path(char *str, t_cub3d *s)
+{
+	int i = 0;
+	char	*path;
+	static int texture_number = 0;
+	while(str[i] != '.')
+		i++;
+
+	path = ft_substr(str, i, ft_strlen(str) - i);
+	if (!(s->texture[texture_number] = mlx_load_png(path)))
+	{
+		ft_putstr_fd("not valid path", 2);
+		exit(1);
+	}
+	texture_number++;
+}
 
 char	**ft_split_map(char *string)
 {
@@ -60,7 +78,7 @@ int	ft_st(char *str)
 	{
 		return (-1);
 	}
-	return (ft_atoi(str));
+	return (ft_atoi(at));
 }
 
 int ft_nd(char *str)
@@ -108,7 +126,7 @@ int	ft_rd(char *str)
 
 
 
-int	ft_rgb(char **str)
+int	ft_rgb(char **str, t_cub3d *s)
 {
 	int i;
 	int j;
@@ -123,7 +141,7 @@ int	ft_rgb(char **str)
 		{
 			if ((str[j][i] == 'F' || str[j][i] == 'C') && str[j][i + 1] == ' ')
 			{
-				if (ft_check_floor(str, j))
+				if (ft_check_floor(str, j, s))
 				{
 					ft_putstr_fd("somthing went wrong : map can't be loaded X", 2);
 					exit (1);
@@ -136,7 +154,7 @@ int	ft_rgb(char **str)
 	return (1);
 }
 
-int ft_north(char *str)
+int ft_north(char *str, t_cub3d *s)
 {
 	int	i;
 
@@ -146,13 +164,16 @@ int ft_north(char *str)
 	while(str[i])
 	{
 		if (str[i] == 'N' && str[i + 1] == 'O' && str[i + 2] == ' ')
+		{
+			ft_give_path(str, s);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-int	ft_west(char *str)
+int	ft_west(char *str, t_cub3d *s)
 {
 	int	i;
 
@@ -162,13 +183,16 @@ int	ft_west(char *str)
 	while(str[i])
 	{
 		if (str[i] == 'W' && str[i+1] == 'E' && str[i + 2] == ' ')
+	{
+			ft_give_path(str, s);
 			return (1);
+	}
 		i++;
 	}
 	return (0);
 }
 
-int 	ft_east(char *str)
+int 	ft_east(char *str, t_cub3d *s)
 {
 	int i = 0;
 
@@ -177,13 +201,16 @@ int 	ft_east(char *str)
 	while(str[i])
 	{
 		if (str[i] == 'E' && str[i + 1] == 'A' && str[i + 2] == ' ')
+			{
+			ft_give_path(str, s);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-int ft_south(char *str)
+int ft_south(char *str, t_cub3d *s)
 {
 	int i = 0;
 
@@ -192,7 +219,10 @@ int ft_south(char *str)
 	while(str[i])
 	{
 		if (str[i] == 'S' && str[i + 1] == 'O' && str[i + 2] == ' ')
+			{
+			ft_give_path(str, s);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -368,7 +398,7 @@ void	ft_checks(t_cub3d *s, char **av)
 	}
 	file = ft_split_map(map);
 	s->holdmap = ft_hold_map(map);
-	if (ft_check_valid(s->holdmap) || ft_check_data(file))
+	if (ft_check_valid(s->holdmap) || ft_check_data(file, s))
 	{
 		ft_putstr_fd("somthing went wrong : data is not valid", 2);
 		exit(1);

@@ -6,32 +6,11 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 16:11:42 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:27:27 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// void draw_texture(mlx_t* mlx, mlx_image_t* image, mlx_texture_t* texture)
-// {
-// 	uint8_t* pixelx;
-// 	uint8_t* pixeli;
-// 	int		tex_x;
-// 	int		tex_y;
-// 	int		image_x;
-// 	int		image_y;
-
-// 	tex_x = 0;
-// 	tex_y = 0;
-// 	image_x = 500;
-// 	image_y = 10;
-// 	for (uint32_t imagse_y = 10; image_y < texture->height; image_y++)
-// 	{
-// 		pixelx = &texture->pixels[((tex_y * texture->width) + tex_x)* texture->bytes_per_pixel];
-// 		pixeli = &image->pixels[((image_y * image->width) + image_x) * texture->bytes_per_pixel];
-// 		ft_memmove(pixeli, pixelx, texture->width * texture->bytes_per_pixel);
-// 	}
-// // }
 
 /*
 y = y_start => f(y) = 0;
@@ -59,18 +38,8 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, __unused uint32_t y1, __unused u
 {
 	uint32_t	x2;
 	uint32_t	y2;
-	int		y_start;
-	int		y;
-	static int	bo;
-
-	if (bo == 0)
-	{
-		mlx->texture[0] = mlx_load_png("walls/wall_0.png");
-		mlx->texture[1] = mlx_load_png("walls/wall_1.png");
-		mlx->texture[2] = mlx_load_png("walls/wall_2.png");
-		mlx->texture[3] = mlx_load_png("walls/wall_3.png");
-		bo = 1;
-	}
+	int			y_start;
+	int			y;
 
 	y_start = ((mlx->height / 2) - (len2 / 2));
 	y2 = y_start + len2;

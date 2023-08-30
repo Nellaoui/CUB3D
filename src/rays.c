@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 15:29:45 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:55:23 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	cast_ray(t_cub3d *cub3d)
 	float	hit_y = 0;
 	float	was_hit_vertical = false;
 	float	ray_angle = cub3d->player->rotation - (FOV / 2);
-
 	int a = cub3d->width;
 	i = 0;
 	while (i < a)// cub3d->width)
@@ -90,8 +89,6 @@ void	cast_ray(t_cub3d *cub3d)
 			vertical_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.ver_wall_hit_x, s.ver_wall_hit_y);
 		else
 			vertical_distance = MAXFLOAT;
-		// if (horizantal_distance == vertical_distance)
-			// write(1, "X", 1);			// printf("{%f}\n", s.hor_wall_hit_x);
 		if (horizantal_distance < vertical_distance)
 		{
 			hit_x = s.hor_wall_hit_x;
