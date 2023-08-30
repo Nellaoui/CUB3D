@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 20:56:25 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:59:11 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,7 @@ void	render_map(t_cub3d *mlx_lib)
 		ft_putstr_fd("error : putin map in window\n", 2);
 }
 
-// void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius)
-// {
-// 	int x = 0;
-// 	int y = 0;
-// 	int angle =0;
 
-// 	while (angle < 360)
-// 	{
-// 		x = center_x + (radius * cos(angle * M_PI / 180));
-// 		y = center_y + (radius * sin(angle * M_PI / 180));
-// 		mlx_put_pixel(image, x, y, createcolor(200, 25, 175, 255));
-// 		angle++;
-// 	}
-// }
 
 void	render_player(t_cub3d *mlx_lib)
 {

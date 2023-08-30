@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 20:49:13 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:54:13 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int	ft_check_data(char **str, t_cub3d *s);
 int	ft_good(char **map, int j, int i);
 char	**ft_split_map(char *string);
 char	*ft_map(char *string);
+int	ft_chek_invalid(char **str);
 int	ft_st(char *str);
 int ft_nd(char *str);
 int	ft_rd(char *str);

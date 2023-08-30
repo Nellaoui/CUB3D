@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 19:09:09 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 21:59:24 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -403,7 +403,7 @@ void	ft_checks(t_cub3d *s, char **av)
 	}
 	file = ft_split_map(map);
 	s->holdmap = ft_hold_map(map);
-	if (ft_check_valid(s->holdmap) || ft_check_data(file, s))
+	if (ft_check_valid(s->holdmap) || ft_check_data(file, s) || ft_chek_invalid(s->holdmap))
 	{
 		ft_putstr_fd("somthing went wrong : data is not valid", 2);
 		exit(1);
