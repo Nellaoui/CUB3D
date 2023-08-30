@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 10:31:51 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:29:45 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,6 @@ float	ft_distance_beteween(float x1, float y1, float x2, float y2)
 	return (sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
 }
 
-void	ft_give_direction(t_cub3d *cub3d)
-{
-	if (cos(cub3d->player->rotation) > 0)
-		cub3d->player->compas = EAST;
-	else if (cos(cub3d->player->rotation) < 0)
-		cub3d->player->compas = WEST;
-	else if (sin(cub3d->player->rotation) > 0)
-		cub3d->player->compas = NORTH;
-	else if (sin(cub3d->player->rotation) < 0)
-		cub3d->player->compas = SOUTH;
-}
-
 void	cast_ray(t_cub3d *cub3d)
 {
 	t_ray	s;
@@ -102,6 +90,8 @@ void	cast_ray(t_cub3d *cub3d)
 			vertical_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.ver_wall_hit_x, s.ver_wall_hit_y);
 		else
 			vertical_distance = MAXFLOAT;
+		// if (horizantal_distance == vertical_distance)
+			// write(1, "X", 1);			// printf("{%f}\n", s.hor_wall_hit_x);
 		if (horizantal_distance < vertical_distance)
 		{
 			hit_x = s.hor_wall_hit_x;
@@ -118,13 +108,11 @@ void	cast_ray(t_cub3d *cub3d)
 			hit_y = s.ver_wall_hit_y;
 			s.distance = vertical_distance;
 			was_hit_vertical = true;
-			if (ray_angle > M_PI/2 && ray_angle < M_PI + M_PI/2)
+			if (ray_angle > M_PI_2 && ray_angle < M_PI + M_PI_2)
 				cub3d->player->compas = EAST;
 			else
 				cub3d->player->compas = WEST;
 		}
-	// printf("{{{{{{%f}}}}}}\n", sin(ray_angle));
-		// ft_give_direction(cub3d);
 		draw_ray(cub3d->image,
 			cub3d->player->x * CAST,
 			cub3d->player->y * CAST,

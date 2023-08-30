@@ -6,12 +6,11 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/29 17:16:32 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:08:31 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 char ft_player_direction(t_cub3d *my_struct)
 {
@@ -91,12 +90,12 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player->y = ft_give_posy(my_struct->holdmap) * 50;
 	player->direction = 0; // left or right //ft_player_direction(my_struct);
 	player->move = 0; // back or front
-	player->rotate_speed = 5 * (M_PI / 180);
+	player->rotate_speed = 10 * (M_PI / 180);
 	player->move_speed = 10;
 	player->rotation = 3 * M_PI / 2;
 	return (player);
 }
-/*by noaman ilook for the biig len and i return thier lane*/
+// /*by noaman ilook for the biig len and i return thier lane*/
 int	colons(char **map)
 {
 	int j;

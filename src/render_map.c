@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/29 23:29:55 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 13:55:46 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	render_map(t_cub3d *mlx_lib)
 
 	color = 0;
 	i = -1;
-
-	// loading_wall();
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	draw_c_f(mlx_lib);

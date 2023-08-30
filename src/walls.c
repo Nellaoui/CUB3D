@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/29 23:10:30 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:11:42 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,7 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, __unused uint32_t y1, __unused u
 		mlx->texture[3] = mlx_load_png("walls/wall_3.png");
 		bo = 1;
 	}
-	// int compas;
-	// int compas1;
-	// if (cos(ray_angle) > 0)
-	// 	compas = EAST;
-	// if (cos(ray_angle) < 0)
-	// 	compas = WEST;
-	// if (sin(ray_angle) > 0)
-	// 	compas = NORTH;
-	// if (sin(ray_angle) < 0)
-		// compas = SOUTH;
-	// printf("sin %f\n", sin(ray_angle));
-	// printf("cos %f\n", cos(ray_angle));
-	// uint8_t *pixels = loading_wall(mlx->mlx);
+
 	y_start = ((mlx->height / 2) - (len2 / 2));
 	y2 = y_start + len2;
 	y = y_start * (y_start > 0);
@@ -93,11 +81,6 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, __unused uint32_t y1, __unused u
 		x_percentage =(hit_x - (int)(hit_x/50)*50)/50;
 	else
 		x_percentage = (hit_y - (int)(hit_y/50)*50)/50;
-	// printf("x->%.10f\n", hit_x);
-	// printf("0->%.10f\n", hit_x - (int)(hit_x/50));
-	// printf("1->%.10f\n", (hit_x - (int)(hit_x/50)*50));
-	// printf("1->%.10f\n", (hit_x - (int)(hit_x)/50*50));
-	// printf("3->%.10f\n", (hit_x - (int)(hit_x/50)*50)/50);
 	while (y < y2)
 	{
 		if (y < 0)
@@ -105,9 +88,8 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, __unused uint32_t y1, __unused u
 			++y;
 			continue;
 		}
-		else if (y >= mlx->height)
+		else if (y >= mlx->height - 1)
 			break;
-		// mlx_put_pixel(image, x1, y, get_color_from_texture(mlx->texture[0], x_percentage, y, len2, y_start));
 		if (mlx->player->compas == NORTH)
 			mlx_put_pixel(image, x1, y, get_color_from_texture(mlx->texture[0], x_percentage, y, len2, y_start));
 		else if (mlx->player->compas == SOUTH)
@@ -118,9 +100,6 @@ void	draw_wall(mlx_image_t *image, uint32_t x1, __unused uint32_t y1, __unused u
 			mlx_put_pixel(image, x1, y, get_color_from_texture(mlx->texture[3], x_percentage, y, len2, y_start));
 		y++;
 	}
-	static int b;
-	// printf("%d || %d\n", compas, b++);
-	// printf("%d\n", compas1);
 }
 
 void	render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle, float hit_x, float hit_y, int was_hit_vertical)
