@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 15:08:31 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:30:37 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,20 @@ int	colons(char **map)
 	return (holder);
 }
 
+void	ft_check_window_size(t_cub3d *s)
+{
+	s->display_height = 0;
+	s->display_width = 0;
+	mlx_get_monitor_size(0, &s->display_width, &s->display_height);
+	if ((s->width) > s->display_width
+		|| (s->height) > s->display_height)
+	{
+		ft_putstr_fd("Somthing went wrong : Map Is To Large\n", 2);
+		mlx_terminate(s->mlx);
+		exit(EXIT_FAILURE);
+	}
+}
+
 void	initilize_cub3d(t_cub3d *my_struct)
 {
 	my_struct->rows = number_of_rows(my_struct->holdmap);
@@ -129,5 +143,7 @@ void	initilize_cub3d(t_cub3d *my_struct)
 							, "cub3d", false);
 	if (my_struct->mlx == NULL)
 		ft_putstr_fd("error\n", 2);
+	ft_check_window_size(my_struct);
+
 }
 

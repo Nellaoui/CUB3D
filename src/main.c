@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 18:28:28 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:09:09 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ int	ft_map_line(char **str)
 		i = 0;
 		while (str[j][i])
 		{
-			if (str[j][i] == '1' && str[j][i+1] == '1'&& str[j][i+2] == '1'&& str[j][i+3] == '1')
+			if (str[j][i] == '1' && str[j][i+1] == '1' && str[j][i+2] == '1'&& str[j][i+3] != ',')
 				return (j);
 			i++;
 		}
@@ -255,7 +255,7 @@ int	give_index(char *str)
 	j = 0;
 	while(str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
+		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j + 3] != ',')
 		{
 			while(str[j])
 			{
@@ -331,6 +331,11 @@ void	ft_double_player(char **map)
 	}
 	if (count > 1)
 	{
+	// 	printf("map -> %s \n", map[0]);
+	// 	printf("map -> %s \n", map[1]);
+	// 	printf("map -> %s \n", map[2]);
+	// 	printf("map -> %s \n", map[3]);
+		// printf("%d\n", count);
 		ft_putstr_fd("somthing went wrong : to many player in the map", 2);
 		exit(EXIT_FAILURE);
 	}
