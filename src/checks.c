@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 15:24:28 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:31:13 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ void	ft_check_file_cub(char *string)
 
 int	ft_check_floor(char **str, int j, t_cub3d *s)
 {
-	int count;
-	int i;
+	int	i;
+	int	count;
 
-	count = 0;
 	i = 0;
-	while(str[j][i] == ' ')
+	count = 0;
+	while (str[j][i] == ' ')
 		i++;
 	if (str[j][i] == 'C' || str[j][i] == 'F')
-		{
+	{
+		i++;
+		while (str[j][i] == ' ')
 			i++;
-			while (str[j][i] == ' ')
-				i++;
-		}
+	}
 	else
 		return (1);
 	while (str[j][i])
@@ -50,14 +50,13 @@ int	ft_check_floor(char **str, int j, t_cub3d *s)
 			count++;
 		i++;
 	}
-	if (ft_check_valid_rgb(str, j, count, s))
-		return (1);
-	return (0);
+	return (ft_check_valid_rgb(str, j, count, s));
 }
 
 void	ft_give_color(char	**str, t_cub3d *s, int f_c, int j)
 {
-	static int two;
+	static int	two;
+
 	if (f_c == 1)
 	{
 		s->f_st = ft_st(str[j]);
@@ -73,21 +72,23 @@ void	ft_give_color(char	**str, t_cub3d *s, int f_c, int j)
 		two++;
 	}
 	if (two > 2)
-		{
-			exit(EXIT_FAILURE);
-			ft_putstr_fd("Error\n",2);
-		}
+	{
+		exit(EXIT_FAILURE);
+		ft_putstr_fd("Error\n", 2);
+	}
 }
 
-int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
+int	ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 {
-	int	st;
-	int	nd;
-	int rd;
-	int	f = false;
-	int	i = 0;
+	int			st;
+	int			nd;
+	int			rd;
+	int			f;
+	int			i;
 	static int	two;
 
+	f = false;
+	i = 0;
 	if (str[j][i] == 'F')
 		f = 1;
 	if (str[j][i] == 'C')
@@ -95,10 +96,10 @@ int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 	st = ft_st(str[j]);
 	nd = ft_nd(str[j]);
 	rd = ft_rd(str[j]);
-
 	if (st == -1 || nd == -1 || rd == -1)
 		return (1);
-	if (st >= 0 && st <= 255 && nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
+	if (st >= 0 && st <= 255 
+		&& nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
 	{
 		ft_give_color(str, s, f, j);
 		return (0);
@@ -109,103 +110,21 @@ int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 
 int	ft_check_dl(char *str)
 {
-	int j;
+	int	j;
 
 	j = 0;
-	while(str[j])
+	while (str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
+		if (str[j] == '1' && str[j + 1] == '1' 
+			&& str[j + 2] == '1' && str[j + 3] == '1')
 			break ;
 		j++;
 	}
-	while(str[j])
-	{
-		if (str[j] == '\n' && str[j+1] == '\n')
-			return 1;
-		j++;
-	}
-	return (0);
-}
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-
-
-
-int	ft_chek_invalid(char **str)
-{
-	int i;
-	int j;
-	j =0;
 	while (str[j])
 	{
-		i = 0;
-		while(str[j][i])
-		{
-			if(str[j][i] != '1' && str[j][i] != '0' && str[j][i] != 'W' && str[j][i] != 'S' && str[j][i] != 'N' && str[j][i] != 'E' && str[j][i] != ' ')
-				return (1);
-			i++;
-		}
+		if (str[j] == '\n' && str[j + 1] == '\n')
+			return (1);
 		j++;
-	}
-	return (0);
-}
-int	ft_check_data(char **str, t_cub3d *s)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 0;
-	j = 0;
-	count = 0;
-	while(str[j])
-	{
-		i = 0;
-		while(str[j][i])
-		{
-			if (str[j][i] == 'N')
-				count += ft_north(str[j], s);
-			else if (str[j][i] == 'W')
-				count += ft_west(str[j], s);
-			else if (str[j][i] == 'E')
-				count += ft_east(str[j], s);
-			else if (str[j][i] == 'S')
-				count += ft_south(str[j], s);
-			i++;
-		}
-		j++;
-	}
-	if (count == 4 && ft_rgb(str, s))
-		return 0;
-	ft_putstr_fd("somthing went wrong : map can't be loaded 1", 2);
-		exit(EXIT_FAILURE);
-}
-
-int	ft_good(char **map, int j, int i)
-{
-	if (map[j][0] == '0')
-		return 1;
-	if (map[j][i] == '0' || map[j][i]  == 'W' || map[j][i]  == 'E' || map[j][i]  == 'N' || map[j][i]  == 'S')
-	{
-		if (ft_strlen(map[j - 1]) < (unsigned long)i)
-			return (1);
-		if (ft_strlen(map[j + 1]) < (unsigned long)i)
-			return (1);
-		if (map[j - 1][i] == ' ' || map[j - 1][i] == '\0')
-			return (1);
-		if (map[j + 1][i] == ' ' || map[j + 1][i] == '\0')
-			return (1);
-		if (map[j][i + 1] == ' ' || map[j][i + 1] == '\0')
-			return (1);
-		if (map[j][i - 1] == ' ' || map[j][i - 1] == '\0')
-			return (1);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 15:34:41 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 15:56:31 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:35:07 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	mouvement_keys(mlx_key_data_t *key, t_cub3d *mlx)
 	}
 	else if (key->key == MLX_KEY_W
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
-		{
+	{
 		mlx->player->move = +1;
-		}
+	}
 	else if (key->key == MLX_KEY_S
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
 		mlx->player->move = -1;
