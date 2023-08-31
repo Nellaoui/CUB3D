@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 21:54:13 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:46:08 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,14 @@ typedef	struct	s_ray
 	float	hor_wall_hit_x;
 	float	hor_wall_hit_y;
 	float	ver_wall_hit_x;
+	float	hit_x;
+	float	hit_y;
+	float	was_hit_vertical;
 	float	ver_wall_hit_y;
+	float	horizantal_distance;
+	float	vertical_distance;
+	// float	hit_x;
+	// float	hit_y;
 } t_ray;
 
 typedef	struct	s_player
@@ -81,6 +88,8 @@ typedef struct s_cub3d
 	int			color;
 	mlx_t		*mlx;
 	int			rows;
+	float	hit_x;
+	float	hit_y;
 	int			colons;
 	long		width;
 	long		height;
@@ -167,5 +176,5 @@ void	draw_line(mlx_image_t *image, double x1, double y1, double x2, double y2);
 
 /*----------------------------RAYCASTING------------------*/
 void	cast_ray(t_cub3d *cub3d);
-void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle, float hit_x, float hit_y, int was_hit_vertical);
+void    render_wall(t_cub3d *mlx, t_ray *ray, int i, float	ray_angle);
 # endif

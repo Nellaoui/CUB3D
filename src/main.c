@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 21:59:24 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:27:27 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_give_path(char *str, t_cub3d *s)
 	path = ft_substr(str, i, ft_strlen(str) - i);
 	if (!(s->texture[texture_number] = mlx_load_png(path)))
 	{
-		ft_putstr_fd("not valid path", 2);
+		ft_putstr_fd("Error\n texture cant be loaded", 2);
 		exit(1);
 	}
 	texture_number++;
@@ -50,7 +50,7 @@ char	*ft_map(char *string)
 		exit(EXIT_FAILURE);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error Map cannot be loaded\n", 2);
+		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -143,7 +143,7 @@ int	ft_rgb(char **str, t_cub3d *s)
 			{
 				if (ft_check_floor(str, j, s))
 				{
-					ft_putstr_fd("somthing went wrong : map can't be loaded X", 2);
+					ft_putstr_fd("Error\n", 2);
 					exit (1);
 				}
 			}
@@ -336,7 +336,7 @@ void	ft_double_player(char **map)
 	// 	printf("map -> %s \n", map[2]);
 	// 	printf("map -> %s \n", map[3]);
 		// printf("%d\n", count);
-		ft_putstr_fd("somthing went wrong : to many player in the map", 2);
+		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -370,7 +370,7 @@ int	ft_check_valid(char **map)
 	j = 1;
 	if (ft_player(map) || st_line(map[0]) || st_line(map[last_line(map)]))
 	{
-		ft_putstr_fd("somthing went wrong : map issue", 2);
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
 	while (map[j])
@@ -398,14 +398,14 @@ void	ft_checks(t_cub3d *s, char **av)
 	map = ft_map(av[1]);
 	if (ft_check_dl(map))
 	{
-		ft_putstr_fd("somthing went wrong : Double line in the map", 2);
+		ft_putstr_fd("Error\n double line", 2);
 		exit(EXIT_FAILURE);
 	}
 	file = ft_split_map(map);
 	s->holdmap = ft_hold_map(map);
 	if (ft_check_valid(s->holdmap) || ft_check_data(file, s) || ft_chek_invalid(s->holdmap))
 	{
-		ft_putstr_fd("somthing went wrong : data is not valid", 2);
+		ft_putstr_fd("Error\n invalid data", 2);
 		exit(1);
 	}
 }
@@ -430,7 +430,7 @@ int main(int ac, char **av)
 		ft_cub3d(av);
 	else
 	{
-		ft_putstr_fd("Error : Number of arguments isn't Correct\n", 2);
+		ft_putstr_fd("Error\n number of Argumment not correct\n", 2);
 		return (1);
 	}
 	return (0);

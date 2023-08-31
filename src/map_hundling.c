@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:26:57 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/15 20:27:42 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:26:47 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_map(char *string)
 		exit(EXIT_FAILURE);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error Map cannot be loaded\n", 2);
+		ft_putstr_fd("Error\n somthing went wrong with the fd\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -91,7 +91,7 @@ void	ft_double_player(char **map)
 	}
 	if (count > 1)
 	{
-		ft_putstr_fd("somthing went wrong : to many player in the map", 2);
+		ft_putstr_fd("Error\n To many player\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	else

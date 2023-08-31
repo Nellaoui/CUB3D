@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 10:10:27 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:26:09 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	render_map(t_cub3d *mlx_lib)
 	color = 0;
 	i = -1;
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
-		ft_putstr_fd("error in creaitin new_image\n", 2);
-	// draw_c_f(mlx_lib);
+		ft_putstr_fd("Error\n somthing went worng with image\n", 2);
+	draw_c_f(mlx_lib);
 	while (++i < mlx_lib->rows)
 	{
 		j = -1;
@@ -88,7 +88,7 @@ void	render_map(t_cub3d *mlx_lib)
 		}
 	}
 	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))
-		ft_putstr_fd("error : putin map in window\n", 2);
+		ft_putstr_fd("Error\n\n", 2);
 }
 
 
@@ -96,7 +96,7 @@ void	render_map(t_cub3d *mlx_lib)
 void	render_player(t_cub3d *mlx_lib)
 {
 	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
-		ft_putstr_fd("error in creaitin new_image\n", 2);
+		ft_putstr_fd("Error\n somthing went wrong with the player\n", 2);
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
 	draw_player(mlx_lib);
 	cast_ray(mlx_lib);

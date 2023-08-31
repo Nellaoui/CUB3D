@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/30 21:59:29 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:35:39 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,26 @@ int	ft_check_floor(char **str, int j, t_cub3d *s)
 
 void	ft_give_color(char	**str, t_cub3d *s, int f_c, int j)
 {
+	static int two;
 	if (f_c == 1)
 	{
 		s->f_st = ft_st(str[j]);
 		s->f_nd = ft_nd(str[j]);
 		s->f_rd = ft_rd(str[j]);
+		two++;
 	}
 	if (f_c == 2)
 	{
 		s->c_st = ft_st(str[j]);
 		s->c_nd = ft_nd(str[j]);
 		s->c_rd = ft_rd(str[j]);
+		two++;
 	}
+	if (two > 2)
+		{
+			exit(EXIT_FAILURE);
+			ft_putstr_fd("Error\n",2);
+		}
 }
 
 int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
@@ -78,9 +86,8 @@ int ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 	int rd;
 	int	f = false;
 	int	i = 0;
+	static int	two;
 
-	// while(str[j][i] != ' ')
-	// 	i++;
 	if (str[j][i] == 'F')
 		f = 1;
 	if (str[j][i] == 'C')
@@ -140,7 +147,7 @@ int	ft_chek_invalid(char **str)
 		i = 0;
 		while(str[j][i])
 		{
-			if(str[j][i] != '1' && str[j][i] != '0' && str[j][i] != 'W' && str[j][i] != 'S' && str[j][i] != 'N' && str[j][i] != 'E')
+			if(str[j][i] != '1' && str[j][i] != '0' && str[j][i] != 'W' && str[j][i] != 'S' && str[j][i] != 'N' && str[j][i] != 'E' && str[j][i] != ' ')
 				return (1);
 			i++;
 		}
