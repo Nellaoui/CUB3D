@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 12:27:16 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:47:35 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int	ft_rd(char *str)
 		return (-1);
 	return ft_atoi(at);
 }
-
 
 
 int	ft_rgb(char **str, t_cub3d *s)
@@ -410,17 +409,18 @@ void	ft_checks(t_cub3d *s, char **av)
 	}
 }
 
-
-
 void	ft_cub3d(char **av)
 {
 	t_cub3d	mlx_lib;
 
 	ft_checks(&mlx_lib, av);
-	initilize_cub3d(&mlx_lib);
+	if (initilize_cub3d(&mlx_lib))
+	{
+		free(mlx_lib.player);
+		exit(1);
+	}
 	render_map(&mlx_lib);
 	render_player(&mlx_lib);
-	// write(1, "X", 1);
 	mlx_loop(mlx_lib.mlx);
 	mlx_terminate(mlx_lib.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 08:16:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/27 10:51:35 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:46:45 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ int	number_of_colons(char *map)
 }
 
 
+int	colons(char **map)
+{
+	int				j;
+	unsigned long	holder;
+
+	j = 1;
+	holder = 0;
+	while (map[j])
+	{
+		if (ft_strlen(map[j]) >= holder)
+			holder = ft_strlen(map[j]);
+		j++;
+	}
+	return (holder);
+}
+
 void	printf_double_pointer(char **map)
 {
 	while (*map != NULL)
@@ -68,3 +84,12 @@ void	printf_double_pointer(char **map)
 		map++;
 	}
 }
+
+double	ft_absolute_angle(double ray_angle)
+{
+	ray_angle = fmod(ray_angle, (2 * M_PI));
+	if (ray_angle < 0)
+		ray_angle += (2 * M_PI);
+	return (ray_angle);
+}
+

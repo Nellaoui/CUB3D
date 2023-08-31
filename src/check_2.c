@@ -6,27 +6,11 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:17:17 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/30 18:45:14 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 15:23:06 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// int	ft_directions(char **str, int j, int i)
-// {
-// 	static int count = 0;
-
-// 	if (str[j][i] == 'N')
-// 		count += ft_north(str[j]);
-// 	if (str[j][i] == 'W')
-// 		count += ft_west(str[j]);
-// 	if (str[j][i] == 'E')
-// 		count += ft_east(str[j]);
-// 	if (str[j][i] == 'S')
-// 		count += ft_south(str[j]);
-// 	return (count);
-// }
-
 
 int	ft_check_valid(char **map)
 {
