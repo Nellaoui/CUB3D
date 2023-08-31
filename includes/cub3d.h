@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 17:07:14 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:24:41 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_ray
 	float	distance;
 	float	next_horzintal_x;
 	float	next_horzintal_y;
-	float	next_vertical_x;
+	float	nx_vert_x;
 	float	next_vertical_y;
 	float	vertical_founded;
 	float	horizantal_founded;
@@ -159,6 +159,12 @@ int			ft_good(char **map, int j, int i);
 char		**ft_split_map(char *string);
 char		*ft_map(char *string);
 int			ft_st(char *str);
+void		ft_give_path(char *str, t_cub3d *s);
+void		casting_horizontal(t_cub3d *mlx, double ray_angle, t_ray *s);
+void		casting_vertical(t_cub3d *mlx, double ray_angle, t_ray *s);
+void		ft_initialize_cast(t_casting *c, t_ray *s);
+void		ft_hor_intersection(t_casting *c, float angle, t_cub3d *mlx, t_ray *s);
+void		ft_ver_intersection(float ray_angle, t_cub3d *mlx, t_casting *c);
 int			ft_nd(char *str);
 int			ft_rd(char *str);
 int			ft_rgb(char **str, t_cub3d *s);
@@ -166,7 +172,7 @@ int			ft_north(char *str, t_cub3d *s);
 int			ft_west(char *str, t_cub3d *s);
 int			ft_east(char *str, t_cub3d *s);
 int			ft_south(char *str, t_cub3d *s);
-int			ft_map_line(char **str);
+// int			ft_map_line(char **str);
 int			give_index(char *str);
 char		**ft_hold_map(char *str);
 int			st_line(char *map);
@@ -178,8 +184,10 @@ void		ft_checks(t_cub3d *s, char **av);
 int			ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s);
 void		ft_cub3d(char **av);
 int			ft_chek_invalid(char **str);
-int	ft_wall_here(float x, float y, t_cub3d *mlx);
-void	casting_horizontal(t_cub3d *mlx , double ray_angle	,t_ray *s);
+int			ft_wall_here(float x, float y, t_cub3d *mlx);
+int			ft_wall_here_a(float x, float y, t_cub3d	*mlx);
+void		casting_horizontal(t_cub3d *mlx , double ray_angle	,t_ray *s);
+void		ft_give_color(char	**str, t_cub3d *s, int f_c, int j);
 /*---------------------------DRAW----------------------------*/
 void		draw_c_f(t_cub3d *mlx);
 void		render_map(t_cub3d *s);

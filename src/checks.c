@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 16:31:13 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:07:02 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 	int			rd;
 	int			f;
 	int			i;
-	static int	two;
 
 	f = false;
 	i = 0;
@@ -98,7 +97,7 @@ int	ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
 	rd = ft_rd(str[j]);
 	if (st == -1 || nd == -1 || rd == -1)
 		return (1);
-	if (st >= 0 && st <= 255 
+	if (st >= 0 && st <= 255
 		&& nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
 	{
 		ft_give_color(str, s, f, j);
@@ -115,7 +114,7 @@ int	ft_check_dl(char *str)
 	j = 0;
 	while (str[j])
 	{
-		if (str[j] == '1' && str[j + 1] == '1' 
+		if (str[j] == '1' && str[j + 1] == '1'
 			&& str[j + 2] == '1' && str[j + 3] == '1')
 			break ;
 		j++;

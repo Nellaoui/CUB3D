@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 08:16:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 17:03:52 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:52:19 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,6 @@ int	colons(char **map)
 	}
 	return (holder);
 }
-
-// void	printf_double_pointer(char **map)
-// {
-// 	while (*map != NULL)
-// 	{
-// 		printf("the line is --->%s\n", *map);
-// 		map++;
-// 	}
-// }
 
 double	ft_absolute_angle(double ray_angle)
 {

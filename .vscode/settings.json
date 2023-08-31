@@ -10,6 +10,7 @@
         "string": "c",
         "iosfwd": "c",
         "atomic": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "cub3d.h": "c"
     }
 }
