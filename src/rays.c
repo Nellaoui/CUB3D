@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 10:46:37 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:55:02 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	cast_ray(t_cub3d *cub3d)
 		casting_vertical(cub3d, ray_angle, &s);
 		ft_count_distance(&s, cub3d);
 		ft_which_distance(cub3d, &s, ray_angle);
-		draw_ray(cub3d->image, cub3d->player->x * SCALE, cub3d->player->y * SCALE, s.hit_x * SCALE, s.hit_y * SCALE);
+		draw_ray(cub3d->image, cub3d->player->x * cub3d->scale_width, cub3d->player->y * cub3d->scale_height, s.hit_x * cub3d->scale_width, s.hit_y * cub3d->scale_height);
 		render_wall(cub3d, &s, i, ray_angle);
 		ray_angle += (FOV / cub3d->width);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 10:08:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:03:48 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ t_player	*initilize_player(t_cub3d	*my_struct)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-	player->x = (ft_give_posx(my_struct->holdmap) * 50);
-	player->y = ft_give_posy(my_struct->holdmap) * 50;
+	player->x = (ft_give_posx(my_struct->holdmap) * 50) + 25;
+	player->y = (ft_give_posy(my_struct->holdmap) * 50) + 25;
 	player->direction = 0; // left or right //ft_player_direction(my_struct);
 	player->move = 0; // back or front
 	player->rotate_speed = 10 * (M_PI / 180);
 	player->move_speed = 10;
-	player->rotation = 3 * M_PI / 2;
+	player->rotation = -1 * M_PI / 2;
 	return (player);
 }
 // /*by noaman ilook for the biig len and i return thier lane*/
@@ -116,7 +116,6 @@ void	ft_check_window_size(t_cub3d *s)
 {
 	s->display_height = 0;
 	s->display_width = 0;
-	mlx_get_monitor_size(0, &s->display_width, &s->display_height);
 	if ((s->width) > s->display_width
 		|| (s->height) > s->display_height)
 	{
@@ -128,6 +127,8 @@ void	ft_check_window_size(t_cub3d *s)
 
 void	initilize_cub3d(t_cub3d *my_struct)
 {
+	int32_t display_width;
+	int32_t display_height;
 	my_struct->rows = number_of_rows(my_struct->holdmap);
 	my_struct->colons = colons(my_struct->holdmap);
 	my_struct->image = NULL;
@@ -137,13 +138,16 @@ void	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->width = my_struct->colons * my_struct->tile_x ;
 	my_struct->height = my_struct->rows * my_struct->tile_y ;
 	my_struct->player = initilize_player(my_struct);
-
-	my_struct->mlx = mlx_init(my_struct->colons * my_struct->tile_x
-							, my_struct->rows * my_struct->tile_y
+	if (my_struct->width > 2560)
+		my_struct->width = 2550;
+	if (my_struct->height > 1440)
+		my_struct->height = 1400;
+	my_struct->scale_width = (0.1 * my_struct->width) / my_struct->height;
+	my_struct->scale_height = (0.2 * my_struct->height) / my_struct->width;
+	my_struct->mlx = mlx_init(my_struct->width
+							, my_struct->height
 							, "cub3d", false);
 	if (my_struct->mlx == NULL)
 		ft_putstr_fd("error\n", 2);
-	// ft_check_window_size(my_struct);
-
 }
 

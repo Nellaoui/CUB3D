@@ -6,26 +6,26 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 11:26:09 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:00:35 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t start_y)
+void	draw_carr(t_cub3d *cub3d, u_int32_t	color, uint32_t start_x, uint32_t start_y)
 {
 	uint32_t	lenght_x;
 	uint32_t	lenght_y;
 	uint32_t	y;
 
-	lenght_x = start_x + 49 * SCALE;
-	lenght_y = start_y + 49 * SCALE;
+	lenght_x = start_x + 48 * cub3d->scale_height;
+	lenght_y = start_y + 48 * cub3d->scale_height;
 	while (start_x < lenght_x)
 	{
 		y = start_y;
 		while (y < lenght_y)
 		{
-			mlx_put_pixel(image, start_x, y, color);
+			mlx_put_pixel(cub3d->image, start_x, y, color);
 			y++;
 		}
 		start_x++;
@@ -84,7 +84,7 @@ void	render_map(t_cub3d *mlx_lib)
 				color = createcolor(255, 0, 0, 255);
 			else
 				color = createcolor(255, 0, 0, 0);
-			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j * SCALE, mlx_lib->tile_y * i * SCALE);
+			draw_carr(mlx_lib, color, mlx_lib->tile_x * j * mlx_lib->scale_height, mlx_lib->tile_y * i * mlx_lib->scale_height);
 		}
 	}
 	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))

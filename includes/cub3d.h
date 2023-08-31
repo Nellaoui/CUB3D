@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 10:46:08 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:49:18 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ typedef struct s_cub3d
 	int			f_nd;
 	int			f_rd;
 	mlx_texture_t	*texture[4];
-	int			display_height;
-	int			display_width;
+	int32_t			display_height;
+	int32_t			display_width;
+	float				scale_width;
+	float				scale_height;
 }	t_cub3d;
 
 typedef enum e_type
