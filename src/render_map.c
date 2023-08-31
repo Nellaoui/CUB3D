@@ -6,78 +6,101 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 13:30:25 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 13:58:12 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_carr(mlx_image_t *image, u_int32_t	color, uint32_t start_x, uint32_t start_y)
+void	draw_carr(mlx_image_t *img, uint32_t color, t_coordinate a)
 {
 	uint32_t	lenght_x;
 	uint32_t	lenght_y;
 	uint32_t	y;
 
-	lenght_x = start_x + 9;
-	lenght_y = start_y + 9;
-	while (start_x < lenght_x)
+	lenght_x = a.x + (TILE_SIZE - 1) * CAST;
+	lenght_y = a.y + (TILE_SIZE - 1) * CAST;
+	while (a.x < lenght_x)
 	{
-		y = start_y;
+		y = a.y;
 		while (y < lenght_y)
 		{
-			mlx_put_pixel(image, start_x, y, color);
+			mlx_put_pixel(img, (uint32_t)a.x, (uint32_t)y, color);
 			y++;
 		}
-		start_x++;
+		(a.x)++;
+	}
+}
+
+void	draw_c_f(t_cub3d *s)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	y = 0;
+	while (y < s->height / 2)
+	{
+		x = 0;
+		while (x < s->width)
+		{
+			mlx_put_pixel(s->image, x, y, createcolor(s->c_st, s->c_nd, s->c_rd, 200));
+			x++;
+		}
+		y++;
+	}
+	y = s->height / 2;
+	while (y < s->height)
+	{
+		x = 0;
+		while (x < s->width)
+		{
+			mlx_put_pixel(s->image, x, y, createcolor(s->f_st, s->f_nd, s->f_rd, 200));
+			x++;
+		}
+		y++;
 	}
 }
 
 void	render_map(t_cub3d *mlx_lib)
 {
-	uint32_t	color;
-	int			i;
-	int			j;
+	int				i;
+	size_t			j;
+	uint32_t		color;
+	t_coordinate	start_point;
 
-	color = 0;
 	i = -1;
-	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx,  mlx_lib->tile_x * mlx_lib->colons, mlx_lib->tile_y * mlx_lib->rows)))
-		ft_putstr_fd("error in creaitin new_image\n", 2);
 	while (++i < mlx_lib->rows)
 	{
 		j = -1;
-		while (++j < number_of_colons(mlx_lib->holdmap[i]))
+		while (++j < ft_strlen(mlx_lib->holdmap[i]))
 		{
-			if (mlx_lib->holdmap[i][j] == '0' || (mlx_lib->holdmap[i][j] != '1'))
-				color = createcolor(255, 255, 255, 255);
-			else if (mlx_lib->holdmap[i][j] == '1')
+			if (mlx_lib->holdmap[i][j] == '1')
 				color = createcolor(255, 0, 0, 255);
-			draw_carr(mlx_lib->image, color, mlx_lib->tile_x * j * 0.2, mlx_lib->tile_y * i * 0.2);
+			else if (mlx_lib->holdmap[i][j] == ' ')
+				continue ;
+			else 
+				color = createcolor(255, 255, 255, 255);
+			start_point.x = TILE_SIZE * j * CAST;
+			start_point.y = TILE_SIZE * i * CAST;
+			draw_carr(mlx_lib->image, color, start_point);
 		}
 	}
-	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image,0,0))
-		ft_putstr_fd("error : putin map in window\n", 2);
-}
-
-void	draw_cercle(mlx_image_t *image, int center_x, int center_y, int radius)
-{
-	int x = 0;
-	int y = 0;
-	int angle =0;
-
-	while (angle < 360)
-	{
-		x = center_x + (radius * cos(angle * M_PI / 180));
-		y = center_y + (radius * sin(angle * M_PI / 180));
-		mlx_put_pixel(image, x, y, createcolor(200, 25, 175, 255));
-		angle++;
-	}
+	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0))
+		ft_putstr_fd("error : puting map in window\n", 2);
 }
 
 void	render_player(t_cub3d *mlx_lib)
 {
-	if (!(mlx_lib->image = mlx_new_image(mlx_lib->mlx, mlx_lib->tile_x * mlx_lib->colons - 1, mlx_lib->tile_y * mlx_lib->rows - 1)))
+	uint32_t	width;
+	uint32_t	height;
+
+	width = TILE_SIZE * mlx_lib->colons;
+	height = TILE_SIZE * mlx_lib->rows;
+	mlx_lib->image = mlx_new_image(mlx_lib->mlx, width, height);
+	if (!mlx_lib->image)
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
 	draw_player(mlx_lib);
+	cast_ray(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }

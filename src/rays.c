@@ -6,29 +6,37 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/26 14:13:54 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/30 21:03:24 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	draw_ray(mlx_image_t *image, double x1, double y1, double x2, double y2)
+void	draw_ray(mlx_image_t *image, t_coordinate a1, t_coordinate a2)
 {
-	int dx = x2 - x1;
-	int dy = y2 - y1;
-	int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+	int				i;
+	int				steps;
+	t_coordinate	delta;
+	t_coordinate	increment;
+	t_coordinate	point;
 
-	float x_increment = (float)dx / steps;
-	float y_increment = (float)dy / steps;
-
-	float x = x1;
-	float y = y1;
-
-	for (int i = 0; i < steps; i++)
+	delta.x = a2.x - a1.x;
+	delta.y = a2.y - a1.y;
+	if (delta.x >delta.y)
+		steps = delta.x;
+	else
+		steps = delta.y;
+	increment.x = (float)(delta.x) / steps;
+	increment.y = (float)(delta.y) / steps;
+	point.x = a1.x;
+	point.y = a1.y;
+	i = -1;
+	while (++i < steps) 
 	{
-		mlx_put_pixel(image, (uint32_t)x, (uint32_t)y, createcolor(255, 252, 127, 1));
-		x += x_increment;
-		y += y_increment;
+		mlx_put_pixel(image, (uint32_t)point.x,
+			(uint32_t)point.y, createcolor(255, 252, 50, 50));
+		point.x += increment.x;
+		point.x += increment.y;
 	}
 }
 
@@ -37,67 +45,83 @@ float	ft_distance_beteween(float x1, float y1, float x2, float y2)
 	return (sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
 }
 
+float	calculate_distance_horizontal(t_ray *s,t_cub3d *cub3d)
+{
+	if (s->horizantal_founded)
+		return (ft_distance_beteween(cub3d->player->x,
+		cub3d->player->y,
+		s->hor_wall_hit_x,
+		s->hor_wall_hit_y));
+	else
+		return (MAXFLOAT);	
+}
+
+float	calculate_distance_vertical(t_ray *s,t_cub3d *cub3d)
+{
+	if (s->vertical_founded)
+		return (ft_distance_beteween(cub3d->player->x,
+		cub3d->player->y,
+		s->ver_wall_hit_x,
+		s->ver_wall_hit_y));
+	else
+		return (MAXFLOAT);	
+}
+
+void	compare_distance(t_union *u, t_cub3d *cub3d, t_ray *s)
+{
+	if (u->distance.y < u->distance.x)
+	{
+		u->inter.x = s->hor_wall_hit_x;
+		u->inter.y = s->hor_wall_hit_y;
+		s->distance = u->distance.y;
+		if (u->ray_angle > 0 && u->ray_angle < M_PI)
+			cub3d->player->compas = SOUTH;
+		else
+		cub3d->player->compas = NORTH;
+	}
+	else
+	{
+		u->inter.x = s->ver_wall_hit_x;
+		u->inter.y = s->ver_wall_hit_y;
+		s->distance = u->distance.y;
+		u->was_hit_vertical = true;
+		if (u->ray_angle > M_PI_2 && u->ray_angle < M_PI + M_PI_2)
+			cub3d->player->compas = EAST;
+		else
+			cub3d->player->compas = WEST;
+	}
+}
+
+void	casting(t_cub3d *cub3d, t_union *u, t_ray *s)
+{
+	int was_hit_vertical;
+
+	was_hit_vertical = false;
+	casting_horizontal(cub3d, u->ray_angle, s);
+ 	casting_vertical(cub3d, u->ray_angle, s);
+	u->distance.y = calculate_distance_horizontal(s, cub3d);
+	u->distance.x = calculate_distance_vertical(s, cub3d);
+	compare_distance(u, cub3d, s);
+}
 void	cast_ray(t_cub3d *cub3d)
 {
-	t_ray	s;
-	float	FOV = (60  * (M_PI / 180));
-	int		i;
-	int		column = 0;
-	float horizantal_distance = 0;
-	float vertical_distance = 0;
-	float	hit_x = 0;
-	float	hit_y = 0;
-	// float	distance = 0;
-	float	was_hit_vertical = false;
-	// float	was_hit_horizatal = false;
-	float	ray_angle = cub3d->player->rotation - (FOV / 2);
+	int				i;
+	t_ray			s;
+	t_union			u;
+	t_coordinate	p;
 
-	i = 0;
-	// ray_angle = ft_absolute_angle(ray_angle);
-	while (i < 480)
+	i = -1;
+	u.ray_angle = cub3d->player->rotation - ((60 / 2) * (M_PI / 180));
+	while (++i < cub3d->width)
 	{
-	ray_angle = ft_absolute_angle(ray_angle);
-	casting(cub3d, ray_angle, column , &s);
-	casting_vertical(cub3d, ray_angle, column , &s);
-	if (s.horizantal_founded)
-		horizantal_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.hor_wall_hit_x, s.hor_wall_hit_y);
-	else
-		horizantal_distance = MAXFLOAT;
-	if (s.vertical_founded)
-		vertical_distance = ft_distance_beteween(cub3d->player->x, cub3d->player->y, s.ver_wall_hit_x, s.ver_wall_hit_y);
-	else
-		vertical_distance = MAXFLOAT;
-	if (horizantal_distance < vertical_distance)
-	{
-		hit_x = s.hor_wall_hit_x;
-		hit_y = s.hor_wall_hit_y;
-		s.distance = horizantal_distance;
-		// was_hit_vertical = false;
-	}
-	else
-	{
-		hit_x = s.ver_wall_hit_x;
-		hit_y = s.ver_wall_hit_y;
-		s.distance = vertical_distance;
-		was_hit_vertical = true;
-	}
-	// printf("horizantal_distance %f\n", horizantal_distance);
-	// printf("vertical_distance %f\n", vertical_distance);
-
-		// draw_ray(cub3d->image,
-		// 	cub3d->player->x,
-		// 	cub3d->player->y,
-		// 	s.ver_wall_hit_x,
-		// 	s.ver_wall_hit_y);
-		draw_ray(cub3d->image,
-			cub3d->player->x * 0.2,
-			cub3d->player->y * 0.2,
-			hit_x * 0.2,
-			hit_y * 0.2);
-		render_wall(cub3d, &s, i);
-		ray_angle += (FOV / 480);
-		ray_angle = ft_absolute_angle(ray_angle);
-		i++;
-		column++;
-	}
+		u.ray_angle = ft_absolute_angle(u.ray_angle);
+		casting(cub3d, &u, &s);
+		p.x = cub3d->player->x * CAST;
+		p.y = cub3d->player->y * CAST;
+		u.inter.x = u.inter.x * CAST;
+		u.inter.y = u.inter.y * CAST;
+		draw_ray(cub3d->image, p, u.inter);
+		// render_wall(cub3d, &s, i, ray_angle, was_hit_vertical);
+		u.ray_angle += ((60 * (M_PI / 180) / cub3d->width));
+	}		
 }
