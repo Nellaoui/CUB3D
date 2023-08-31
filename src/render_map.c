@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 16:58:35 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:59:20 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,11 @@ void	render_player(t_cub3d *mlx_lib)
 	height = TILE_SIZE * mlx_lib->rows;
 	mlx_lib->image = mlx_new_image(mlx_lib->mlx, width, height);
 	if (!mlx_lib->image)
+	{
+		mlx_terminate(mlx_lib->mlx);
 		ft_putstr_fd("error in creaitin new_image\n", 2);
+		exit(1);
+	}
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
 	draw_player(mlx_lib);
 	cast_ray(mlx_lib);

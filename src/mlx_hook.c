@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 18:22:23 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:59:58 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	move_on(mlx_key_data_t key, void *prm)
 	}
 	if (key.key == MLX_KEY_ESCAPE)
 	{
+		mlx_delete_image(mlx->mlx, mlx->image);
 		mlx_close_window(mlx->mlx);
+		mlx_terminate(mlx->mlx);
 		exit(1);
 	}
 	update_after_move(mlx);
