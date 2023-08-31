@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/30 20:46:03 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:08:57 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	initilize_cub3d(t_cub3d *my_struct)
 							, "cub3d", false);
 	if (my_struct->mlx == NULL)
 		ft_putstr_fd("error\n", 2);
-	ft_check_window_size(my_struct);
+	// ft_check_window_size(my_struct);
 
 }
 
