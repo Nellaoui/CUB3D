@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   check_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:28:25 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 15:23:20 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:20:21 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int st_line(char *map)
+int	st_line(char *map)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (map[i])
 	{
-		if (map[i] != '1' && map[i] != '\0' && map[i] != ' '&& map[i] != '\n')
+		if (map[i] != '1' && map[i] != '\0' && map[i] != ' ' && map[i] != '\n')
 			return (1);
 		i++;
 	}

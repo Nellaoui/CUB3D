@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
+#    By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/31 15:35:10 by nelallao         ###   ########.fr        #
+#    Updated: 2023/08/31 16:53:42 by ndahib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -fsanitize=address -g -O3
 # CFLAGS =
 NAME = cub3D
-SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c keys.c
+SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c keys.c check_3.c check_4.c check_5.c
 OBJS = $(SRCS:.c=.o)
 OBJS := $(addprefix obj/, $(OBJS))
 OBJ_DIR = obj/
