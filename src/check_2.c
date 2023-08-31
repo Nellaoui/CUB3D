@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:17:17 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 16:29:01 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_check_valid(char **map)
 	int	j;
 
 	j = 1;
-	if (ft_player(map) || st_line(map[0]) || st_line(map[last_line(map)]))
+	if (ft_p(map) || st_line(map[0]) || st_line(map[last_line(map)]))
 	{
 		ft_putstr_fd("somthing went wrong : map issue", 2);
 		exit(1);
@@ -48,9 +48,9 @@ int	ft_chek_invalid(char **str)
 		i = 0;
 		while (str[j][i])
 		{
-			if (str[j][i] != '1' && str[j][i] != '0' 
-				&& str[j][i] != 'W' && str[j][i] != 'S' 
-				&& str[j][i] != 'N' && str[j][i] != 'E' 
+			if (str[j][i] != '1' && str[j][i] != '0'
+				&& str[j][i] != 'W' && str[j][i] != 'S'
+				&& str[j][i] != 'N' && str[j][i] != 'E'
 				&& str[j][i] != ' ')
 				return (1);
 			i++;
@@ -93,8 +93,8 @@ int	ft_good(char **map, int j, int i)
 {
 	if (map[j][0] == '0')
 		return (1);
-	if (map[j][i] == '0' 
-		|| map[j][i] == 'W' || map[j][i] == 'E' 
+	if (map[j][i] == '0'
+		|| map[j][i] == 'W' || map[j][i] == 'E'
 		|| map[j][i] == 'N' || map[j][i] == 'S')
 	{
 		if (ft_strlen(map[j - 1]) < (unsigned long)i)

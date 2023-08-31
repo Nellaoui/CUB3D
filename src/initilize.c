@@ -6,13 +6,13 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 15:44:44 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char	ft_player_direction(t_cub3d *my_struct)
+char	ft_p_direction(t_cub3d *my_struct)
 {
 	int	i;
 	int	j;
@@ -80,28 +80,28 @@ int	ft_give_posx(char **str)
 	return (0);
 }
 
-t_player	*initilize_player(t_cub3d	*my_struct)
+t_p	*initilize_p(t_cub3d	*my_struct)
 {
-	t_player	*player;
+	t_p	*p;
 
-	player = malloc(sizeof(t_player));
-	if (!player)
+	p = malloc(sizeof(t_p));
+	if (!p)
 		return (NULL);
-	player->x = (ft_give_posx(my_struct->holdmap) * TILE_SIZE) + 25;
-	player->y = (ft_give_posy(my_struct->holdmap) * TILE_SIZE) + 25;
-	player->direction = 0;
-	player->move = 0;
-	player->rotate_speed = 10 * (M_PI / 180);
-	player->move_speed = 10;
-	if (ft_player_direction(my_struct) == 'S')
-		player->rotation = M_PI / 2;
-	else if (ft_player_direction(my_struct) == 'N')
-		player->rotation = -1 * (M_PI / 2);
-	else if (ft_player_direction(my_struct) == 'E')
-		player->rotation = 360 * (M_PI / 180);
-	else if (ft_player_direction(my_struct) == 'E')
-		player->rotation = (0 * (M_PI / 180));
-	return (player);
+	p->x = (ft_give_posx(my_struct->holdmap) * TILE_SIZE) + 25;
+	p->y = (ft_give_posy(my_struct->holdmap) * TILE_SIZE) + 25;
+	p->direction = 0;
+	p->move = 0;
+	p->rotate_speed = 10 * (M_PI / 180);
+	p->move_speed = 10;
+	if (ft_p_direction(my_struct) == 'S')
+		p->rotation = M_PI / 2;
+	else if (ft_p_direction(my_struct) == 'N')
+		p->rotation = -1 * (M_PI / 2);
+	else if (ft_p_direction(my_struct) == 'E')
+		p->rotation = 360 * (M_PI / 180);
+	else if (ft_p_direction(my_struct) == 'E')
+		p->rotation = (0 * (M_PI / 180));
+	return (p);
 }
 
 int	initilize_cub3d(t_cub3d *my_struct)
@@ -110,7 +110,7 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->colons = colons(my_struct->holdmap);
 	my_struct->width = my_struct->colons * TILE_SIZE;
 	my_struct->height = my_struct->rows * TILE_SIZE;
-	my_struct->player = initilize_player(my_struct);
+	my_struct->p = initilize_p(my_struct);
 	if (my_struct->width > 2560)
 		my_struct->width = 2550;
 	if (my_struct->height > 1440)

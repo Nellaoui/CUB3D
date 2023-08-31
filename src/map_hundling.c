@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:26:57 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 18:22:42 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_map_line(char **str)
 	return (0);
 }
 
-void	ft_double_player(char **map)
+void	ft_double_p(char **map)
 {
 	int	i;
 	int	j;
@@ -73,7 +73,7 @@ void	ft_double_player(char **map)
 	}
 	if (count > 1)
 	{
-		ft_putstr_fd("Error\n To many player\n", 2);
+		ft_putstr_fd("Error\n To many p\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	else

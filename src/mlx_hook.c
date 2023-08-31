@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 18:22:23 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,51 +32,51 @@ void	ft_one(t_cub3d	*mlx, mlx_key_data_t *key)
 {
 	if (key->key == MLX_KEY_LEFT
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
-		mlx->player->direction = -1;
+		mlx->p->direction = -1;
 	else if (key->key == MLX_KEY_RIGHT
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
-		mlx->player->direction = +1;
+		mlx->p->direction = +1;
 	else if (key->key == MLX_KEY_A
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
 	{
-		mlx->player->left_right = -1;
-		mlx->player->move = -1;
+		mlx->p->left_right = -1;
+		mlx->p->move = -1;
 	}
 	else if (key->key == MLX_KEY_D
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
 	{
-		mlx->player->left_right = -1;
-		mlx->player->move = +1;
+		mlx->p->left_right = -1;
+		mlx->p->move = +1;
 	}
 	else if (key->key == MLX_KEY_W
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
-		mlx->player->move = +1;
+		mlx->p->move = +1;
 	else if (key->key == MLX_KEY_S
 		&& (key->action == MLX_PRESS || key->action == MLX_REPEAT))
-		mlx->player->move = -1;
+		mlx->p->move = -1;
 }
 
 void	ft_two(mlx_key_data_t *key, t_cub3d	*mlx)
 {
 	if (key->key == MLX_KEY_LEFT && key->action == MLX_RELEASE)
-		mlx->player->direction = 0;
+		mlx->p->direction = 0;
 	else if (key->key == MLX_KEY_A && key->action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
+		mlx->p->left_right = 1;
 	}
 	else if (key->key == MLX_KEY_D && key->action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
+		mlx->p->left_right = 1;
 	}
 	else if (key->key == MLX_KEY_W && key->action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
-		mlx->player->move = 0;
+		mlx->p->left_right = 1;
+		mlx->p->move = 0;
 	}
 	else if (key->key == MLX_KEY_S && key->action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
-		mlx->player->move = 0;
+		mlx->p->left_right = 1;
+		mlx->p->move = 0;
 	}
 }
 
@@ -88,16 +88,16 @@ void	move_on(mlx_key_data_t key, void *prm)
 	ft_one(mlx, &key);
 	ft_two(&key, mlx);
 	if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
-		mlx->player->direction = 0;
+		mlx->p->direction = 0;
 	else if (key.key == MLX_KEY_RIGHT && key.action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
-		mlx->player->move = 0;
+		mlx->p->left_right = 1;
+		mlx->p->move = 0;
 	}
 	else if (key.key == MLX_KEY_LEFT && key.action == MLX_RELEASE)
 	{
-		mlx->player->left_right = 1;
-		mlx->player->move = 0;
+		mlx->p->left_right = 1;
+		mlx->p->move = 0;
 	}
 	if (key.key == MLX_KEY_ESCAPE)
 	{
@@ -107,10 +107,10 @@ void	move_on(mlx_key_data_t key, void *prm)
 	update_after_move(mlx);
 }
 
-void	draw_player(void *param)
+void	draw_p(void *param)
 {
 	t_cub3d	*mlx;
 
 	mlx = param;
-	mlx->player->move = 0;
+	mlx->p->move = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 18:27:13 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	ft_cub3d(char **av)
 	ft_checks(&mlx_lib, av);
 	if (initilize_cub3d(&mlx_lib))
 	{
-		free(mlx_lib.player);
+		free(mlx_lib.p);
 		mlx_terminate(mlx_lib.mlx);
 		exit(1);
 	}
 	render_map(&mlx_lib);
-	render_player(&mlx_lib);
+	render_p(&mlx_lib);
 	mlx_loop(mlx_lib.mlx);
 	mlx_terminate(mlx_lib.mlx);
 }

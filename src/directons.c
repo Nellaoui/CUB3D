@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   directons.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:18:35 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 16:46:52 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ char	**ft_split_map(char *string)
 	return (splited);
 }
 
-int	ft_player(char	**map)
+int	ft_p(char	**map)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	ft_double_player(map);
+	ft_double_p(map);
 	while (map[j])
 	{
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'W' 
+			if (map[j][i] == 'N' || map[j][i] == 'W'
 				|| map[j][i] == 'E' || map[j][i] == 'S')
 				return (0);
 			i++;
