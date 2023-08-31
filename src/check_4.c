@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:50:22 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 17:43:39 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:53:46 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,29 @@ int	last_line(char **map)
 		j++;
 	}
 	return (j - 1);
+}
+
+void	ft_hardcode(char **str)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (str[j])
+	{
+		i = 0;
+		while (str[j][i])
+		{
+			if (str[j][i] == 'C' || str[j][i] == 'F')
+			{
+				if (str[j][i + 1] != ' ')
+				{
+					ft_putstr_fd("Error\n", 2);
+					exit(1);
+				}
+			}
+			i++;
+		}
+		j++;
+	}
 }

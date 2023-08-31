@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:18:47 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	render_map(t_cub3d *mlx_lib)
 			draw_carr(mlx_lib, color, start_point);
 		}
 	}
-	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0))
-		ft_putstr_fd("error : puting map in window\n", 2);
+	if (mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0) == -1)
+		ft_putstr_fd("Error\n", 2);
 }
 
 void	render_p(t_cub3d *mlx_lib)
@@ -109,7 +109,8 @@ void	render_p(t_cub3d *mlx_lib)
 	if (!mlx_lib->image)
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
-	draw_p(mlx_lib);
+	draw_c(mlx_lib);
+	draw_f(mlx_lib);
 	cast_ray(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }

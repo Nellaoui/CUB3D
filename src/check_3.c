@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:47:04 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 16:49:52 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:53:33 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
 
 int	ft_rgb(char **str, t_cub3d *s)
 {
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (str[j])
 	{

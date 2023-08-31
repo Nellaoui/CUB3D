@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 19:28:17 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:53:01 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_cub3d
 	int32_t			display_width;
 	float			scale_width;
 	float			scale_height;
+	int				map_press;
 }					t_cub3d;
 
 /*---------------------noaman----------------------------*/
@@ -192,8 +193,14 @@ int					ft_wall_here_a(float x, float y, t_cub3d *mlx);
 void				casting_horizontal(t_cub3d *mlx, double ray_angle,
 						t_ray *s);
 void				ft_give_color(char **str, t_cub3d *s, int f_c, int j);
+void				ft_norm(t_cub3d *mlx);
+void					ft_hardcode(char **str);
+
+
 /*---------------------------DRAW----------------------------*/
-void				draw_c_f(t_cub3d *mlx);
+// void				draw_c_f(t_cub3d *mlx);
+void				draw_c(t_cub3d *s);
+void				draw_f(t_cub3d *s);
 void				render_map(t_cub3d *s);
 void				draw_p(void *param);
 void				cast_ray(t_cub3d *cub3d);

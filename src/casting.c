@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:58:37 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 19:08:01 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:24:24 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,5 @@ void	update_after_move(void *param)
 	if (!ft_wall_here(mlx->p->x, new.y, mlx))
 		mlx->p->y = new.y;
 	mlx_delete_image(mlx->mlx, mlx->image);
-	render_p(mlx);
-	cast_ray(mlx);
+	ft_norm(mlx);
 }
