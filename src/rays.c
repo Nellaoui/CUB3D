@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 15:46:23 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:27:17 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	cast_ray(t_cub3d *cub3d)
 	while (i < cub3d->width)// cub3d->width)
 	{
 		ray_angle = ft_absolute_angle(ray_angle);
-		casting(cub3d, ray_angle , &s);
+		casting_horizontal(cub3d, ray_angle , &s);
 		casting_vertical(cub3d, ray_angle, &s);
 		ft_count_distance(&s, cub3d);
 		ft_which_distance(cub3d, &s, ray_angle);

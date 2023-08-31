@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 16:12:36 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:07:14 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,26 @@ typedef struct s_ray
 	// float	hit_y;
 } t_ray;
 
-typedef	struct	s_player
+typedef	struct	s_casting
 {
+	float	x_inter;
+	float	y_inter;
+	float	x_step;
+	float	y_step;
+	int		right;
+	int		down;
+	int		left;
+	int		up;
+	float	ver_x_inter;
+	float	ver_y_inter;
+	float	ver_x_step;
+	float	ver_y_step;
+	float	ver_right;
+	float	ver_down;
+	float	ver_left;
+	float	ver_up;
+} t_casting;
 
-}
 typedef	struct	s_player
 {
 	int		x;
@@ -163,7 +179,7 @@ int			ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s);
 void		ft_cub3d(char **av);
 int			ft_chek_invalid(char **str);
 int	ft_wall_here(float x, float y, t_cub3d *mlx);
-void	casting(t_cub3d *mlx , double ray_angle	,t_ray *s);
+void	casting_horizontal(t_cub3d *mlx , double ray_angle	,t_ray *s);
 /*---------------------------DRAW----------------------------*/
 void		draw_c_f(t_cub3d *mlx);
 void		render_map(t_cub3d *s);

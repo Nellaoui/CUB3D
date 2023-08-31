@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 16:11:50 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:09:27 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,45 +72,55 @@ int	ft_wall_here_a(float x, float y, t_cub3d	*mlx)
 // 	return (ray_angle) ;
 // }
 
-void	casting(t_cub3d *mlx , double ray_angle	,t_ray *s)
+void	ft_hor_intersection(t_casting *c, float ray_angle, t_cub3d *mlx, t_ray *s)
 {
-	float	x_inter = 0;
-	float	y_inter = 0;
-	float	x_step = 0;
-	float	y_step = 0;
-	int	right = 0;
-	int	down = 0;
-	int	left = 0;
-	int	up = 0;
+	if (ray_angle > 0 && ray_angle < M_PI)
+		c->down = true;
+	c->up = !c->down;
+	if (ray_angle < M_PI_2 || ray_angle > (3 * M_PI_2))
+		c->right = true;
+	c->left = !c->right;
+	if (c->down)
+		c->y_inter = round((mlx->player->y  / TILE_SIZE) + 1) * TILE_SIZE;
+	else if (c->up)
+		c->y_inter = round((mlx->player->y  / TILE_SIZE)) * TILE_SIZE;
+	c->x_inter = mlx->player->x + (c->y_inter - mlx->player->y) / tan(ray_angle);
+	c->y_step = TILE_SIZE;
+	if (c->up)
+		c->y_step *= (-1);
+	c->x_step = TILE_SIZE / tan(ray_angle);
+	if (c->left && c->x_step > 0)
+		c->x_step *= -1;
+	if (c->right && c->x_step < 0)
+		c->x_step *= -1;
+	s->next_horzintal_x = c->x_inter;
+	s->next_horzintal_y = c->y_inter;
+}
+
+void	ft_initialize_cast(t_casting *c, t_ray *s)
+{
+	c->x_inter = 0;
+	c->y_inter = 0;
+	c->x_step = 0;
+	c->y_step = 0;
+	c->right = 0;
+	c->down = 0;
+	c->left = 0;
+	c->up = 0;
 	s->hor_wall_hit_x = 0;
 	s->hor_wall_hit_y = 0;
-
 	s->horizantal_founded = false;
 	s->distance = 0;
-	if (ray_angle > 0 && ray_angle < M_PI)
-		down = true;
-	up = !down;
-	if (ray_angle < M_PI_2 || ray_angle > (3 * M_PI_2))
-		right = true;
-	left = !right;
-	if (down)
-		y_inter = round((mlx->player->y  / TILE_SIZE) + 1) * TILE_SIZE;
-	else if (up)
-		y_inter = round((mlx->player->y  / TILE_SIZE)) * TILE_SIZE;
-	x_inter = mlx->player->x + (y_inter - mlx->player->y) / tan(ray_angle);
-	y_step = TILE_SIZE;
-	if (up)
-		y_step *= (-1);
-	x_step = TILE_SIZE / tan(ray_angle);
-	if (left && x_step > 0)
-		x_step *= -1;
-	if (right && x_step < 0)
-		x_step *= -1;
-	s->next_horzintal_x = x_inter;
-	s->next_horzintal_y = y_inter;
+}
+void	casting_horizontal(t_cub3d *mlx , double ray_angle	,t_ray *s)
+{
+
+	t_casting c;
+	ft_initialize_cast(&c, s);
+	ft_hor_intersection(&c, ray_angle, mlx, s);
 	while (s->next_horzintal_x >= 0 && s->next_horzintal_x <= TILE_SIZE * mlx->colons && s->next_horzintal_y >= 0 && s->next_horzintal_y <= s->next_horzintal_y <= TILE_SIZE * mlx->rows)
 	{
-		if (ft_wall_here_a(s->next_horzintal_x, s->next_horzintal_y - up, mlx))
+		if (ft_wall_here_a(s->next_horzintal_x, s->next_horzintal_y - c.up, mlx))
 		{
 			s->horizantal_founded = true;
 			s->hor_wall_hit_x = s->next_horzintal_x;
@@ -119,12 +129,12 @@ void	casting(t_cub3d *mlx , double ray_angle	,t_ray *s)
 		}
 		else
 		{
-			s->next_horzintal_x += x_step;
-			s->next_horzintal_y += y_step;
+			s->next_horzintal_x += c.x_step;
+			s->next_horzintal_y += c.y_step;
 		}
 	}
 }
-// 	// draw_ray(mlx->image, mlx->player->x, mlx->player->y, s->hor_wall_hit_x, s->hor_wall_hit_y);
+	// draw_ray(mlx->image, mlx->player->x, mlx->player->y, s->hor_wall_hit_x, s->hor_wall_hit_y);
 
 // 	// s->next_horzintal_x = x_inter;
 // 	// s->next_horzintal_y = y_inter;
@@ -144,46 +154,51 @@ void	casting(t_cub3d *mlx , double ray_angle	,t_ray *s)
 // 	// 		s->next_horzintal_y += y_step;
 // 	// }
 // }
+
+void	ft_ver_intersection(float ray_angle, t_cub3d *mlx, t_casting *c)
+{
+	 c->ver_down = 0;
+	 c->ver_up = 0;
+	 c->ver_right = 0;
+	 c->ver_left = 0;
+	 c->ver_x_inter = 0;
+	 c->ver_y_inter = 0;
+	 c->ver_x_step = 0;
+	if (ray_angle > 0 && ray_angle < M_PI)
+		c->ver_down = true;
+	c->ver_up = !c->ver_down;
+	if (ray_angle < M_PI_2 || ray_angle > (3 * M_PI_2))
+		c->ver_right = true;
+	c->ver_left = !c->ver_right;
+	c->ver_x_inter = (int)(mlx->player->x / TILE_SIZE) * TILE_SIZE;
+	if (c->ver_right)
+		c->ver_x_inter += TILE_SIZE;
+	c->ver_y_inter = mlx->player->y + (c->ver_x_inter - mlx->player->x) * tan(ray_angle);
+	c->ver_x_step = TILE_SIZE;
+	if (c->ver_left)
+		c->ver_x_step *= (-1);
+	c->ver_y_step = TILE_SIZE * tan(ray_angle);
+	if (c->ver_up && c->ver_y_step > 0)
+		c->ver_y_step *= -1;
+	if (c->ver_down && c->ver_y_step < 0)
+		c->ver_y_step *= -1;
+}
 void	casting_vertical(t_cub3d *mlx , double ray_angle	,t_ray *s)
 {
-	double	ver_x_inter = 0;
-	double	ver_y_inter = 0;
-	float	ver_x_step = 0;
-	float	ver_y_step = 0;
-	float	ver_right = 0;
-	float	ver_down = 0;
-	float	ver_left = 0;
-	float	ver_up = 0;
+	t_casting c;
 	s->ver_wall_hit_x = 0;
 	s->ver_wall_hit_y = 0;
-
 	s->vertical_founded	= false;
 	s->distance = 0;
+	c.ver_y_step = 0;
+	ft_ver_intersection(ray_angle, mlx, &c);
 
-	if (ray_angle > 0 && ray_angle < M_PI)
-		ver_down = true;
-	ver_up = !ver_down;
-	if (ray_angle < M_PI_2 || ray_angle > (3 * M_PI_2))
-		ver_right = true;
-	ver_left = !ver_right;
-	ver_x_inter = (int)(mlx->player->x / TILE_SIZE) * TILE_SIZE;
-	if (ver_right)
-		ver_x_inter += TILE_SIZE;
-	ver_y_inter = mlx->player->y + (ver_x_inter - mlx->player->x) * tan(ray_angle);
-	ver_x_step = TILE_SIZE;
-	if (ver_left)
-		ver_x_step *= (-1);
-	ver_y_step = TILE_SIZE * tan(ray_angle);
-	if (ver_up && ver_y_step > 0)
-		ver_y_step *= -1;
-	if (ver_down && ver_y_step < 0)
-		ver_y_step *= -1;
-	s->next_vertical_y = ver_y_inter;
-	s->next_vertical_x = ver_x_inter;
+	s->next_vertical_y = c.ver_y_inter;
+	s->next_vertical_x = c.ver_x_inter;
 
 	while (s->next_vertical_x >= 0 && s->next_vertical_x <= TILE_SIZE * mlx->colons && s->next_vertical_y >= 0 && s->next_vertical_y <= TILE_SIZE * mlx->rows)
 	{
-		if (ft_wall_here_a(s->next_vertical_x - ver_left, s->next_vertical_y, mlx))
+		if (ft_wall_here_a(s->next_vertical_x - c.ver_left, s->next_vertical_y, mlx))
 		{
 			s->vertical_founded = true;
 			s->ver_wall_hit_x = s->next_vertical_x;
@@ -191,8 +206,8 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle	,t_ray *s)
 			break;
 		}
 		else
-			s->next_vertical_x += ver_x_step;
-			s->next_vertical_y += ver_y_step;
+			s->next_vertical_x += c.ver_x_step;
+			s->next_vertical_y += c.ver_y_step;
 	}
 }
 
@@ -214,37 +229,36 @@ void	casting_vertical(t_cub3d *mlx , double ray_angle	,t_ray *s)
 // // 	}
 // // }
 
-void	update_after_move(void *param)
-{
-	t_cub3d	*mlx;
-	int	move_step;
-	float new_x;
-	float new_y;
+// void	update_after_move(void *param)
+// {
+// 	t_cub3d	*mlx;
+// 	int	move_step;
+// 	float new_x;
+// 	float new_y;
 
-
-	move_step = 0;
-	mlx = param;
-	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (360 * (M_PI / 180)))
-		mlx->player->rotation += (mlx->player->direction * mlx->player->rotate_speed);
-	move_step = mlx->player->move * mlx->player->move_speed;
-	if(mlx->player->left_right == 1)
-	{
-		new_x = (mlx->player->x + (cos(mlx->player->rotation) * move_step));
-		new_y = (mlx->player->y + (sin(mlx->player->rotation) * move_step));
-	}
-	if (mlx->player->left_right == -1)
-	{
-		new_x = (mlx->player->x + (cos(mlx->player->rotation + (M_PI / 2))  * move_step));
-		new_y = (mlx->player->y + (sin(mlx->player->rotation + (M_PI / 2)) * move_step));
-	}
-	if (!ft_wall_here(new_x, mlx->player->y, mlx))
-		mlx->player->x = new_x;
-	if (!ft_wall_here(mlx->player->x, new_y, mlx))
-		mlx->player->y = new_y;
-	mlx_delete_image(mlx->mlx, mlx->image);
-	render_player(mlx);
-	cast_ray(mlx);
-}
+// 	move_step = 0;
+// 	mlx = param;
+// 	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (360 * (M_PI / 180)))
+// 		mlx->player->rotation += (mlx->player->direction * mlx->player->rotate_speed);
+// 	move_step = mlx->player->move * mlx->player->move_speed;
+// 	if(mlx->player->left_right == 1)
+// 	{
+// 		new_x = (mlx->player->x + (cos(mlx->player->rotation) * move_step));
+// 		new_y = (mlx->player->y + (sin(mlx->player->rotation) * move_step));
+// 	}
+// 	if (mlx->player->left_right == -1)
+// 	{
+// 		new_x = (mlx->player->x + (cos(mlx->player->rotation + (M_PI / 2))  * move_step));
+// 		new_y = (mlx->player->y + (sin(mlx->player->rotation + (M_PI / 2)) * move_step));
+// 	}
+// 	if (!ft_wall_here(new_x, mlx->player->y, mlx))
+// 		mlx->player->x = new_x;
+// 	if (!ft_wall_here(mlx->player->x, new_y, mlx))
+// 		mlx->player->y = new_y;
+// 	mlx_delete_image(mlx->mlx, mlx->image);
+// 	render_player(mlx);
+// 	cast_ray(mlx);
+// }
 void	ft_one(t_cub3d	*mlx, mlx_key_data_t *key)
 {
 
@@ -342,34 +356,34 @@ int	ft_wall_here(float x, float y, t_cub3d *mlx)
 	return (1);
 }
 
-// void	update_after_move(void *param)
-// {
-// 	t_cub3d			*mlx;
-// 	t_coordinate	new;
-// 	int				move_step;
-// 	float			angle;
+void	update_after_move(void *param)
+{
+	t_cub3d			*mlx;
+	t_coordinate	new;
+	int				move_step;
+	float			angle;
 
-// 	mlx = param;
-// 	angle = 0;
-// 	move_step = 0;
-// 	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (2 * M_PI))
-// 		mlx->player->rotation += (mlx->player->direction
-// 				* mlx->player->rotate_speed);
-// 	move_step = mlx->player->move * mlx->player->move_speed;
-// 	if (mlx->player->left_right == 1)
-// 		angle = 0;
-// 	if (mlx->player->left_right == -1)
-// 		angle = M_PI / 2;
-// 	new.x = (mlx->player->x + (cos(mlx->player->rotation + angle) * move_step));
-// 	new.y = (mlx->player->y + (sin(mlx->player->rotation + angle) * move_step));
-// 	if (!ft_wall_here(new.x, mlx->player->y, mlx))
-// 		mlx->player->x = new.x;
-// 	if (!ft_wall_here(mlx->player->x, new.y, mlx))
-// 		mlx->player->y = new.y;
-// 	mlx_delete_image(mlx->mlx, mlx->image);
-// 	render_player(mlx);
-// 	cast_ray(mlx);
-// }
+	mlx = param;
+	angle = 0;
+	move_step = 0;
+	if (mlx->player->rotation >= 0 || mlx->player->rotation <= (2 * M_PI))
+		mlx->player->rotation += (mlx->player->direction
+				* mlx->player->rotate_speed);
+	move_step = mlx->player->move * mlx->player->move_speed;
+	if (mlx->player->left_right == 1)
+		angle = 0;
+	if (mlx->player->left_right == -1)
+		angle = M_PI / 2;
+	new.x = (mlx->player->x + (cos(mlx->player->rotation + angle) * move_step));
+	new.y = (mlx->player->y + (sin(mlx->player->rotation + angle) * move_step));
+	if (!ft_wall_here(new.x, mlx->player->y, mlx))
+		mlx->player->x = new.x;
+	if (!ft_wall_here(mlx->player->x, new.y, mlx))
+		mlx->player->y = new.y;
+	mlx_delete_image(mlx->mlx, mlx->image);
+	render_player(mlx);
+	cast_ray(mlx);
+}
 
 // void	move_on(mlx_key_data_t key, void *prm)
 // {
