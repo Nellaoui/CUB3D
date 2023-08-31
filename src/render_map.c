@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 13:58:12 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:02:32 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ void	render_player(t_cub3d *mlx_lib)
 		ft_putstr_fd("error in creaitin new_image\n", 2);
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
 	draw_player(mlx_lib);
-	cast_ray(mlx_lib);
+	// /cast_ray(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }
