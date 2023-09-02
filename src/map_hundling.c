@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:26:57 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:01:18 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,6 @@ void	free_double_pointer(char **str)
 
 int	ft_wall_here_a(float x, float y, t_cub3d	*mlx)
 {
-	int	x_grid;
-	int	y_grid;
-
 	if (x < 0 || x > TILE_SIZE * mlx->colons
 		|| y < 0 || y > TILE_SIZE * mlx->rows)
 		return (1);

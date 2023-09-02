@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 22:15:38 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:29:47 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void	render_p(t_cub3d *mlx_lib)
 		exit(1);
 	}
 	mlx_image_to_window(mlx_lib->mlx, mlx_lib->image, 0, 0);
-	draw_c(mlx_lib);
-	draw_f(mlx_lib);
+	// draw_c(mlx_lib);
+	// draw_f(mlx_lib);
 	cast_ray(mlx_lib);
 	mlx_key_hook(mlx_lib->mlx, move_on, mlx_lib);
 }

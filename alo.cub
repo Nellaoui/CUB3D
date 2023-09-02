@@ -1,0 +1,11 @@
+C 10,236,190
+F 10,4,2
+
+NO ./walls/pfour.png
+WE ./walls/pnine.png
+EA ./walls/psix.png
+SO ./walls/pten.png
+
+111111111
+1W0001111
+111111111

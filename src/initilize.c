@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 18:42:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:23:40 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ int	initilize_cub3d(t_cub3d *my_struct)
 {
 	my_struct->rows = number_of_rows(my_struct->holdmap);
 	my_struct->colons = colons(my_struct->holdmap);
-	my_struct->width = my_struct->colons * TILE_SIZE;
-	my_struct->height = my_struct->rows * TILE_SIZE;
+	my_struct->width = WIDGHT;
+	my_struct->height = HEIGHT;
 	my_struct->p = initilize_p(my_struct);
-	if (my_struct->width > 2560)
-		my_struct->width = 2550;
-	if (my_struct->height > 1440)
-		my_struct->height = 1400;
+	// if (my_struct->width > 2560)
+	// 	my_struct->width = 2550;
+	// if (my_struct->height > 1440)
+	// 	my_struct->height = 1400;
 	my_struct->mlx = mlx_init(my_struct->width, my_struct->height,
 			"cub3d", false);
 	my_struct->scale_width = (0.1 * my_struct->width) / my_struct->height;
@@ -122,7 +122,7 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	if (my_struct->mlx == NULL)
 		return (1);
 	my_struct->image = mlx_new_image(my_struct->mlx,
-			my_struct->width, my_struct->height);
+			WIDGHT, HEIGHT);
 	if (my_struct->image == NULL)
 		return (1);
 	return (0);

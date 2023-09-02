@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 19:22:04 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:57:12 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ uint32_t	get_color_from_texture(mlx_texture_t *texture, float x_percentage,
 	idx = ((y_pos * texture->width) + x_pos) * texture->bytes_per_pixel;
 	color = createcolor(texture->pixels[idx], texture->pixels[idx + 1],
 			texture->pixels[idx + 2], texture->pixels[idx + 3]);
+	// printf("%d\n", color);
+	// exit(1);
 	return (color);
 }
 
@@ -59,9 +61,13 @@ void	ft_put_texture(t_cub3d *mlx, t_ray *s, int y, uint32_t x1)
 
 	s->y_start = ((mlx->height / 2) - (s->projection_height / 2));
 	x_percentage = ft_determine_x_percentage(s->hit_x, s->hit_y);
+	// y = y - 2;
+	// // printf("%f\n", s->projection_height);
 	if (mlx->p->compas == NORTH)
+				{
 		mlx_put_pixel(mlx->image, x1, y, get_color_from_texture(mlx->texture[0],
 				x_percentage, y, s));
+				}
 	else if (mlx->p->compas == SOUTH)
 		mlx_put_pixel(mlx->image, x1, y, get_color_from_texture(mlx->texture[1],
 				x_percentage, y, s));
@@ -77,7 +83,7 @@ void	draw_wall(uint32_t x1, uint32_t len2, t_cub3d *mlx, t_ray *s)
 {
 	uint32_t	y2;
 	int			y_start;
-	int			y;
+	uint32_t	y;
 
 	s->projection_height = len2;
 	y_start = ((mlx->height / 2) - (len2 / 2));
