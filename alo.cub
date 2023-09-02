@@ -6,6 +6,7 @@ WE ./walls/pnine.png
 EA ./walls/psix.png
 SO ./walls/pten.png
 
-111111111
-1W0001111
+ 111 1111
+1W0010001
+100000001
 111111111

@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 22:15:40 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:23:50 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	ft_two(mlx_key_data_t *key, t_cub3d *mlx)
 		mlx->p->left_right = 1;
 		mlx->p->move = 0;
 	}
+	if (key->key == MLX_KEY_M)
+		mlx->map_press = 1;
+	if (key->key == MLX_KEY_K)
+		mlx->map_press = 0;
 }
 
 void	move_on(mlx_key_data_t key, void *prm)
@@ -99,8 +103,6 @@ void	move_on(mlx_key_data_t key, void *prm)
 		mlx->p->left_right = 1;
 		mlx->p->move = 0;
 	}
-	if (key.key == MLX_KEY_M)
-		mlx->map_press = 1;
 	if (key.key == MLX_KEY_ESCAPE)
 	{
 		mlx_delete_image(mlx->mlx, mlx->image);
@@ -139,3 +141,5 @@ void	draw_p(void *param)
 	}
 	mlx->p->move = 0;
 }
+
+

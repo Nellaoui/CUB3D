@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 13:19:47 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 11:57:12 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:01:03 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,14 @@ void	ft_put_texture(t_cub3d *mlx, t_ray *s, int y, uint32_t x1)
 
 	s->y_start = ((mlx->height / 2) - (s->projection_height / 2));
 	x_percentage = ft_determine_x_percentage(s->hit_x, s->hit_y);
-	// y = y - 2;
-	// // printf("%f\n", s->projection_height);
+	// printf("x1->%u\n", x1);
+	// printf("y->%d\n", y);
+	// printf("image ->%u\n", mlx->image->height);
+	// exit(1);
+	// if (y < 150)
+		// mlx_put_pixel(mlx->image, x1, y, createcolor(255, 0, 0, 255));
+	// exit(1);
+	// {
 	if (mlx->p->compas == NORTH)
 				{
 		mlx_put_pixel(mlx->image, x1, y, get_color_from_texture(mlx->texture[0],
@@ -77,6 +83,7 @@ void	ft_put_texture(t_cub3d *mlx, t_ray *s, int y, uint32_t x1)
 	else if (mlx->p->compas == EAST)
 		mlx_put_pixel(mlx->image, x1, y, get_color_from_texture(mlx->texture[3],
 				x_percentage, y, s));
+	// }
 }
 
 void	draw_wall(uint32_t x1, uint32_t len2, t_cub3d *mlx, t_ray *s)
