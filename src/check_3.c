@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:47:04 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 20:53:33 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 12:11:46 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 int	ft_rgb(char **str, t_cub3d *s)
 {
