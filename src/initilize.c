@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 11:23:40 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:32:49 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	// 	my_struct->height = 1400;
 	my_struct->mlx = mlx_init(my_struct->width, my_struct->height,
 			"cub3d", false);
-	my_struct->scale_width = (0.1 * my_struct->width) / my_struct->height;
-	my_struct->scale_height = (0.2 * my_struct->height) / my_struct->width;
+	my_struct->scale_width = 0.1;
+	my_struct->scale_height = 0.1;
 	if (my_struct->mlx == NULL)
 		return (1);
 	my_struct->image = mlx_new_image(my_struct->mlx,

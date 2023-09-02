@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 11:21:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:31:22 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #  define BUFFER_SIZE 500000
 # endif
 
-# define WIDGHT 500
-# define HEIGHT 500
+# define WIDGHT 960
+# define HEIGHT 540
 # define TILE_SIZE 50
 # define SCALE 0.2
 // #define	MAXIMIZE	3
