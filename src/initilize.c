@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/03 21:13:42 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 20:19:35 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char ft_player_direction(t_cub3d *my_struct)
+char	ft_p_direction(t_cub3d *my_struct)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (my_struct->holdmap[j])
@@ -111,7 +111,7 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->width = WIDGHT;
 	my_struct->height = HEIGHT;
 	my_struct->p = initilize_p(my_struct);
-	if ((my_struct->colons * TILE_SIZE) > 9600
+	if ((my_struct->colons * TILE_SIZE) > 9600 
 		|| ((my_struct->rows * TILE_SIZE) > 5400))
 		my_struct->map_size = 1;
 	my_struct->mlx = mlx_init(my_struct->width, my_struct->height,
