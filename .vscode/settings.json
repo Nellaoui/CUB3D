@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "fcntl.h": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c",
+        "sstream": "c",
+        "string": "c",
+        "iosfwd": "c",
+        "atomic": "c",
+        "cstdint": "c",
+        "cub3d.h": "c"
+    }
+}

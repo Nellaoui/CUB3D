@@ -3,32 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 08:16:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/16 10:24:13 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/09/03 21:09:27 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-uint32_t createcolor(int red, int green, int blue, int alpha) 
+uint32_t	createcolor(int red, int green, int blue, float alpha)
 {
-	uint32_t	color;
+	int	hex;
 
-	color = 0;
-	color |= ((uint32_t)alpha) << 24;
-	color |= ((uint32_t)blue) << 16;
-	color |= ((uint32_t)green) << 8;
-	color |= ((uint32_t)red);
-	
-	return (color);
+	hex = (red << 24) | (green << 16) | (blue << 8) | (int)(alpha);
+	return (hex);
 }
 
-int number_of_rows(char **map)
+int	number_of_rows(char **map)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (map[count])
@@ -46,12 +40,26 @@ int	number_of_colons(char *map)
 	return (count);
 }
 
-
-void	printf_double_pointer(char **map)
+int	colons(char **map)
 {
-	while (*map != NULL)
+	int				j;
+	unsigned long	holder;
+
+	j = 1;
+	holder = 0;
+	while (map[j])
 	{
-		printf("the line is --->%s\n", *map);
-		map++;
+		if (ft_strlen(map[j]) >= holder)
+			holder = ft_strlen(map[j]);
+		j++;
 	}
+	return (holder);
+}
+
+double	ft_absolute_angle(double ray_angle)
+{
+	ray_angle = fmod(ray_angle, (2 * M_PI));
+	if (ray_angle < 0)
+		ray_angle += (2 * M_PI);
+	return (ray_angle);
 }

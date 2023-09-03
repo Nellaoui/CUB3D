@@ -6,11 +6,11 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:58:13 by nelallao          #+#    #+#             */
-/*   Updated: 2022/10/22 14:53:53 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 21:14:07 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/23 10:42:13 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/09/03 21:11:12 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ void	ft_check_file_cub(char *string)
 	}
 }
 
-int	ft_check_floor(char **str, int j)
+int	ft_check_floor(char **str, int j, t_cub3d *s)
 {
-	int count;
-	int i;
+	int	i;
+	int	count;
 
-	count = 0;
 	i = 0;
-	while(str[j][i] == ' ')
+	count = 0;
+	while (str[j][i] == ' ')
 		i++;
 	if (str[j][i] == 'C' || str[j][i] == 'F')
-		{
+	{
+		i++;
+		while (str[j][i] == ' ')
 			i++;
-			while (str[j][i] == ' ')
-				i++;
-		}
+	}
 	else
 		return (1);
 	while (str[j][i])
@@ -50,96 +50,80 @@ int	ft_check_floor(char **str, int j)
 			count++;
 		i++;
 	}
-	if (ft_check_valid_rgb(str, j, count))
-		return (1);
-	return (0);
+	return (ft_check_valid_rgb(str, j, count, s));
 }
 
-int ft_check_valid_rgb(char **str, int j, int count)
+void	ft_give_color(char	**str, t_cub3d *s, int f_c, int j)
 {
-	int	st;
-	int	nd;
-	int rd;
+	static int	two;
 
+	if (f_c == 1)
+	{
+		s->f_st = ft_st(str[j]);
+		s->f_nd = ft_nd(str[j]);
+		s->f_rd = ft_rd(str[j]);
+		two++;
+	}
+	if (f_c == 2)
+	{
+		s->c_st = ft_st(str[j]);
+		s->c_nd = ft_nd(str[j]);
+		s->c_rd = ft_rd(str[j]);
+		two++;
+	}
+	if (two > 2)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
+int	ft_check_valid_rgb(char **str, int j, int count, t_cub3d *s)
+{
+	int			st;
+	int			nd;
+	int			rd;
+	int			f;
+	int			i;
+
+	f = false;
+	i = 0;
+	if (str[j][i] == 'F')
+		f = 1;
+	if (str[j][i] == 'C')
+		f = 2;
 	st = ft_st(str[j]);
 	nd = ft_nd(str[j]);
 	rd = ft_rd(str[j]);
 	if (st == -1 || nd == -1 || rd == -1)
 		return (1);
-	if (st >= 0 && st <= 255 && nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
+	if (st >= 0 && st <= 255
+		&& nd >= 0 && nd <= 255 && rd >= 0 && rd <= 255 && count == 2)
+	{
+		ft_give_color(str, s, f, j);
 		return (0);
+	}
 	else
 		return (1);
 }
 
 int	ft_check_dl(char *str)
 {
-	int j;
+	int	j;
 
 	j = 0;
-	while(str[j])
+	while (str[j])
 	{
-		if (str[j] == '1' && str[j+1] == '1' && str[j+2] == '1' && str[j+3] == '1')
+		if (str[j] == '1' && str[j + 1] == '1'
+			&& str[j + 2] == '1' && str[j + 3] == '1')
 			break ;
 		j++;
 	}
-	while(str[j])
+	while (str[j])
 	{
-		if (str[j] == '\n' && str[j+1] == '\n')
-			return 1;
+		if (str[j] == '\n' && str[j + 1] == '\n')
+			return (1);
 		j++;
-	}
-	return (0);
-}
-
-int	ft_check_data(char **str)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 0;
-	j = 0;
-	count = 0;
-	while(str[j])
-	{
-		i = 0;
-		while(str[j][i])
-		{
-			if (str[j][i] == 'N')
-				count += ft_north(str[j]);
-			else if (str[j][i] == 'W')
-				count += ft_west(str[j]);
-			else if (str[j][i] == 'E')
-				count += ft_east(str[j]);
-			else if (str[j][i] == 'S')
-				count += ft_south(str[j]);
-			i++;
-		}
-		j++;
-	}
-	if (count == 4 && ft_rgb(str))
-		return 0;
-	ft_putstr_fd("somthing went wrong : map can't be loaded 1", 2);
-		exit(EXIT_FAILURE);
-}
-
-int	ft_good(char **map, int j, int i)
-{
-	if (map[j][i] == '0' || map[j][i]  == 'W' || map[j][i]  == 'E' || map[j][i]  == 'N' || map[j][i]  == 'S')
-	{
-		if (ft_strlen(map[j - 1]) < (unsigned long)i)
-			return (1);
-		if (ft_strlen(map[j + 1]) < (unsigned long)i)
-			return (1);
-		if (map[j - 1][i] == ' ' || map[j - 1][i] == '\0')
-			return (1);
-		if (map[j + 1][i] == ' ' || map[j + 1][i] == '\0')
-			return (1);
-		if (map[j][i + 1] == ' ' || map[j][i + 1] == '\0')
-			return (1);
-		if (map[j][i - 1] == ' ' || map[j][i - 1] == '\0')
-			return (1);
 	}
 	return (0);
 }

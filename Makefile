@@ -3,19 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+         #
+#    By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 20:17:11 by ndahib            #+#    #+#              #
-#    Updated: 2023/08/24 23:32:23 by ndahib           ###   ########.fr        #
+#    Updated: 2023/09/03 21:12:32 by nelallao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #***************************************VARIABLES******************************#
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-
+# CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -fsanitize=address -g
+# CFLAGS = -O3
 NAME = cub3D
-SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c
+SRCS = main.c checks.c mlx_hook.c render_map.c initilize.c tools.c rays.c walls.c check_3.c check_4.c check_2.c \
+		directons.c map_hundling.c casting.c
 OBJS = $(SRCS:.c=.o)
 OBJS := $(addprefix obj/, $(OBJS))
 OBJ_DIR = obj/

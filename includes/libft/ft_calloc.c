@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:17:52 by nelallao          #+#    #+#             */
-/*   Updated: 2022/10/21 16:32:49 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 21:14:19 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,3 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(p, count * size);
 	return (p);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	char *s;
-// 	s = ft_calloc(5, 4);
-// 	printf(":%s:", s);
-// }

@@ -1,14 +1,11 @@
-C 122,234,222
-F 10,10,1
+NO ./walls/peight.png
+WE ./walls/pnine.png
+EA ./walls/psix.png
+SO ./walls/pten.png
 
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-SO ./path_to_the_south_texture
+F 18,53,25
+C 153,204,255
 
-111111111111111
-1W0000000000001
-100000000000001
-100000000000001
-100000000000001
-111111111111111
+111111111111111111111
+1W0000000000000000001
+111111111111111111111
