@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/03 17:56:45 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/09/03 20:19:35 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_p	*initilize_p(t_cub3d	*my_struct)
 	else if (ft_p_direction(my_struct) == 'N')
 		p->rotation = -1 * (M_PI / 2);
 	else if (ft_p_direction(my_struct) == 'E')
-		p->rotation = 360 * (M_PI / 180);
+		p->rotation = -1 * M_PI;
 	else if (ft_p_direction(my_struct) == 'W')
 		p->rotation = (0 * (M_PI / 180));
 	return (p);
