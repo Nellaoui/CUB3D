@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 13:32:49 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 11:31:59 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_p	*initilize_p(t_cub3d	*my_struct)
 		p->rotation = -1 * (M_PI / 2);
 	else if (ft_p_direction(my_struct) == 'E')
 		p->rotation = 360 * (M_PI / 180);
-	else if (ft_p_direction(my_struct) == 'E')
+	else if (ft_p_direction(my_struct) == 'W')
 		p->rotation = (0 * (M_PI / 180));
 	return (p);
 }
@@ -111,10 +111,8 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->width = WIDGHT;
 	my_struct->height = HEIGHT;
 	my_struct->p = initilize_p(my_struct);
-	// if (my_struct->width > 2560)
-	// 	my_struct->width = 2550;
-	// if (my_struct->height > 1440)
-	// 	my_struct->height = 1400;
+	if ((my_struct->colons * TILE_SIZE) > 9600 || ((my_struct->rows * TILE_SIZE) > 5400))
+		my_struct->map_size = 1;
 	my_struct->mlx = mlx_init(my_struct->width, my_struct->height,
 			"cub3d", false);
 	my_struct->scale_width = 0.1;

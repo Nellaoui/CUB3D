@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 12:09:09 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/09/03 10:30:45 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ void	ft_give_path(char *str, t_cub3d *s)
 	s->texture[texture_number] = mlx_load_png(path);
 	if (texture_number > 4)
 	{
-		ft_putstr_fd("check that just 4 textures\n", 2);
+		ft_putstr_fd("Error\ncheck that just 4 textures\n", 2);
 		free(path);
 		exit(1);
 	}
 	if (!(s->texture[texture_number]))
 	{
-		ft_putstr_fd("Error\n texture cant be loaded", 2);
-		mlx_delete_texture(s->texture[texture_number]);
+		ft_putstr_fd("Error\ntexture cant be loaded", 2);
 		free(path);
 		exit(1);
 	}

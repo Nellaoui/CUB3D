@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 13:31:22 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 10:29:39 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct s_cub3d
 	float			scale_width;
 	float			scale_height;
 	int				map_press;
+	int				map_size;
 }					t_cub3d;
 
 /*---------------------noaman----------------------------*/

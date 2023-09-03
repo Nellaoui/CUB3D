@@ -6,7 +6,7 @@
 /*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:49:33 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 13:23:50 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 10:47:41 by nelallao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_two(mlx_key_data_t *key, t_cub3d *mlx)
 		mlx->p->left_right = 1;
 		mlx->p->move = 0;
 	}
-	if (key->key == MLX_KEY_M)
+	if (key->key == MLX_KEY_M && mlx->map_size != 1)
 		mlx->map_press = 1;
 	if (key->key == MLX_KEY_K)
 		mlx->map_press = 0;
