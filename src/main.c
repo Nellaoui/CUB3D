@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 12:52:51 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/03 10:30:45 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:45:40 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,24 @@ void	ft_give_path(char *str, t_cub3d *s)
 	}
 	if (!(s->texture[texture_number]))
 	{
-		ft_putstr_fd("Error\ntexture cant be loaded", 2);
 		free(path);
 		exit(1);
 	}
 	free(path);
 	texture_number++;
 }
+
+// void	printf_map(char **map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		printf("%s\n", map[i]);
+// 		i++;
+// 	}	
+// }
 
 void	ft_checks(t_cub3d *s, char **av)
 {

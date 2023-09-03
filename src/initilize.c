@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 09:41:12 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/03 11:31:59 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 17:56:45 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ int	initilize_cub3d(t_cub3d *my_struct)
 	my_struct->width = WIDGHT;
 	my_struct->height = HEIGHT;
 	my_struct->p = initilize_p(my_struct);
-	if ((my_struct->colons * TILE_SIZE) > 9600 || ((my_struct->rows * TILE_SIZE) > 5400))
+	if ((my_struct->colons * TILE_SIZE) > 9600 
+		|| ((my_struct->rows * TILE_SIZE) > 5400))
 		my_struct->map_size = 1;
 	my_struct->mlx = mlx_init(my_struct->width, my_struct->height,
 			"cub3d", false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 19:10:45 by nelallao          #+#    #+#             */
-/*   Updated: 2023/08/31 20:53:57 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 16:11:40 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	ft_give_color(char	**str, t_cub3d *s, int f_c, int j)
 	}
 	if (two > 2)
 	{
-		exit(EXIT_FAILURE);
 		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_FAILURE);
 	}
 }
 

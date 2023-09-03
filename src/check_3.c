@@ -6,7 +6,7 @@
 /*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:47:04 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 12:11:46 by ndahib           ###   ########.fr       */
+/*   Updated: 2023/09/03 16:28:31 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_rgb(char **str, t_cub3d *s)
 			{
 				if (ft_check_floor(str, j, s))
 				{
-					ft_putstr_fd("Error\n", 2);
+					ft_putstr_fd("Error in colors\n", 2);
 					exit (1);
 				}
 			}

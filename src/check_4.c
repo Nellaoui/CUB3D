@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:50:22 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 20:53:46 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:29:11 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ char	**ft_hold_map(char *str)
 	char	**data;
 
 	j = give_index(str);
+	if (j == 0)
+	{
+		ft_putstr_fd("check if the map is valid\n", 2);
+		exit(1);
+	}
 	data = ft_split(&str[j], '\n');
 	if (!data)
 		return (0);

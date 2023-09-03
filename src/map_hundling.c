@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_hundling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:26:57 by nelallao          #+#    #+#             */
-/*   Updated: 2023/09/02 15:11:23 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 17:58:15 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,11 @@ int	ft_wall_here_a(float x, float y, t_cub3d	*mlx)
 
 	x_grid = (int)(x / TILE_SIZE);
 	y_grid = (int)(y / TILE_SIZE);
-	if (x < 0 || x > TILE_SIZE * mlx->colons || y < 0 || y > TILE_SIZE * mlx->rows)
+	if (x < 0 || x > TILE_SIZE * mlx->colons 
+		|| y < 0 || y > TILE_SIZE * mlx->rows)
 		return (1);
-	if (x < 0 || x + 1 > TILE_SIZE * mlx->colons || y < 0 || y + 1 > TILE_SIZE * mlx->rows)
+	if (x < 0 || x + 1 > TILE_SIZE * mlx->colons 
+		|| y < 0 || y + 1 > TILE_SIZE * mlx->rows)
 		return (1);
 	if (mlx->holdmap[y_grid][x_grid] != '1')
 		return (0);

@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:04:41 by ndahib            #+#    #+#             */
-/*   Updated: 2023/08/31 19:27:40 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:45:56 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// void    draw_ray(int x0, int y0, int x1, int y1, mlx_image_t *image)
-// {
-//     int        dx;
-//     int        dy;
-//     int        i;
-//     int        steps;
-//     int     x_inc, y_inc;
-
-//     i = 0;
-//     dx = x1 - x0;
-//     dy = y1 - y0;
-//     if (abs(dx) > abs(dy))
-//         steps = abs(dx);
-//     else
-//         steps = abs(dy);
-//     x_inc = dx / (float)steps;
-//     y_inc = dy / (float)steps;
-//     while (i <= steps)
-//     {
-//         pixel_draw(x0, y0, image, ft_pixel(25, 50, 20, 1));
-//         x0 += x_inc;
-//         y0 += y_inc;
-//         i++;
-//     }
-// }
 
 float	ft_distance_beteween(float x1, float y1, float x2, float y2)
 {

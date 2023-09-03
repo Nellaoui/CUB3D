@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 06:46:50 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/02 14:50:03 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 15:46:07 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,6 @@ void	render_map(t_cub3d *mlx_lib)
 
 void	render_p(t_cub3d *mlx_lib)
 {
-	// uint32_t	width;
-	// uint32_t	height;
-
-	// width = TILE_SIZE * mlx_lib->colons;
-	// height = TILE_SIZE * mlx_lib->rows;
 	mlx_lib->image = mlx_new_image(mlx_lib->mlx, WIDGHT, HEIGHT);
 	if (!mlx_lib->image)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nelallao <nelallao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndahib <ndahib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 16:44:07 by ndahib            #+#    #+#             */
-/*   Updated: 2023/09/03 10:29:39 by nelallao         ###   ########.fr       */
+/*   Updated: 2023/09/03 17:57:10 by ndahib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,9 +195,7 @@ void				casting_horizontal(t_cub3d *mlx, double ray_angle,
 						t_ray *s);
 void				ft_give_color(char **str, t_cub3d *s, int f_c, int j);
 void				ft_norm(t_cub3d *mlx);
-void					ft_hardcode(char **str);
-
-
+void				ft_hardcode(char **str);
 /*---------------------------DRAW----------------------------*/
 // void				draw_c_f(t_cub3d *mlx);
 void				draw_c(t_cub3d *s);
