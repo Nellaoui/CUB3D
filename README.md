@@ -23,7 +23,7 @@ CUB3D/
 - Player movement and rotation
 - Collision detection
 - Map parsing from file
-- Minimap display (if implemented)
+- Minimap display
 
 ## 🗺️ Map Configuration
 
@@ -97,6 +97,7 @@ Run the program with a map file:
 - `←` - Rotate camera left
 - `→` - Rotate camera right
 - `ESC` - Exit game
+- `M` - Show the MiniMap
 
 ## 🖥️ Technical Requirements
 
